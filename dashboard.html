@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard — SafeDispose</title>
+    <meta name="description" content="SafeDispose client dashboard for scheduling pickups, tracking compliance, viewing waste reports, and managing billing.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <p class="sidebar-nav-title">Main Menu</p>
+                <a href="dashboard.html" class="sidebar-link active">
+                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-truck"></i> Active Pickups
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-certificate"></i> Certificates
+                </a>
+
+                <p class="sidebar-nav-title" style="margin-top:24px;">Management</p>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-chart-line"></i> Waste Reports
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-credit-card"></i> Billing
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-file-lines"></i> Invoices
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-box-archive"></i> Container Inventory
+                </a>
+
+                <p class="sidebar-nav-title" style="margin-top:24px;">Account</p>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-circle-user"></i> Profile
+                </a>
+                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Welcome back, Dr. Kim</h2>
+                    <p>MedCenter Health — Last login: Oct 13, 2026 at 9:42 AM</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">RTL</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" onclick="alert('Profile settings')">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="dash-metrics">
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon teal"><i class="fa-solid fa-truck"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 12%</span>
+                    </div>
+                    <div class="metric-value">47</div>
+                    <div class="metric-label">Pickups This Month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon blue"><i class="fa-solid fa-certificate"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 8%</span>
+                    </div>
+                    <div class="metric-value">142</div>
+                    <div class="metric-label">Active Certificates</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon amber"><i class="fa-solid fa-weight-hanging"></i></div>
+                        <span class="metric-trend down"><i class="fa-solid fa-arrow-trend-down"></i> 3%</span>
+                    </div>
+                    <div class="metric-value">2.8 T</div>
+                    <div class="metric-label">Waste Volume (Monthly)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon green"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 100%</span>
+                    </div>
+                    <div class="metric-value">99.8%</div>
+                    <div class="metric-label">Compliance Score</div>
+                </div>
+            </div>
+
+            <!-- Grid: Recent Pickups + Upcoming -->
+            <div class="dash-grid">
+                <!-- Recent Certificates -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Recent Certificates</h3>
+                        <a href="#">View All</a>
+                    </div>
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Certificate ID</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>COD-20261012-047</td>
+                                <td>Oct 12, 2026</td>
+                                <td>Biohazard</td>
+                                <td><span class="status-badge completed">Issued</span></td>
+                            </tr>
+                            <tr>
+                                <td>COD-20261010-045</td>
+                                <td>Oct 10, 2026</td>
+                                <td>Sharps</td>
+                                <td><span class="status-badge completed">Issued</span></td>
+                            </tr>
+                            <tr>
+                                <td>COD-20261008-043</td>
+                                <td>Oct 8, 2026</td>
+                                <td>Pharmaceutical</td>
+                                <td><span class="status-badge completed">Issued</span></td>
+                            </tr>
+                            <tr>
+                                <td>COD-20261005-041</td>
+                                <td>Oct 5, 2026</td>
+                                <td>Biohazard</td>
+                                <td><span class="status-badge completed">Issued</span></td>
+                            </tr>
+                            <tr>
+                                <td>COD-20261003-039</td>
+                                <td>Oct 3, 2026</td>
+                                <td>Sharps</td>
+                                <td><span class="status-badge completed">Issued</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Upcoming Pickups -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Upcoming Pickups</h3>
+                        <a href="#">Schedule New</a>
+                    </div>
+                    <div class="pickup-list">
+                        <div class="pickup-item">
+                            <div class="pickup-icon"><i class="fa-solid fa-biohazard"></i></div>
+                            <div class="pickup-info">
+                                <h4>Biohazard Waste — Building A</h4>
+                                <p>2 containers (65-gallon each)</p>
+                            </div>
+                            <div class="pickup-time">Tomorrow, 8:30 AM</div>
+                        </div>
+                        <div class="pickup-item">
+                            <div class="pickup-icon"><i class="fa-solid fa-syringe"></i></div>
+                            <div class="pickup-info">
+                                <h4>Sharps Collection — Lab Wing</h4>
+                                <p>8 sharps containers (5-quart)</p>
+                            </div>
+                            <div class="pickup-time">Oct 16, 9:00 AM</div>
+                        </div>
+                        <div class="pickup-item">
+                            <div class="pickup-icon"><i class="fa-solid fa-pills"></i></div>
+                            <div class="pickup-info">
+                                <h4>Pharmaceutical — Pharmacy Dept</h4>
+                                <p>1 container (30-gallon)</p>
+                            </div>
+                            <div class="pickup-time">Oct 18, 10:00 AM</div>
+                        </div>
+                        <div class="pickup-item">
+                            <div class="pickup-icon"><i class="fa-solid fa-biohazard"></i></div>
+                            <div class="pickup-info">
+                                <h4>Biohazard — Surgery Center</h4>
+                                <p>4 containers (95-gallon rolling)</p>
+                            </div>
+                            <div class="pickup-time">Oct 20, 7:00 AM</div>
+                        </div>
+                        <div class="pickup-item">
+                            <div class="pickup-icon"><i class="fa-solid fa-syringe"></i></div>
+                            <div class="pickup-info">
+                                <h4>Sharps — Emergency Dept</h4>
+                                <p>12 sharps containers (1-quart)</p>
+                            </div>
+                            <div class="pickup-time">Oct 22, 8:00 AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid: Billing + Container Inventory -->
+            <div class="dash-grid">
+                <!-- Recent Invoices -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Recent Invoices</h3>
+                        <a href="#">View All</a>
+                    </div>
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Invoice #</th>
+                                <th>Amount</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>INV-2026-0384</td>
+                                <td>$2,847.00</td>
+                                <td>Oct 31, 2026</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>INV-2026-0371</td>
+                                <td>$2,695.00</td>
+                                <td>Sep 30, 2026</td>
+                                <td><span class="status-badge active">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>INV-2026-0358</td>
+                                <td>$3,120.00</td>
+                                <td>Aug 31, 2026</td>
+                                <td><span class="status-badge active">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>INV-2026-0345</td>
+                                <td>$2,790.00</td>
+                                <td>Jul 31, 2026</td>
+                                <td><span class="status-badge active">Paid</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Container Inventory -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Container Inventory</h3>
+                        <a href="#">Request More</a>
+                    </div>
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Container Type</th>
+                                <th>Size</th>
+                                <th>On-Site</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sharps Container</td>
+                                <td>1-quart</td>
+                                <td>24</td>
+                                <td><span class="status-badge active">Adequate</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sharps Container</td>
+                                <td>5-quart</td>
+                                <td>12</td>
+                                <td><span class="status-badge active">Adequate</span></td>
+                            </tr>
+                            <tr>
+                                <td>Biohazard Bin</td>
+                                <td>65-gallon</td>
+                                <td>6</td>
+                                <td><span class="status-badge pending">Reorder Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>Rolling Cart</td>
+                                <td>95-gallon</td>
+                                <td>4</td>
+                                <td><span class="status-badge active">Adequate</span></td>
+                            </tr>
+                            <tr>
+                                <td>Pharma Container</td>
+                                <td>30-gallon</td>
+                                <td>2</td>
+                                <td><span class="status-badge expired">Low Stock</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Waste Volume Summary -->
+            <div class="dash-card" style="margin-bottom:24px;">
+                <div class="dash-card-header">
+                    <h3>Waste Volume Summary (Last 6 Months)</h3>
+                </div>
+                <div class="dash-metrics" style="margin-bottom:0;">
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <div class="metric-icon teal"><i class="fa-solid fa-biohazard"></i></div>
+                        </div>
+                        <div class="metric-value">12.4 T</div>
+                        <div class="metric-label">Biohazard Waste</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <div class="metric-icon blue"><i class="fa-solid fa-syringe"></i></div>
+                        </div>
+                        <div class="metric-value">3.2 T</div>
+                        <div class="metric-label">Sharps Waste</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <div class="metric-icon amber"><i class="fa-solid fa-pills"></i></div>
+                        </div>
+                        <div class="metric-value">1.8 T</div>
+                        <div class="metric-label">Pharmaceutical Waste</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <div class="metric-icon green"><i class="fa-solid fa-recycle"></i></div>
+                        </div>
+                        <div class="metric-value">17.4 T</div>
+                        <div class="metric-label">Total Processed</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+    <script>
+        // Dashboard-specific init
+        (function() {
+            const html = document.documentElement;
+            const savedTheme = localStorage.getItem('mwd_theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) html.classList.add('dark');
+            if (localStorage.getItem('mwd_dir') === 'rtl') html.setAttribute('dir', 'rtl');
+            document.querySelectorAll('.theme-icon-wrap').forEach(el => {
+                const isDark = html.classList.contains('dark');
+                el.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+            });
+            document.querySelectorAll('.dir-label').forEach(el => {
+                el.textContent = html.getAttribute('dir') === 'rtl' ? 'RTL' : 'LTR';
+            });
+        })();
+    </script>
+</body>
+</html>

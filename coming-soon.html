@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon — SafeDispose</title>
+    <meta name="description" content="This page is coming soon. Stay tuned for updates from SafeDispose.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fullscreen-page">
+    <!-- Top bar -->
+    <div class="coming-top-bar">
+        <button onclick="toggleDir(event)" class="nav-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+            <span class="dir-label" style="font-size:0.625rem;font-weight:600;">RTL</span>
+        </button>
+        <button onclick="toggleTheme(event)" class="nav-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+            <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+        </button>
+    </div>
+
+    <div class="coming-soon-page">
+        <div class="coming-content">
+            <a href="index.html" class="error-logo" aria-label="Go to Home">
+                <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top" style="color:var(--primary-light);">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="color:#fff;">SafeDispose</span>
+                </div>
+            </a>
+            <h1>Coming Soon</h1>
+            <p>We're building something great. This page is under construction and will be available soon. Stay tuned for updates.</p>
+
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-mins">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-secs">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+
+            <form class="coming-notify" onsubmit="event.preventDefault(); alert('You will be notified when we launch!'); this.reset();">
+                <input type="email" placeholder="Enter your email for updates" required>
+                <button type="submit" class="btn btn-primary">Notify Me</button>
+            </form>
+
+            <div style="margin-top:32px;">
+                <a href="index.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.25); color:rgba(255,255,255,.8);"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="components.js"></script>
+    <script>
+        initAuthPage();
+        initCountdown();
+    </script>
+</body>
+</html>
