@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Volume Reports & Analytics — SafeDispose</title>
+    <meta name="description" content="Detailed medical waste generation reports, landfill diversion rates, and environmental ESG metrics for MedCenter Health.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link active">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Waste Generation Reports &amp; Analytics</h2>
+                    <p>MedCenter Health — Monthly volume trends &amp; ESG sustainability metrics</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">LTR</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" style="cursor:default;">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Overview Cards -->
+            <div class="dash-metrics">
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon teal"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 5.4%</span>
+                    </div>
+                    <div class="metric-value">17.4 Tons</div>
+                    <div class="metric-label">Total 6-Mo Volume</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon blue"><i class="fa-solid fa-leaf"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 94.2%</span>
+                    </div>
+                    <div class="metric-value">94.2%</div>
+                    <div class="metric-label">Landfill Diversion Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon amber"><i class="fa-solid fa-cloud-sun"></i></div>
+                        <span class="metric-trend down"><i class="fa-solid fa-arrow-trend-down"></i> 32%</span>
+                    </div>
+                    <div class="metric-value">18.6 MT</div>
+                    <div class="metric-label">CO₂ Offset via Autoclave</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon green"><i class="fa-solid fa-award"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-arrow-trend-up"></i> Top 5%</span>
+                    </div>
+                    <div class="metric-value">A+</div>
+                    <div class="metric-label">Facility ESG Rating</div>
+                </div>
+            </div>
+
+            <!-- Visual Bar Chart & Stream Distribution -->
+            <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; margin-bottom:24px;">
+                <!-- Monthly Bar Chart -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Monthly Generation Volume (Tons)</h3>
+                        <span class="status-badge active"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Forecasting Active</span>
+                    </div>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">Tonnage comparison across all facility wings over the past 6 billing cycles.</p>
+                    
+                    <div class="mock-bars-chart" style="height:220px; border-bottom:1px solid var(--border); padding-bottom:8px;">
+                        <div class="bar-col"><div class="bar-fill" style="height:55%; background:var(--primary);"><span style="color:var(--text);">2.4T</span></div><label>May</label></div>
+                        <div class="bar-col"><div class="bar-fill" style="height:65%; background:var(--primary);"><span style="color:var(--text);">2.8T</span></div><label>Jun</label></div>
+                        <div class="bar-col"><div class="bar-fill" style="height:72%; background:var(--primary);"><span style="color:var(--text);">3.1T</span></div><label>Jul</label></div>
+                        <div class="bar-col"><div class="bar-fill" style="height:60%; background:var(--primary);"><span style="color:var(--text);">2.6T</span></div><label>Aug</label></div>
+                        <div class="bar-col"><div class="bar-fill" style="height:80%; background:var(--primary);"><span style="color:var(--text);">3.5T</span></div><label>Sep</label></div>
+                        <div class="bar-col active-bar"><div class="bar-fill" style="height:70%; background:linear-gradient(180deg, var(--primary-light), var(--primary));"><span style="color:var(--primary); font-weight:700;">2.8T</span></div><label>Oct (Current)</label></div>
+                    </div>
+                </div>
+
+                <!-- Stream Breakdown Distribution -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Waste Stream Breakdown</h3>
+                    </div>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:18px;">Segregation distribution for MedCenter Health.</p>
+                    
+                    <div style="display:flex; flex-direction:column; gap:14px;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; margin-bottom:4px;">
+                                <span><i class="fa-solid fa-biohazard text-teal"></i> Biohazardous Red Bag</span>
+                                <span>71% (12.4 Tons)</span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-alt); border-radius:var(--radius-full); overflow:hidden;">
+                                <div style="height:100%; width:71%; background:var(--primary); border-radius:var(--radius-full);"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; margin-bottom:4px;">
+                                <span><i class="fa-solid fa-syringe text-blue"></i> Sharps &amp; Needles</span>
+                                <span>18% (3.2 Tons)</span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-alt); border-radius:var(--radius-full); overflow:hidden;">
+                                <div style="height:100%; width:18%; background:#2563EB; border-radius:var(--radius-full);"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; margin-bottom:4px;">
+                                <span><i class="fa-solid fa-pills text-amber"></i> Pharmaceutical Rx</span>
+                                <span>10% (1.8 Tons)</span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-alt); border-radius:var(--radius-full); overflow:hidden;">
+                                <div style="height:100%; width:10%; background:#D97706; border-radius:var(--radius-full);"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; margin-bottom:4px;">
+                                <span><i class="fa-solid fa-dna text-teal"></i> Pathological / Chemotherapy</span>
+                                <span>1% (0.2 Tons)</span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-alt); border-radius:var(--radius-full); overflow:hidden;">
+                                <div style="height:100%; width:4%; background:#10B981; border-radius:var(--radius-full);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historical Monthly Waste Summary Table -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <h3>Billing Cycle Volume Log</h3>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn btn-secondary btn-sm" onclick="alert('Generating annual waste audit report (CSV)...');"><i class="fa-solid fa-file-arrow-down"></i> Export CSV</button>
+                        <button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading EPA Form 8700-12 Annual Summary (PDF)...')"><i class="fa-solid fa-file-pdf"></i> Annual Regulatory PDF</button>
+                    </div>
+                </div>
+                <table class="dash-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Pickups</th>
+                            <th>Biohazard Volume</th>
+                            <th>Sharps Volume</th>
+                            <th>Rx Volume</th>
+                            <th>Treatment Method</th>
+                            <th>Diversion Rate</th>
+                            <th>Audit Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>October 2026</strong></td>
+                            <td>47 runs</td>
+                            <td>2,100 lbs</td>
+                            <td>540 lbs</td>
+                            <td>160 lbs</td>
+                            <td>Hydrothermal Autoclave</td>
+                            <td><strong class="text-teal">94.8%</strong></td>
+                            <td><span class="status-badge active">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>September 2026</strong></td>
+                            <td>52 runs</td>
+                            <td>2,450 lbs</td>
+                            <td>680 lbs</td>
+                            <td>370 lbs</td>
+                            <td>Hydrothermal Autoclave</td>
+                            <td><strong class="text-teal">93.9%</strong></td>
+                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>August 2026</strong></td>
+                            <td>44 runs</td>
+                            <td>1,980 lbs</td>
+                            <td>490 lbs</td>
+                            <td>130 lbs</td>
+                            <td>Hydrothermal Autoclave</td>
+                            <td><strong class="text-teal">94.5%</strong></td>
+                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>July 2026</strong></td>
+                            <td>49 runs</td>
+                            <td>2,240 lbs</td>
+                            <td>610 lbs</td>
+                            <td>250 lbs</td>
+                            <td>Hydrothermal Autoclave</td>
+                            <td><strong class="text-teal">94.1%</strong></td>
+                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+</body>
+</html>

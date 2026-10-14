@@ -157,12 +157,11 @@ function buildNavbar() {
         { href: 'compliance.html', label: 'Compliance' },
         { href: 'about.html', label: 'About' },
         { href: 'contact.html', label: 'Contact' },
-        { href: 'pricing.html', label: 'Pricing' },
-        { href: 'dashboard.html', label: 'Dashboard' },
     ];
 
     const isDark = document.documentElement.classList.contains('dark');
     const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+    const isDashboardActive = currentPage === 'dashboard.html';
 
     const navLinksHTML = links.map(l => {
         const isActive = currentPage === l.href || (currentPage === '' && l.href === 'index.html');
@@ -197,6 +196,9 @@ function buildNavbar() {
                 <button onclick="toggleTheme(event)" class="nav-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
                     <span class="theme-icon-wrap">${isDark ? ICONS.sun : ICONS.moon}</span>
                 </button>
+                <a href="dashboard.html" class="btn btn-nav-dashboard ${isDashboardActive ? 'active' : ''}">
+                    Dashboard
+                </a>
                 <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)" aria-label="Toggle navigation menu">
                     <span class="mobile-menu-icon">${ICONS.menu}</span>
@@ -209,6 +211,9 @@ function buildNavbar() {
         <div class="mobile-menu" id="mobile-menu">
             ${mobileLinksHTML}
             <div class="mob-actions">
+                <a href="dashboard.html" class="btn btn-secondary w-full" style="margin-bottom:8px;">
+                    Dashboard
+                </a>
                 <a href="login.html" class="btn btn-primary w-full">Sign In</a>
             </div>
             <div class="mob-toggles">
@@ -312,7 +317,6 @@ function buildFooter() {
                 <div class="footer-col">
                     <h4 class="footer-col-title">Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="pricing.html">Pricing Plans</a></li>
                         <li><a href="login.html">Client Sign In</a></li>
                         <li><a href="signup.html">Create Account</a></li>
                         <li><a href="coming-soon.html">Careers</a></li>
@@ -348,7 +352,11 @@ function buildFooter() {
 
 /* ─── BACK TO TOP ─────────────────────────────────── */
 function buildBackToTop() {
-    if (document.body.classList.contains('auth-page') || document.body.classList.contains('fullscreen-page')) return;
+    if (document.body.classList.contains('auth-page') || 
+        document.body.classList.contains('fullscreen-page') ||
+        document.querySelector('.dashboard-layout') ||
+        document.querySelector('.sidebar') ||
+        document.getElementById('dashboard-sidebar')) return;
     const btn = document.createElement('button');
     btn.className = 'back-to-top';
     btn.id = 'back-to-top';
@@ -472,6 +480,403 @@ function toggleSidebar() {
     if (sidebar) sidebar.classList.toggle('open');
 }
 
+/* ─── TESTIMONIAL SLIDER (Home 2) ─────────────────── */
+function initTestimonialSlider() {
+    const slider = document.getElementById('testimonial-slider');
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.testimonial-slide');
+    const dots = slider.querySelectorAll('.testimonial-dot');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer = null;
+    const intervalTime = 5000; // Switch 5 seconds once
+
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        current = index;
+
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === current);
+        });
+
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === current);
+            dot.setAttribute('aria-current', idx === current ? 'true' : 'false');
+        });
+    }
+
+    function nextSlide() {
+        goToSlide(current + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(current - 1);
+    }
+
+    function startTimer() {
+        stopTimer();
+        timer = setInterval(nextSlide, intervalTime);
+    }
+
+    function stopTimer() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startTimer();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startTimer();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToSlide(idx);
+            startTimer();
+        });
+    });
+
+    // Pause on hover, resume on mouseleave
+    slider.addEventListener('mouseenter', stopTimer);
+    slider.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopTimer();
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            if (diff > 0) {
+                isRTL ? prevSlide() : nextSlide();
+            } else {
+                isRTL ? nextSlide() : prevSlide();
+            }
+        }
+        startTimer();
+    }, { passive: true });
+
+    // Initial start
+    startTimer();
+}
+
+/* ─── HERO SLIDER (Home 1) ────────────────────────── */
+function initHeroSlider() {
+    const track = document.getElementById('hero-slides-track');
+    if (!track) return;
+
+    const slides = track.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer = null;
+    const interval = 5000; // Switch 5 seconds once
+
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        current = index;
+
+        slides.forEach((s, idx) => {
+            s.classList.toggle('active', idx === current);
+        });
+
+        dots.forEach((d, idx) => {
+            d.classList.toggle('active', idx === current);
+            d.setAttribute('aria-current', idx === current ? 'true' : 'false');
+        });
+    }
+
+    function next() {
+        goToSlide(current + 1);
+    }
+
+    function prev() {
+        goToSlide(current - 1);
+    }
+
+    function startTimer() {
+        stopTimer();
+        timer = setInterval(next, interval);
+    }
+
+    function stopTimer() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToSlide(idx);
+            startTimer();
+        });
+    });
+
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopTimer);
+        heroSection.addEventListener('mouseleave', startTimer);
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        heroSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopTimer();
+        }, { passive: true });
+
+        heroSection.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                if (diff > 0) {
+                    isRTL ? prev() : next();
+                } else {
+                    isRTL ? next() : prev();
+                }
+            }
+            startTimer();
+        }, { passive: true });
+    }
+
+    startTimer();
+}
+
+/* ─── WASTE CALCULATOR (HOME 1) ──────────────────── */
+function initWasteCalculator() {
+    const calcSection = document.getElementById('waste-calculator');
+    if (!calcSection) return;
+
+    const typeBtns = calcSection.querySelectorAll('.calc-type-btn');
+    const chipBtns = calcSection.querySelectorAll('.calc-chip-btn');
+    const sharpsCheck = document.getElementById('calc-stream-sharps');
+    const pharmaCheck = document.getElementById('calc-stream-pharma');
+    const pathoCheck = document.getElementById('calc-stream-patho');
+
+    const planTitle = document.getElementById('calc-plan-title');
+    const planDesc = document.getElementById('calc-plan-desc');
+    const cadenceEl = document.getElementById('calc-cadence');
+    const c1El = document.getElementById('calc-c1');
+    const c2El = document.getElementById('calc-c2');
+    const c3El = document.getElementById('calc-c3');
+    const quoteBtn = document.getElementById('calc-quote-btn');
+
+    let currentType = 'clinic';
+    let currentVolume = 'small';
+
+    const dataConfigs = {
+        clinic: {
+            title: 'Private Practice & Clinic Package',
+            desc: 'Tailored for outpatient doctor offices, pediatric, and urgent care clinics.',
+            small: { cadence: 'Monthly', c1: '2x 5.4-Qt Sharps Containers', c2: '2x 28-Gallon Red Biohazard Totes' },
+            medium: { cadence: 'Bi-Weekly', c1: '4x 5.4-Qt Sharps Containers', c2: '4x 28-Gallon Red Biohazard Totes' },
+            large: { cadence: 'Weekly', c1: '8x 5.4-Qt Sharps Containers', c2: '6x 44-Gallon Biohazard Rolling Carts' },
+            enterprise: { cadence: 'Twice Weekly', c1: '16x 5.4-Qt Sharps Containers', c2: '10x 95-Gallon Rolling Toter Carts' },
+        },
+        dental: {
+            title: 'Dental Surgery & Practice Setup',
+            desc: 'Includes specialized mercury amalgam separators, carpule sharps, and lead foil bins.',
+            small: { cadence: 'Bi-Monthly', c1: '2x 2-Gallon Needle Sharps Boxes', c2: '1x Amalgam Waste Recycling Bucket' },
+            medium: { cadence: 'Monthly', c1: '4x 2-Gallon Needle Sharps Boxes', c2: '2x Amalgam Recycling Buckets' },
+            large: { cadence: 'Bi-Weekly', c1: '8x Multi-Room Sharps Units', c2: '4x Amalgam & Lead Foil Bins' },
+            enterprise: { cadence: 'Weekly Scheduled', c1: '15x Point-of-Use Sharps Units', c2: '6x Amalgam Separators & Red Totes' },
+        },
+        hospital: {
+            title: 'Hospital & Surgical Center Protocol',
+            desc: 'Comprehensive multi-department regulatory coverage with daily on-call emergency dispatch.',
+            small: { cadence: 'Weekly', c1: '10x 18-Gallon Reusable Sharps Carts', c2: '6x 44-Gallon Red Biohazard Drums' },
+            medium: { cadence: 'Twice Weekly', c1: '20x 18-Gallon Reusable Sharps Carts', c2: '12x 44-Gallon Red Biohazard Drums' },
+            large: { cadence: 'Every Alternate Day', c1: '40x 18-Gallon Reusable Sharps Carts', c2: '20x 95-Gallon Rolling Biohazard Totes' },
+            enterprise: { cadence: 'Daily Scheduled + 24/7 On-Call', c1: '80+ Reusable Sharps Vaults', c2: 'Bulk 95-Gallon Rolling Toter Fleets' },
+        },
+        lab: {
+            title: 'Clinical Diagnostic & Pathology Lab Program',
+            desc: 'Specialized chemical specimen, culture neutralization, and hazardous bio-liquid destruction.',
+            small: { cadence: 'Bi-Weekly', c1: '3x Laboratory Pipette & Sharps Bins', c2: '2x Specimen Bio-Incineration Barrels' },
+            medium: { cadence: 'Weekly', c1: '6x Laboratory Pipette & Sharps Bins', c2: '4x Specimen Bio-Incineration Barrels' },
+            large: { cadence: 'Twice Weekly', c1: '12x High-Volume Pipette Bins', c2: '8x Specimen Incineration Barrels' },
+            enterprise: { cadence: 'Daily Bulk Collection', c1: '25x High-Volume Pipette Bins', c2: '15x Hazardous Chemical Neutralization Drums' },
+        }
+    };
+
+    function updateCalculator() {
+        const config = dataConfigs[currentType] || dataConfigs.clinic;
+        const volData = config[currentVolume] || config.small;
+
+        if (planTitle) planTitle.textContent = config.title;
+        if (planDesc) planDesc.textContent = config.desc;
+        if (cadenceEl) cadenceEl.textContent = volData.cadence;
+        if (c1El) c1El.textContent = volData.c1;
+        if (c2El) c2El.textContent = volData.c2;
+
+        if (c3El) {
+            const hasPharma = pharmaCheck && pharmaCheck.checked;
+            const hasPatho = pathoCheck && pathoCheck.checked;
+            if (hasPharma && hasPatho) {
+                c3El.textContent = '1x DEA Locked Rx Safe + 1x Pathological Incineration Drum';
+            } else if (hasPharma) {
+                c3El.textContent = '1x DEA-Compliant Controlled Substance Rx Lockbox';
+            } else if (hasPatho) {
+                c3El.textContent = '1x Specialized Pathological Incineration Drum';
+            } else {
+                c3El.textContent = 'Standard OSHA Bio-Manifest & Segregation Supplies';
+            }
+        }
+
+        if (quoteBtn) {
+            quoteBtn.href = `contact.html?type=${encodeURIComponent(currentType)}&vol=${encodeURIComponent(currentVolume)}`;
+        }
+    }
+
+    typeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            typeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentType = btn.getAttribute('data-type') || 'clinic';
+            updateCalculator();
+        });
+    });
+
+    chipBtns.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chipBtns.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            currentVolume = chip.getAttribute('data-volume') || 'small';
+            updateCalculator();
+        });
+    });
+
+    [sharpsCheck, pharmaCheck, pathoCheck].forEach(chk => {
+        if (chk) chk.addEventListener('change', updateCalculator);
+    });
+
+    updateCalculator();
+}
+
+/* ─── SMART PORTAL TABS (HOME 2) ─────────────────── */
+function initSmartPortalTabs() {
+    const portalSection = document.getElementById('smart-portal');
+    if (!portalSection) return;
+
+    const tabBtns = portalSection.querySelectorAll('.portal-tab-btn');
+    const screens = portalSection.querySelectorAll('.portal-screen');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            screens.forEach(screen => {
+                if (screen.id === `tab-${targetTab}`) {
+                    screen.classList.add('active');
+                } else {
+                    screen.classList.remove('active');
+                }
+            });
+        });
+    });
+}
+
+/* ─── LOGOUT CONFIRMATION MODAL ───────────────────── */
+function ensureLogoutModal() {
+    let modalBackdrop = document.getElementById('logoutModalBackdrop');
+    if (!modalBackdrop) {
+        modalBackdrop = document.createElement('div');
+        modalBackdrop.id = 'logoutModalBackdrop';
+        modalBackdrop.className = 'logout-modal-backdrop';
+        modalBackdrop.innerHTML = `
+            <div class="logout-modal-card" role="dialog" aria-modal="true" aria-labelledby="logoutModalTitle">
+                <div class="logout-modal-icon">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <h3 class="logout-modal-title" id="logoutModalTitle">Confirm Sign Out</h3>
+                <p class="logout-modal-desc">Are you sure you want to log out of your SafeDispose account? You will need to sign in again to access waste manifests and schedule pickups.</p>
+                <div class="logout-modal-actions">
+                    <button type="button" class="logout-modal-btn logout-btn-cancel" onclick="closeLogoutModal()">
+                        <i class="fa-solid fa-xmark"></i> Cancel
+                    </button>
+                    <a href="login.html" class="logout-modal-btn logout-btn-confirm" id="confirmLogoutLink">
+                        <i class="fa-solid fa-right-from-bracket"></i> Yes, Log Out
+                    </a>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalBackdrop);
+
+        // Close on backdrop click
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) closeLogoutModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) {
+                closeLogoutModal();
+            }
+        });
+    }
+    return modalBackdrop;
+}
+
+function openLogoutModal(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const modal = ensureLogoutModal();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLogoutModal() {
+    const modal = document.getElementById('logoutModalBackdrop');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+function initLogoutConfirmation() {
+    ensureLogoutModal();
+    const logoutBtns = document.querySelectorAll('.sidebar-logout');
+    logoutBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLogoutModal(e);
+        });
+    });
+}
+
+// Global exposure
+window.openLogoutModal = openLogoutModal;
+window.closeLogoutModal = closeLogoutModal;
+window.confirmLogout = openLogoutModal;
+
 /* ─── INIT ALL ────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     buildNavbar();
@@ -482,4 +887,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initCountdown();
     initFaqAccordion();
     initCounterAnimation();
+    initTestimonialSlider();
+    initHeroSlider();
+    initWasteCalculator();
+    initSmartPortalTabs();
+    initLogoutConfirmation();
 });
+
+
+
+

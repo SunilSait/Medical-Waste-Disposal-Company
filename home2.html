@@ -13,19 +13,45 @@
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Hero 2 — Fullscreen BG -->
+    <!-- Hero 2 — 3-Image Collage -->
     <section class="hero2-section" id="hero2">
-        <div class="hero2-bg">
-            <img src="assets/images/hero2-facility.jpg" alt="Modern medical waste treatment facility" width="1920" height="1080">
-        </div>
         <div class="hero2-content">
-            <div class="hero2-text fade-up">
-                <div class="hero-badge"><i class="fa-solid fa-award"></i> Industry-Leading Compliance</div>
-                <h1>Next-Generation Medical Waste Management</h1>
-                <p>Advanced disposal technologies paired with real-time digital tracking to deliver the safest, most transparent waste management experience for modern healthcare facilities.</p>
-                <div class="hero-actions">
-                    <a href="contact.html" class="btn btn-primary btn-lg">Request a Consultation <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="services.html" class="btn btn-lg" style="border-color:rgba(255,255,255,.3); color:#fff;">Explore Solutions</a>
+            <div class="hero2-main-grid">
+                <!-- Text Column (Left) -->
+                <div class="hero2-text fade-up">
+                    <div class="hero-badge"><i class="fa-solid fa-award"></i> Industry-Leading Compliance</div>
+                    <h1>Next-Generation Medical Waste Management</h1>
+                    <p>Advanced disposal technologies paired with real-time digital tracking to deliver the safest, most transparent waste management experience for modern healthcare facilities.</p>
+                    <div class="hero2-actions">
+                        <a href="contact.html" class="btn btn-primary btn-lg">Request a Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="services.html" class="btn btn-outline btn-lg">Explore Solutions</a>
+                    </div>
+                </div>
+
+                <!-- 3-Image Collage (Right) -->
+                <div class="hero2-collage-wrap fade-up">
+                    <div class="hero2-collage">
+                        <!-- Top Image: Wide -->
+                        <div class="collage-item item-wide">
+                            <img src="assets/images/hero2-facility.jpg" alt="SafeDispose industrial medical waste treatment center" width="600" height="230">
+                            <div class="collage-badge"><i class="fa-solid fa-industry"></i> Regional Treatment Complex</div>
+                        </div>
+
+                        <!-- Bottom Left: Half -->
+                        <div class="collage-item item-half">
+                            <img src="assets/images/about-facility.jpg" alt="Medical-grade autoclave sterilization units" width="300" height="185">
+                            <div class="collage-badge"><i class="fa-solid fa-temperature-arrow-up"></i> 275°F Autoclaving</div>
+                        </div>
+
+                        <!-- Bottom Right: Half -->
+                        <div class="collage-item item-half">
+                            <img src="assets/images/pickup-service.jpg" alt="DOT-certified hazardous collection transport" width="300" height="185">
+                            <div class="collage-badge"><i class="fa-solid fa-truck-fast"></i> GPS-Tracked Fleet</div>
+                        </div>
+
+                        <!-- Ambient Glow Aura -->
+                        <div class="collage-aura"></div>
+                    </div>
                 </div>
             </div>
             <div class="hero2-features fade-up" style="transition-delay:.25s">
@@ -122,12 +148,6 @@
                     <div class="section-badge"><i class="fa-solid fa-flask"></i> Advanced Technology</div>
                     <h2>State-of-the-Art Treatment Facility</h2>
                     <p>Our flagship processing center features next-generation autoclave systems capable of treating over 50 tons of medical waste daily. Combined with AI-powered sorting and real-time emissions monitoring, we deliver the safest and most environmentally responsible disposal in the industry.</p>
-                    <div class="check-list">
-                        <div class="check-item"><i class="fa-solid fa-check"></i> 50+ ton daily processing capacity</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> AI-powered waste classification</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Real-time emissions monitoring</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Zero-discharge water recycling</div>
-                    </div>
                     <a href="about.html" class="btn btn-primary">Tour Our Facility <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -135,25 +155,91 @@
     </section>
 
     <!-- Compliance Showcase -->
-    <section class="section section-alt">
+    <section class="section section-alt" id="compliance-showcase">
         <div class="container">
-            <div class="showcase-section" style="direction:rtl;">
-                <div style="direction:ltr;">
-                    <div class="showcase-image slide-left">
-                        <img src="assets/images/compliance-cert.jpg" alt="Professional reviewing compliance documentation" width="600" height="450">
+            <div class="compliance-showcase-grid">
+                <!-- Content Column (Left) -->
+                <div class="compliance-content-col fade-up">
+                    <div class="section-badge"><i class="fa-solid fa-file-shield"></i> Digital Compliance</div>
+                    <h2 class="compliance-heading">Paperless Compliance Management</h2>
+                    <p class="compliance-lead">Our digital compliance platform eliminates paper logbooks and manual reporting. Every pickup, manifest, autoclave sterilization log, and Certificate of Destruction is digitized in real time — audit-ready at all times.</p>
+                    
+                    <!-- 2x2 Feature Bento Cards -->
+                    <div class="compliance-bento-grid">
+                        <div class="compliance-bento-card">
+                            <div class="comp-icon-box">
+                                <i class="fa-solid fa-file-invoice"></i>
+                            </div>
+                            <div class="comp-text">
+                                <h4>Automated Manifests</h4>
+                                <p>Digital chain-of-custody generated at pickup.</p>
+                            </div>
+                        </div>
+
+                        <div class="compliance-bento-card">
+                            <div class="comp-icon-box">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div class="comp-text">
+                                <h4>Digital Destruction COD</h4>
+                                <p>Cryptographically verified destruction records.</p>
+                            </div>
+                        </div>
+
+                        <div class="compliance-bento-card">
+                            <div class="comp-icon-box">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div class="comp-text">
+                                <h4>Regulatory Alerts</h4>
+                                <p>Real-time EPA, DOT, and state rule changes.</p>
+                            </div>
+                        </div>
+
+                        <div class="compliance-bento-card">
+                            <div class="comp-icon-box">
+                                <i class="fa-solid fa-vault"></i>
+                            </div>
+                            <div class="comp-text">
+                                <h4>Audit-Ready Archive</h4>
+                                <p>7-year cloud storage with 1-click export.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Row -->
+                    <div class="compliance-action-row">
+                        <a href="compliance.html" class="btn btn-primary">
+                            <span>View Compliance Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="certificates.html" class="btn btn-outline">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Sample Certificates</span>
+                        </a>
                     </div>
                 </div>
-                <div class="showcase-content slide-right" style="direction:ltr;">
-                    <div class="section-badge"><i class="fa-solid fa-file-contract"></i> Digital Compliance</div>
-                    <h2>Paperless Compliance Management</h2>
-                    <p>Our digital compliance platform eliminates the burden of paper-based record keeping. Every pickup, manifest, treatment record, and Certificate of Destruction is digitized and accessible through your secure client portal — audit-ready at all times.</p>
-                    <div class="check-list">
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Automated manifest generation</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Digital Certificate of Destruction</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Regulatory change alerts</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Audit-ready record archive</div>
+
+                <!-- Visual / Image Column with Floating Badges (Right) -->
+                <div class="compliance-visual-col fade-up">
+                    <div class="compliance-image-frame">
+                        <img src="assets/images/compliance-cert.jpg" alt="Professional healthcare compliance officer inspecting paperless destruction certificates" width="580" height="435" class="compliance-main-img">
+                        
+
+                        <!-- Floating Glass Badge: Bottom Left -->
+                        <div class="comp-floating-badge badge-bottom-left">
+                            <div class="comp-badge-icon icon-blue">
+                                <i class="fa-solid fa-cloud-arrow-down"></i>
+                            </div>
+                            <div class="comp-badge-info">
+                                <span class="comp-badge-lbl">Instant Download</span>
+                                <strong>Signed COD in &lt; 24 Hrs</strong>
+                            </div>
+                        </div>
+
+                        <!-- Ambient Backlight Aura -->
+                        <div class="compliance-aura"></div>
                     </div>
-                    <a href="compliance.html" class="btn btn-primary">View Compliance Details <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -169,12 +255,14 @@
                 <div class="showcase-content slide-left">
                     <div class="section-badge"><i class="fa-solid fa-truck"></i> Reliable Collection</div>
                     <h2>GPS-Tracked Fleet for Complete Transparency</h2>
-                    <p>Our fleet of DOT-certified vehicles ensures safe transportation of medical waste from your facility to our treatment center. Real-time GPS tracking provides complete chain-of-custody visibility from pickup to final disposal.</p>
                     <div class="check-list">
                         <div class="check-item"><i class="fa-solid fa-check"></i> DOT-certified transport vehicles</div>
                         <div class="check-item"><i class="fa-solid fa-check"></i> Real-time GPS route tracking</div>
                         <div class="check-item"><i class="fa-solid fa-check"></i> Temperature-controlled cargo bays</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Spill containment systems</div>
+                        <div class="check-item"><i class="fa-solid fa-check"></i> Spill containment &amp; decontamination kits</div>
+                        <div class="check-item"><i class="fa-solid fa-check"></i> Electronic barcode cradle-to-grave scanning</div>
+                        <div class="check-item"><i class="fa-solid fa-check"></i> 24/7 on-call emergency Hazmat response</div>
+                        <div class="check-item"><i class="fa-solid fa-check"></i> Dual-containment security locking mechanisms</div>
                     </div>
                     <a href="services.html" class="btn btn-primary">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
@@ -182,28 +270,208 @@
         </div>
     </section>
 
-    <!-- Training Section -->
-    <section class="section section-alt">
+    <!-- Smart Portal & AI Analytics Showcase -->
+    <section class="section section-dark-portal" id="smart-portal">
         <div class="container">
-            <div class="split-section reverse">
-                <div class="split-image slide-left">
-                    <img src="assets/images/training-safety.jpg" alt="Safety training session for healthcare workers" width="560" height="420">
-                </div>
-                <div class="split-content slide-right">
-                    <div class="section-badge"><i class="fa-solid fa-user-shield"></i> Staff Training</div>
-                    <h2>OSHA-Compliant Safety Training</h2>
-                    <p>We provide comprehensive waste handling training for your staff, including proper segregation, labeling, storage, and emergency response procedures — all compliant with OSHA's Bloodborne Pathogen Standard.</p>
-                    <div class="check-list">
-                        <div class="check-item"><i class="fa-solid fa-check"></i> On-site or virtual training sessions</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> OSHA BBP compliance certification</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Annual refresher courses included</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Custom training for your facility type</div>
+            <div class="section-header fade-up">
+                <div class="section-badge"><i class="fa-solid fa-laptop-code"></i> Cloud Portal Intelligence</div>
+                <h2>The SafeDispose Connected Platform</h2>
+                <p class="section-subtitle">Take control of your waste streams with real-time GPS telemetry, automated EPA e-Manifest filing, and predictive AI waste generation forecasting.</p>
+            </div>
+
+            <!-- Interactive Tab Navigation -->
+            <div class="portal-nav-tabs fade-up" id="portal-tabs">
+                <button type="button" class="portal-tab-btn active" data-tab="telemetry">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <span>Live Fleet Telemetry</span>
+                </button>
+                <button type="button" class="portal-tab-btn" data-tab="analytics">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>AI Stream Analytics</span>
+                </button>
+                <button type="button" class="portal-tab-btn" data-tab="manifests">
+                    <i class="fa-solid fa-file-shield"></i>
+                    <span>Digital Manifest Vault</span>
+                </button>
+            </div>
+
+            <!-- Portal Mockup Frame -->
+            <div class="portal-frame-wrapper fade-up">
+                <div class="portal-frame-topbar">
+                    <div class="portal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
                     </div>
-                    <a href="contact.html" class="btn btn-primary">Schedule Training <i class="fa-solid fa-arrow-right"></i></a>
+                    <div class="portal-search-bar">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>portal.safedispose.com/dashboard/enterprise</span>
+                    </div>
+                    <div class="portal-user-status">
+                        <span class="live-dot"></span> Live Telemetry Connected
+                    </div>
+                </div>
+
+                <!-- Tab 1: Live Telemetry -->
+                <div class="portal-screen active" id="tab-telemetry">
+                    <div class="portal-telemetry-layout">
+                        <div class="telemetry-map-side">
+                            <div class="mock-map-visual">
+                                <div class="map-grid-overlay"></div>
+                                <div class="route-line"></div>
+                                <div class="truck-marker" style="top:42%; left:58%;">
+                                    <div class="truck-pulse"></div>
+                                    <i class="fa-solid fa-truck"></i>
+                                    <span class="truck-tag">Unit #SD-409 • En Route</span>
+                                </div>
+                                <div class="destination-marker" style="top:25%; left:28%;">
+                                    <i class="fa-solid fa-hospital"></i>
+                                    <span class="dest-tag">CityGen Hospital</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="telemetry-info-side">
+                            <div class="telemetry-card">
+                                <div class="card-title-row">
+                                    <h4>Active Manifest #MN-88492</h4>
+                                    <span class="badge-status-green">In Transit</span>
+                                </div>
+                                <div class="tele-stats-row">
+                                    <div class="tele-box">
+                                        <label>Driver</label>
+                                        <strong>Marcus Vance (DOT #8812)</strong>
+                                    </div>
+                                    <div class="tele-box">
+                                        <label>Est. Arrival</label>
+                                        <strong class="text-teal">24 Minutes (10:45 AM)</strong>
+                                    </div>
+                                    <div class="tele-box">
+                                        <label>Cargo Temp</label>
+                                        <strong>3.8°C (Optimal Range)</strong>
+                                    </div>
+                                    <div class="tele-box">
+                                        <label>Chain of Custody</label>
+                                        <strong>100% Continuous Sign-off</strong>
+                                    </div>
+                                </div>
+                                <div class="tele-progress">
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-fill" style="width: 72%;"></div>
+                                    </div>
+                                    <div class="progress-labels">
+                                        <span>Dispatched</span>
+                                        <span>On Route</span>
+                                        <span class="text-teal">Arriving Soon</span>
+                                        <span>Sterilization</span>
+                                    </div>
+                                </div>
+                                <a href="dashboard.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open In Live Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: AI Analytics -->
+                <div class="portal-screen" id="tab-analytics">
+                    <div class="portal-analytics-layout">
+                        <div class="analytics-stat-card">
+                            <div class="ana-header">
+                                <div>
+                                    <h5>Monthly Waste Generation Trends</h5>
+                                    <p>AI automated volume forecast vs. contracted baseline</p>
+                                </div>
+                                <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Optimized</span>
+                            </div>
+                            <div class="mock-bars-chart">
+                                <div class="bar-col"><div class="bar-fill" style="height:45%;"><span>420kg</span></div><label>May</label></div>
+                                <div class="bar-col"><div class="bar-fill" style="height:60%;"><span>560kg</span></div><label>Jun</label></div>
+                                <div class="bar-col"><div class="bar-fill" style="height:52%;"><span>490kg</span></div><label>Jul</label></div>
+                                <div class="bar-col"><div class="bar-fill" style="height:78%;"><span>710kg</span></div><label>Aug</label></div>
+                                <div class="bar-col"><div class="bar-fill" style="height:68%;"><span>630kg</span></div><label>Sep</label></div>
+                                <div class="bar-col active-bar"><div class="bar-fill" style="height:85%;"><span>780kg</span></div><label>Oct (Current)</label></div>
+                                <div class="bar-col projected-bar"><div class="bar-fill" style="height:62%; border-style:dashed;"><span>590kg</span></div><label>Nov (AI Pred.)</label></div>
+                            </div>
+                        </div>
+                        <div class="analytics-insights-side">
+                            <div class="insight-item">
+                                <i class="fa-solid fa-piggy-bank text-teal"></i>
+                                <div>
+                                    <h6>Cost Savings Opportunity</h6>
+                                    <p>Consolidating sharps pickup cadence into bi-weekly saves your facility <strong>$1,420/quarter</strong>.</p>
+                                </div>
+                            </div>
+                            <div class="insight-item">
+                                <i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i>
+                                <div>
+                                    <h6>Segregation Anomaly</h6>
+                                    <p>Non-infectious plastics detected in red bag stream on Floor 3. Suggest 15-min staff refresher.</p>
+                                </div>
+                            </div>
+                            <div class="insight-item">
+                                <i class="fa-solid fa-leaf text-teal"></i>
+                                <div>
+                                    <h6>Carbon Footprint Score</h6>
+                                    <p>Your eco-steam diversion rate is <strong>94.2%</strong> (Top 5% of regional hospitals).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Digital Manifest Vault -->
+                <div class="portal-screen" id="tab-manifests">
+                    <div class="portal-vault-layout">
+                        <div class="vault-table-wrap">
+                            <table class="dash-table">
+                                <thead>
+                                    <tr>
+                                        <th>Manifest ID</th>
+                                        <th>Disposal Type</th>
+                                        <th>Pickup Date</th>
+                                        <th>Net Weight</th>
+                                        <th>Regulatory Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>#MN-2026-904</strong></td>
+                                        <td>Biohazard &amp; Sharps</td>
+                                        <td>Oct 12, 2026</td>
+                                        <td>340 lbs</td>
+                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> Certified Destroyed</span></td>
+                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-904 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#MN-2026-891</strong></td>
+                                        <td>Pharmaceuticals (Rx)</td>
+                                        <td>Oct 05, 2026</td>
+                                        <td>84 lbs</td>
+                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> DEA Form 41 Filed</span></td>
+                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-891 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#MN-2026-877</strong></td>
+                                        <td>Pathological Waste</td>
+                                        <td>Sep 28, 2026</td>
+                                        <td>215 lbs</td>
+                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> Incineration Complete</span></td>
+                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-877 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="vault-features-bar">
+                            <span><i class="fa-solid fa-shield-halved text-teal"></i> Cryptographically signed chain of custody</span>
+                            <span><i class="fa-solid fa-cloud-arrow-up text-teal"></i> Synced to EPA e-Manifest National System</span>
+                            <a href="dashboard.html" class="btn btn-primary btn-sm">Full Manifest Vault <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Testimonials -->
     <section class="section" id="testimonials2">
@@ -212,59 +480,193 @@
                 <div class="section-badge"><i class="fa-solid fa-star"></i> Success Stories</div>
                 <h2>What Our Clients Say</h2>
             </div>
-            <div class="testimonials-grid stagger">
-                <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <div class="testimonial-slider-wrapper fade-up" id="testimonial-slider" aria-roledescription="carousel" aria-label="Customer Testimonials">
+                <div class="testimonial-slides-track" id="testimonial-track">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide active" data-index="0" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                        <div class="testimonial-slide-card">
+                            <div class="testimonial-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <blockquote>"Switching to SafeDispose cut our compliance management time by 60%. The digital dashboard is a game-changer for multi-site healthcare organizations like ours."</blockquote>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">MW</div>
+                                <div>
+                                    <h4>Michael Warren</h4>
+                                    <p>VP Operations, ValleyCare Network</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <blockquote>"Switching to SafeDispose cut our compliance management time by 60%. The digital dashboard is a game-changer for multi-site healthcare organizations like ours."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">MW</div>
-                        <div>
-                            <h4>Michael Warren</h4>
-                            <p>VP Operations, ValleyCare Network</p>
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                        <div class="testimonial-slide-card">
+                            <div class="testimonial-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <blockquote>"Their emergency response team arrived within 2 hours of our lab spill. The professionalism and speed of SafeDispose's team during the incident was remarkable."</blockquote>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">AL</div>
+                                <div>
+                                    <h4>Dr. Amanda Liu</h4>
+                                    <p>Research Director, BioTech Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                        <div class="testimonial-slide-card">
+                            <div class="testimonial-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <blockquote>"The staff training program alone justified the switch. Our waste segregation accuracy improved to 98% and our handling incidents dropped to near zero within three months."</blockquote>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">TN</div>
+                                <div>
+                                    <h4>Teresa Nguyen</h4>
+                                    <p>Nursing Director, Sunrise Medical Center</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+
+                <!-- Navigation Controls -->
+                <div class="testimonial-slider-controls">
+                    <button class="testimonial-slider-btn prev-btn" id="testimonial-prev" aria-label="Previous testimonial">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="testimonial-slider-dots" id="testimonial-dots">
+                        <button class="testimonial-dot active" data-slide="0" aria-label="Go to testimonial 1" aria-current="true"></button>
+                        <button class="testimonial-dot" data-slide="1" aria-label="Go to testimonial 2" aria-current="false"></button>
+                        <button class="testimonial-dot" data-slide="2" aria-label="Go to testimonial 3" aria-current="false"></button>
                     </div>
-                    <blockquote>"Their emergency response team arrived within 2 hours of our lab spill. The professionalism and speed of SafeDispose's team during the incident was remarkable."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AL</div>
-                        <div>
-                            <h4>Dr. Amanda Liu</h4>
-                            <p>Research Director, BioTech Solutions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <blockquote>"The staff training program alone justified the switch. Our waste segregation accuracy improved to 98% and our handling incidents dropped to near zero within three months."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">TN</div>
-                        <div>
-                            <h4>Teresa Nguyen</h4>
-                            <p>Nursing Director, Sunrise Medical Center</p>
-                        </div>
-                    </div>
+                    <button class="testimonial-slider-btn next-btn" id="testimonial-next" aria-label="Next testimonial">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Sustainability & Circular Treatment Section -->
+    <section class="section" id="sustainability">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-badge"><i class="fa-solid fa-leaf"></i> Eco-Tech Circularity</div>
+                <h2>Zero-Landfill Processing &amp; Carbon Offsets</h2>
+                <p class="section-subtitle">We merge rigorous biohazard safety with green innovation. Our closed-loop autoclaving systems and reusable containment programs reduce environmental footprints while protecting communities.</p>
+            </div>
+
+            <!-- Eco Impact Stat Cards (4-column grid) -->
+            <div class="eco-stats-grid stagger">
+                <div class="eco-stat-card fade-up">
+                    <div class="eco-icon"><i class="fa-solid fa-recycle"></i></div>
+                    <div class="eco-num">4.8M+ lbs</div>
+                    <h4>Plastic Landfill Diversion</h4>
+                    <p>Heavy-duty reusable sharps containers eliminating single-use plastic disposal cycles.</p>
+                </div>
+                <div class="eco-stat-card fade-up">
+                    <div class="eco-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <div class="eco-num">68% Lower CO₂</div>
+                    <h4>Reduced Carbon Footprint</h4>
+                    <p>High-efficiency hydrothermal steam autoclaving vs. traditional fossil-fuel incineration.</p>
+                </div>
+                <div class="eco-stat-card fade-up">
+                    <div class="eco-icon"><i class="fa-solid fa-solar-panel"></i></div>
+                    <div class="eco-num">100% Renewable</div>
+                    <h4>Green-Powered Facilities</h4>
+                    <p>Our flagship sterilization and autoclaving plants run entirely on clean solar &amp; wind power.</p>
+                </div>
+                <div class="eco-stat-card fade-up">
+                    <div class="eco-icon"><i class="fa-solid fa-water"></i></div>
+                    <div class="eco-num">Zero Discharge</div>
+                    <h4>Closed-Loop Water Filtration</h4>
+                    <p>100% of autoclave condensation is treated, purified, and re-circulated through heat recapture.</p>
+                </div>
+            </div>
+
+            <!-- Treatment Process Flow Comparison -->
+            <div class="eco-lifecycle-box fade-up">
+                <div class="lifecycle-header">
+                    <div class="lifecycle-badge"><i class="fa-solid fa-arrows-spin"></i> Closed-Loop Treatment Journey</div>
+                    <h3>How SafeDispose Reinvents Sustainable Medical Waste</h3>
+                </div>
+                <div class="lifecycle-steps">
+                    <div class="lifecycle-step">
+                        <div class="step-num-circle">01</div>
+                        <h5>Reusable Containment</h5>
+                        <p>Puncture-tested, robotic-washed medical tubs deployed to your facility.</p>
+                    </div>
+                    <div class="lifecycle-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="lifecycle-step">
+                        <div class="step-num-circle">02</div>
+                        <h5>Low-Emission Transit</h5>
+                        <p>AI route-optimized bio-fuel &amp; hybrid transport with zero empty miles.</p>
+                    </div>
+                    <div class="lifecycle-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="lifecycle-step">
+                        <div class="step-num-circle">03</div>
+                        <h5>275°F Clean Steam</h5>
+                        <p>Total microbial sterilization without releasing toxic dioxins or emissions.</p>
+                    </div>
+                    <div class="lifecycle-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="lifecycle-step">
+                        <div class="step-num-circle">04</div>
+                        <h5>Material Recovery</h5>
+                        <p>Inert shredded byproducts redirected into clean waste-to-energy power.</p>
+                    </div>
+                </div>
+
+                <div class="lifecycle-footer-row">
+                    <div class="esg-tags">
+                        <span class="esg-tag"><i class="fa-solid fa-award"></i> ISO 14001 Certified</span>
+                        <span class="esg-tag"><i class="fa-solid fa-certificate"></i> LEED Supporting Partner</span>
+                        <span class="esg-tag"><i class="fa-solid fa-earth-americas"></i> ESG Audit Compliant</span>
+                    </div>
+                    <a href="about.html" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> Read ESG Report</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA (Home 2 - Next-Gen Tech Glassmorphic Design) -->
     <section class="section section-alt">
         <div class="container">
-            <div class="cta-banner fade-up">
-                <h2>Experience Premium Waste Management</h2>
-                <p>Schedule a complimentary consultation and facility assessment. Discover how SafeDispose can streamline your compliance workflow.</p>
-                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                    <a href="contact.html" class="btn btn-white btn-lg">Book Free Assessment <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="pricing.html" class="btn btn-lg" style="border-color:rgba(255,255,255,.3); color:#fff;">Compare Plans</a>
+            <div class="cta-banner-tech fade-up">
+                <div class="cta-tech-glow"></div>
+                <div class="cta-tech-inner">
+                    <div class="cta-tech-badge">
+                        <span class="live-dot"></span> Next-Generation Waste Management
+                    </div>
+                    <h2>Experience Premium Waste Management <span class="cta-highlight">Built for Modern Healthcare</span></h2>
+                    <p>Schedule a complimentary consultation and facility assessment. Harness automated compliance tracking, GPS-monitored fleet dispatch, and zero-liability destruction guarantees.</p>
+                    
+                    <form class="cta-tech-form" onsubmit="event.preventDefault(); alert('Assessment requested! A compliance specialist will contact you shortly.');">
+                        <div class="cta-tech-input-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Enter your facility or corporate email..." required aria-label="Facility email">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Book Free Assessment <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="cta-tech-pills">
+                        <span class="tech-pill"><i class="fa-solid fa-bolt"></i> 4-Hour Emergency Dispatch</span>
+                        <span class="tech-pill"><i class="fa-solid fa-shield-halved"></i> Zero-Violation Guarantee</span>
+                        <span class="tech-pill"><i class="fa-solid fa-chart-line"></i> Real-Time Client Portal</span>
+                    </div>
                 </div>
             </div>
         </div>

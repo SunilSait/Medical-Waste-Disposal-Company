@@ -33,45 +33,39 @@
             </a>
 
             <nav class="sidebar-nav">
-                <p class="sidebar-nav-title">Main Menu</p>
-                <a href="dashboard.html" class="sidebar-link active">
-                    <i class="fa-solid fa-gauge-high"></i> Dashboard
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-truck"></i> Active Pickups
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-certificate"></i> Certificates
-                </a>
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link active">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
 
-                <p class="sidebar-nav-title" style="margin-top:24px;">Management</p>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-chart-line"></i> Waste Reports
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-credit-card"></i> Billing
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-file-lines"></i> Invoices
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-box-archive"></i> Container Inventory
-                </a>
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
 
-                <p class="sidebar-nav-title" style="margin-top:24px;">Account</p>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-circle-user"></i> Profile
-                </a>
-                <a href="#" class="sidebar-link" onclick="event.preventDefault();">
-                    <i class="fa-solid fa-gear"></i> Settings
-                </a>
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
             </nav>
 
             <div class="sidebar-footer">
-                <a href="login.html" class="sidebar-logout">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
             </div>
@@ -96,7 +90,7 @@
                         <i class="fa-solid fa-bell"></i>
                         <span class="notif-dot"></span>
                     </button>
-                    <div class="dash-profile" onclick="alert('Profile settings')">
+                    <div class="dash-profile" style="cursor:default;">
                         <div class="dash-profile-avatar">RK</div>
                         <span>Dr. Kim</span>
                     </div>
@@ -104,7 +98,7 @@
             </div>
 
             <!-- Metrics -->
-            <div class="dash-metrics">
+            <div class="dash-metrics" id="dash-overview">
                 <div class="metric-card">
                     <div class="metric-top">
                         <div class="metric-icon teal"><i class="fa-solid fa-truck"></i></div>
@@ -142,10 +136,10 @@
             <!-- Grid: Recent Pickups + Upcoming -->
             <div class="dash-grid">
                 <!-- Recent Certificates -->
-                <div class="dash-card">
+                <div class="dash-card" id="dash-certificates">
                     <div class="dash-card-header">
                         <h3>Recent Certificates</h3>
-                        <a href="#">View All</a>
+                        <a href="certificates.html">View All</a>
                     </div>
                     <table class="dash-table">
                         <thead>
@@ -192,10 +186,10 @@
                 </div>
 
                 <!-- Upcoming Pickups -->
-                <div class="dash-card">
+                <div class="dash-card" id="dash-pickups">
                     <div class="dash-card-header">
                         <h3>Upcoming Pickups</h3>
-                        <a href="#">Schedule New</a>
+                        <a href="schedule-pickup.html"><i class="fa-solid fa-plus"></i> Schedule New</a>
                     </div>
                     <div class="pickup-list">
                         <div class="pickup-item">
@@ -245,10 +239,10 @@
             <!-- Grid: Billing + Container Inventory -->
             <div class="dash-grid">
                 <!-- Recent Invoices -->
-                <div class="dash-card">
+                <div class="dash-card" id="dash-invoices">
                     <div class="dash-card-header">
                         <h3>Recent Invoices</h3>
-                        <a href="#">View All</a>
+                        <a href="billing.html">View All Invoices</a>
                     </div>
                     <table class="dash-table">
                         <thead>
@@ -288,61 +282,47 @@
                     </table>
                 </div>
 
-                <!-- Container Inventory -->
-                <div class="dash-card">
+                <!-- Billing & Payment Status -->
+                <div class="dash-card" id="dash-billing-overview">
                     <div class="dash-card-header">
-                        <h3>Container Inventory</h3>
-                        <a href="#">Request More</a>
+                        <h3>Billing &amp; Payment Account</h3>
+                        <a href="billing.html"><i class="fa-solid fa-credit-card"></i> Manage Billing</a>
                     </div>
-                    <table class="dash-table">
-                        <thead>
-                            <tr>
-                                <th>Container Type</th>
-                                <th>Size</th>
-                                <th>On-Site</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Sharps Container</td>
-                                <td>1-quart</td>
-                                <td>24</td>
-                                <td><span class="status-badge active">Adequate</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sharps Container</td>
-                                <td>5-quart</td>
-                                <td>12</td>
-                                <td><span class="status-badge active">Adequate</span></td>
-                            </tr>
-                            <tr>
-                                <td>Biohazard Bin</td>
-                                <td>65-gallon</td>
-                                <td>6</td>
-                                <td><span class="status-badge pending">Reorder Soon</span></td>
-                            </tr>
-                            <tr>
-                                <td>Rolling Cart</td>
-                                <td>95-gallon</td>
-                                <td>4</td>
-                                <td><span class="status-badge active">Adequate</span></td>
-                            </tr>
-                            <tr>
-                                <td>Pharma Container</td>
-                                <td>30-gallon</td>
-                                <td>2</td>
-                                <td><span class="status-badge expired">Low Stock</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style="display:flex; flex-direction:column; gap:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:var(--bg-alt); border-radius:var(--radius); border:1px solid var(--border);">
+                            <div>
+                                <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:600;">Current Balance</span>
+                                <h4 style="margin:2px 0 0; font-size:1.4rem; color:var(--text);">$0.00</h4>
+                            </div>
+                            <span class="status-badge active"><i class="fa-solid fa-check"></i> Good Standing</span>
+                        </div>
+                        <div style="padding:12px 16px; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg);">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <div style="display:flex; align-items:center; gap:12px;">
+                                    <div style="width:36px; height:36px; border-radius:var(--radius); background:var(--primary-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin:0; font-size:0.9rem;">Chase ACH (•••• 8819)</h5>
+                                        <span style="font-size:0.75rem; color:var(--text-secondary);">Corporate Checking &bull; Net-30</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge completed" style="font-size:0.7rem;">Auto-Pay</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.84rem; color:var(--text-secondary); padding:0 4px;">
+                            <span>Next Cycle Date: <strong>Nov 01, 2026</strong></span>
+                            <span>Est: <strong>$1,420.00</strong></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Waste Volume Summary -->
-            <div class="dash-card" style="margin-bottom:24px;">
+            <div class="dash-card" id="dash-waste-summary" style="margin-bottom:24px;">
                 <div class="dash-card-header">
-                    <h3>Waste Volume Summary (Last 6 Months)</h3>
+                    <h3>Waste Volume Summary &amp; Analytics (Last 6 Months)</h3>
+                    <a href="waste-reports.html">View Detailed Analytics <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="dash-metrics" style="margin-bottom:0;">
                     <div class="metric-card">
@@ -378,9 +358,137 @@
         </main>
     </div>
 
+    <!-- Modal 1: Schedule Pickup -->
+    <div class="dash-modal-backdrop" id="modal-schedule" onclick="if(event.target===this) closeModal('modal-schedule')">
+        <div class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="modal-sched-title">
+            <div class="dash-modal-header">
+                <h3 id="modal-sched-title"><i class="fa-solid fa-calendar-plus text-teal"></i> Schedule Medical Waste Pickup</h3>
+                <button type="button" class="dash-modal-close" onclick="closeModal('modal-schedule')" aria-label="Close modal">&times;</button>
+            </div>
+            <form onsubmit="handleScheduleSubmit(event)">
+                <div class="dash-modal-body">
+                    <div class="form-group" style="margin-bottom:16px;">
+                        <label class="form-label">Facility Wing / Location</label>
+                        <select class="form-control" required id="pickup-location">
+                            <option value="Building A - Loading Dock">Building A — Main Loading Dock</option>
+                            <option value="Surgery Center - 2nd Floor">Surgery Center — 2nd Floor Clean Room</option>
+                            <option value="Lab Diagnostic Wing">Lab Diagnostic Wing — Specimen Bay</option>
+                            <option value="Emergency Department">Emergency Department — Bio Vault</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom:16px;">
+                        <label class="form-label">Primary Waste Stream</label>
+                        <select class="form-control" required id="pickup-stream">
+                            <option value="Biohazardous Red Bag Waste">Biohazardous Red Bag Waste</option>
+                            <option value="Sharps & Needles Containment">Sharps &amp; Needles Containment</option>
+                            <option value="Controlled Pharmaceutical (Rx)">Controlled Pharmaceutical (Rx)</option>
+                            <option value="Pathological & Chemotherapy">Pathological &amp; Chemotherapy</option>
+                        </select>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
+                        <div class="form-group">
+                            <label class="form-label">Estimated Containers</label>
+                            <input type="number" class="form-control" value="4" min="1" max="100" required id="pickup-count">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" value="2026-10-15" required id="pickup-date">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:6px;">
+                        <label class="form-label">Special Access or Hazard Notes</label>
+                        <input type="text" class="form-control" placeholder="e.g. Requires badge escort at Security Gate 3">
+                    </div>
+                </div>
+                <div class="dash-modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('modal-schedule')">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Confirm Pickup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="components.js"></script>
     <script>
-        // Dashboard-specific init
+        // Smooth Section Navigation & Card Highlight
+        function navigateToSection(e, targetId) {
+            if (e && e.preventDefault) e.preventDefault();
+            
+            // Update active link in sidebar
+            const links = document.querySelectorAll('.sidebar-link');
+            links.forEach(l => l.classList.remove('active'));
+            if (e && e.currentTarget) e.currentTarget.classList.add('active');
+
+            // Scroll target card into view smoothly
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetEl.classList.remove('card-highlight-flash');
+                void targetEl.offsetWidth; // Force reflow
+                targetEl.classList.add('card-highlight-flash');
+                setTimeout(() => {
+                    targetEl.classList.remove('card-highlight-flash');
+                }, 1600);
+            }
+
+            // Close mobile sidebar if open
+            const sidebar = document.getElementById('dashboard-sidebar');
+            if (sidebar && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        }
+
+        // Modal Open / Close
+        function openModal(e, modalId) {
+            if (e && e.preventDefault) e.preventDefault();
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('open');
+            
+            // Close mobile sidebar if open
+            const sidebar = document.getElementById('dashboard-sidebar');
+            if (sidebar && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('open');
+        }
+
+        // Form handlers
+        function handleScheduleSubmit(e) {
+            e.preventDefault();
+            const loc = document.getElementById('pickup-location').value;
+            const stream = document.getElementById('pickup-stream').value;
+            const count = document.getElementById('pickup-count').value;
+            const date = document.getElementById('pickup-date').value;
+            closeModal('modal-schedule');
+            alert(`Pickup Scheduled Successfully!\n\nLocation: ${loc}\nWaste Stream: ${stream}\nContainers: ${count}\nRequested Date: ${date}\n\nA confirmation manifest has been sent to your dispatch team.`);
+        }
+
+        function handleProfileSubmit(e) {
+            e.preventDefault();
+            closeModal('modal-profile');
+            alert('Facility settings and compliance alert preferences saved successfully.');
+        }
+
+        function handleContainerSubmit(e) {
+            e.preventDefault();
+            const type = document.getElementById('container-type').value;
+            const qty = document.getElementById('container-qty').value;
+            closeModal('modal-inventory');
+            alert(`Container Restock Order Placed!\n\nRequested: ${qty}x ${type}\nOur regional dispatch fleet will deliver these to MedCenter Health.`);
+        }
+
+        // Escape key to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.dash-modal-backdrop.open').forEach(m => m.classList.remove('open'));
+            }
+        });
+
+        // Dashboard-specific theme/dir init
         (function() {
             const html = document.documentElement;
             const savedTheme = localStorage.getItem('mwd_theme');

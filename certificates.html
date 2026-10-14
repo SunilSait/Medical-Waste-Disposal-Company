@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates of Destruction Vault — SafeDispose</title>
+    <meta name="description" content="Audit-ready compliance certificates of destruction and EPA e-manifest vault for MedCenter Health.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link active">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Compliance Certificates Vault</h2>
+                    <p>MedCenter Health — 142 Verified Destruction Certificates &amp; EPA Manifests</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">LTR</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" style="cursor:default;">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Status Banner -->
+            <div style="background:linear-gradient(135deg, var(--bg-card), var(--primary-50)); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 24px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:48px; height:48px; border-radius:var(--radius); background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.35rem; flex-shrink:0;">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <div>
+                        <h4 style="margin:0 0 2px; font-size:1.05rem;">100% Audit-Ready Status Guarantee</h4>
+                        <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">All certificates are cryptographically timestamped and synced with state DEP &amp; EPA RCRA e-Manifest systems.</p>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <span class="status-badge active"><i class="fa-solid fa-circle-check"></i> Zero Open Violations</span>
+                    <span class="status-badge completed"><i class="fa-solid fa-lock"></i> 256-bit Encrypted</span>
+                </div>
+            </div>
+
+            <!-- Filter & Search Controls -->
+            <div class="dash-card" style="margin-bottom:24px; padding:18px 24px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;" id="cert-filter-pills">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="filterCerts('all', this)">All (142)</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('biohazard', this)">Biohazard (78)</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('sharps', this)">Sharps (42)</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('pharma', this)">Pharmaceutical (16)</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('patho', this)">Pathological (6)</button>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div style="position:relative; min-width:260px;">
+                            <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:0.85rem;"></i>
+                            <input type="text" class="form-control" placeholder="Search by Certificate # or Manifest..." style="padding-left:36px; height:38px; font-size:0.85rem;" oninput="searchCerts(this.value)">
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="alert('Exporting annual compliance audit archive (ZIP with 142 PDFs)...');"><i class="fa-solid fa-cloud-arrow-down"></i> Export All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Full Table -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <h3>Recent Verified Destruction Records</h3>
+                    <span style="font-size:0.82rem; color:var(--text-muted);">Showing last 8 verified records</span>
+                </div>
+                <table class="dash-table" id="certs-table">
+                    <thead>
+                        <tr>
+                            <th>Certificate ID</th>
+                            <th>Manifest #</th>
+                            <th>Destruction Date</th>
+                            <th>Waste Stream</th>
+                            <th>Net Weight</th>
+                            <th>Treatment Method</th>
+                            <th>Regulatory Seal</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-type="biohazard">
+                            <td><strong>COD-20261012-047</strong></td>
+                            <td>MN-88492</td>
+                            <td>Oct 12, 2026</td>
+                            <td>Biohazard Infectious</td>
+                            <td>340 lbs</td>
+                            <td>Hydrothermal Autoclave 275°F</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261012-047.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="sharps">
+                            <td><strong>COD-20261010-045</strong></td>
+                            <td>MN-88481</td>
+                            <td>Oct 10, 2026</td>
+                            <td>Sharps & Needles</td>
+                            <td>120 lbs</td>
+                            <td>Polymer Recovery & Sterilization</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261010-045.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="pharma">
+                            <td><strong>COD-20261008-043</strong></td>
+                            <td>MN-88462</td>
+                            <td>Oct 08, 2026</td>
+                            <td>Controlled Rx (DEA II)</td>
+                            <td>84 lbs</td>
+                            <td>High-Temp Thermal Neutralization</td>
+                            <td><span class="status-badge active">DEA Form 41</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261008-043.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="biohazard">
+                            <td><strong>COD-20261005-041</strong></td>
+                            <td>MN-88439</td>
+                            <td>Oct 05, 2026</td>
+                            <td>Biohazard Waste</td>
+                            <td>290 lbs</td>
+                            <td>Hydrothermal Autoclave 275°F</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261005-041.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="sharps">
+                            <td><strong>COD-20261003-039</strong></td>
+                            <td>MN-88415</td>
+                            <td>Oct 03, 2026</td>
+                            <td>Sharps Waste</td>
+                            <td>95 lbs</td>
+                            <td>Polymer Recovery & Sterilization</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261003-039.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="patho">
+                            <td><strong>COD-20260928-037</strong></td>
+                            <td>MN-88394</td>
+                            <td>Sep 28, 2026</td>
+                            <td>Pathological Waste</td>
+                            <td>215 lbs</td>
+                            <td>Dedicated Bio-Incineration</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260928-037.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="biohazard">
+                            <td><strong>COD-20260925-034</strong></td>
+                            <td>MN-88371</td>
+                            <td>Sep 25, 2026</td>
+                            <td>Biohazard Infectious</td>
+                            <td>310 lbs</td>
+                            <td>Hydrothermal Autoclave 275°F</td>
+                            <td><span class="status-badge completed">EPA Verified</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260925-034.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                        <tr data-type="pharma">
+                            <td><strong>COD-20260920-031</strong></td>
+                            <td>MN-88340</td>
+                            <td>Sep 20, 2026</td>
+                            <td>Hazardous Rx Stream</td>
+                            <td>65 lbs</td>
+                            <td>Chemical Neutralization</td>
+                            <td><span class="status-badge active">DEA Form 41</span></td>
+                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260920-031.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+    <script>
+        function filterCerts(category, btn) {
+            document.querySelectorAll('#cert-filter-pills button').forEach(b => {
+                b.className = 'btn btn-secondary btn-sm';
+            });
+            btn.className = 'btn btn-primary btn-sm';
+
+            const rows = document.querySelectorAll('#certs-table tbody tr');
+            rows.forEach(row => {
+                if (category === 'all' || row.getAttribute('data-type') === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function searchCerts(query) {
+            const q = query.toLowerCase();
+            const rows = document.querySelectorAll('#certs-table tbody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

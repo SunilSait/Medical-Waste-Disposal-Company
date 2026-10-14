@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account &amp; Compliance Settings — SafeDispose</title>
+    <meta name="description" content="Configure compliance automation, fleet arrival SMS alerts, EPA e-Manifest export settings, and security.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link active">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Account &amp; System Settings</h2>
+                    <p>Dr. Rachel Kim — MedCenter Health &bull; EPA ID: WA-99214</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">LTR</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" style="cursor:default;">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Administrator Profile & Identity Card -->
+            <div class="dash-card" style="margin-bottom:24px;">
+                <div class="dash-card-header" style="margin-bottom:18px;">
+                    <h3><i class="fa-solid fa-user-doctor text-teal" style="margin-right:8px;"></i> Administrator Profile &amp; Contact Details</h3>
+                    <span class="status-badge active"><i class="fa-solid fa-shield-halved"></i> Authorized Compliance Officer</span>
+                </div>
+                
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                    <div class="form-group" style="margin:0;">
+                        <label class="form-label" style="font-weight:600; font-size:0.85rem;">Full Name</label>
+                        <input type="text" class="form-control" value="Dr. Rachel Kim" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group" style="margin:0;">
+                        <label class="form-label" style="font-weight:600; font-size:0.85rem;">Email Address</label>
+                        <input type="email" class="form-control" value="rachel.kim@medcenterhealth.org" placeholder="Email Address" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Grid -->
+            <div class="dash-grid" style="grid-template-columns:1fr 1fr; margin-bottom:24px;">
+                <!-- Regulatory Compliance & Manifest Sync -->
+                <div class="dash-card">
+                    <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-file-shield" style="color:var(--primary); margin-right:8px;"></i> Automated Regulatory Sync</h3>
+                    
+                    <div style="display:flex; flex-direction:column; gap:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">EPA RCRA e-Manifest Automatic Transmission</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Direct API submission of signed electronic manifests to EPA national database within 2 hours of treatment.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Washington State Ecology Biennial Reporting</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Automatically compile and index waste volumes for state environmental filings.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">7-Year Audit Vault Retention Archive</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Encrypt and mirror all destruction certificates in compliance with OSHA &amp; HIPAA record retention.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Chain-of-Custody GPS Timestamping</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Log vehicle geofence entry and autoclave chamber temperature graphs directly into manifests.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Driver & Fleet Notifications -->
+                <div class="dash-card">
+                    <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-bell" style="color:var(--primary); margin-right:8px;"></i> Fleet &amp; Driver Alerts</h3>
+
+                    <div style="display:flex; flex-direction:column; gap:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Driver Arrival SMS (30-Minute Window)</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Send SMS text to dock manager when SafeDispose truck enters hospital perimeter.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Immediate Certificate PDF by Email</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Email signed Certificate of Destruction to Dr. Rachel Kim the moment autoclaving is completed.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Container Capacity Alerts (90% Full)</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Notify housekeeping when RFID scans detect surgical wing receptacles approaching weight capacity.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Monthly Waste Reduction &amp; ESG Digest</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Receive monthly summary of hospital diversion rates and carbon emission savings.</p>
+                            </div>
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password & Security Card -->
+            <div class="dash-card">
+                <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-lock" style="color:var(--primary); margin-right:8px;"></i> Security &amp; Access Controls</h3>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                    <div>
+                        <h4 style="margin:0 0 12px; font-size:0.95rem;">Change Account Password</h4>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <input type="password" placeholder="Current Password" class="form-control" style="font-size:0.85rem;">
+                            <input type="password" placeholder="New Password (min 12 characters)" class="form-control" style="font-size:0.85rem;">
+                            <input type="password" placeholder="Confirm New Password" class="form-control" style="font-size:0.85rem;">
+                            <button class="btn btn-secondary btn-sm" onclick="alert('Password updated successfully');" style="align-self:flex-start;"><i class="fa-solid fa-key"></i> Update Password</button>
+                        </div>
+                    </div>
+
+                    <div style="border-left:1px solid var(--border); padding-left:20px;">
+                        <h4 style="margin:0 0 12px; font-size:0.95rem;">Two-Factor Authentication (2FA)</h4>
+                        <p style="margin:0 0 12px; font-size:0.82rem; color:var(--text-secondary);">2FA is enforced for hospital medical directors and compliance managers.</p>
+                        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                            <span class="status-badge active"><i class="fa-solid fa-check"></i> Enabled via Authenticator App</span>
+                            <button class="btn btn-secondary btn-sm" onclick="alert('Regenerating 2FA backup recovery codes...');">Backup Codes</button>
+                        </div>
+                        <h4 style="margin:16px 0 8px; font-size:0.9rem;">Active Device Session</h4>
+                        <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">
+                            <i class="fa-solid fa-laptop-medical" style="color:var(--primary); margin-right:6px;"></i> Windows 11 Chrome &bull; Seattle, WA &bull; IP: 198.51.100.44 (Current Active Session)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Action Bar -->
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+                <button class="btn btn-secondary" onclick="location.reload();">Reset Defaults</button>
+                <button class="btn btn-primary" onclick="alert('All system settings saved and synchronized.');"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+</body>
+</html>

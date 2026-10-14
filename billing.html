@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing &amp; Payments — SafeDispose</title>
+    <meta name="description" content="Manage payment methods, account billing terms, automated payments, and billing contacts for MedCenter Health.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link active">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Billing &amp; Payment Accounts</h2>
+                    <p>MedCenter Health — Account #MH-883492 &bull; Net-30 Corporate Terms</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">LTR</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" style="cursor:default;">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Metric Banner -->
+            <div class="dash-metrics">
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon green"><i class="fa-solid fa-wallet"></i></div>
+                        <span class="metric-trend up"><i class="fa-solid fa-check"></i> Good Standing</span>
+                    </div>
+                    <div class="metric-value">$0.00</div>
+                    <div class="metric-label">Current Outstanding Balance</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon blue"><i class="fa-solid fa-calendar-day"></i></div>
+                        <span class="metric-trend" style="background:#EFF6FF; color:#2563EB;">Nov 01, 2026</span>
+                    </div>
+                    <div class="metric-value">$1,420.00</div>
+                    <div class="metric-label">Estimated Next Cycle Charge</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon teal"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span class="metric-trend up">Annual Plan</span>
+                    </div>
+                    <div class="metric-value">Tier 1</div>
+                    <div class="metric-label">Enterprise Hospital Rate Lock</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-top">
+                        <div class="metric-icon amber"><i class="fa-solid fa-bolt"></i></div>
+                        <span class="status-badge active" style="font-size:0.7rem;">Active</span>
+                    </div>
+                    <div class="metric-value">Auto-Pay</div>
+                    <div class="metric-label">ACH / Direct Debit via Chase</div>
+                </div>
+            </div>
+
+            <!-- Payment Methods and Billing Summary Grid -->
+            <div class="dash-grid" style="grid-template-columns: 1.2fr 0.8fr; margin-bottom: 24px;">
+                <!-- Payment Methods Card -->
+                <div class="dash-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <div>
+                            <h3 style="margin:0 0 4px; font-size:1.15rem;">Saved Payment Methods</h3>
+                            <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">Manage authorized payment instruments for automated waste destruction billing.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Opening secure PCI-compliant card / ACH tokenization dialog...');"><i class="fa-solid fa-plus"></i> Add Method</button>
+                    </div>
+
+                    <!-- Payment Cards List -->
+                    <div style="display:flex; flex-direction:column; gap:16px;">
+                        <!-- Method 1: ACH Bank Transfer -->
+                        <div style="border:2px solid var(--primary); border-radius:var(--radius-lg); padding:18px 20px; background:var(--bg); display:flex; justify-content:space-between; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:16px;">
+                                <div style="width:48px; height:48px; border-radius:var(--radius); background:var(--primary-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+                                <div>
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <h4 style="margin:0; font-size:1rem;">JPMorgan Chase Bank &bull;&bull;&bull;&bull; 8819</h4>
+                                        <span class="status-badge active" style="font-size:0.7rem; padding:2px 8px;">Default &bull; Auto-Pay</span>
+                                    </div>
+                                    <p style="margin:4px 0 0; font-size:0.82rem; color:var(--text-secondary);">ACH Corporate Checking &bull; Verified Routing 021000021 &bull; Zero Processing Surcharge</p>
+                                </div>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-secondary btn-sm" onclick="alert('Viewing ACH Mandate & Authorization...');">Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Method 2: Corporate Visa -->
+                        <div style="border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px 20px; background:var(--bg-card); display:flex; justify-content:space-between; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:16px;">
+                                <div style="width:48px; height:48px; border-radius:var(--radius); background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+                                    <i class="fa-brands fa-cc-visa"></i>
+                                </div>
+                                <div>
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <h4 style="margin:0; font-size:1rem;">Visa Commercial Healthcare Card &bull;&bull;&bull;&bull; 4092</h4>
+                                        <span class="status-badge completed" style="font-size:0.7rem; padding:2px 8px;">Backup</span>
+                                    </div>
+                                    <p style="margin:4px 0 0; font-size:0.82rem; color:var(--text-secondary);">Expires 08/2029 &bull; Cardholder: MedCenter Health Operating</p>
+                                </div>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-secondary btn-sm" onclick="alert('Set Visa as primary payment method?');">Make Primary</button>
+                                <button class="btn btn-secondary btn-sm" style="color:var(--danger);" onclick="alert('Card removed');"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auto-Pay Preferences -->
+                    <div style="margin-top:24px; padding:18px; border-radius:var(--radius); background:var(--bg-alt); border:1px solid var(--border);">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Automated Invoicing &amp; Settlement</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Automatically debit the primary ACH account on Net-30 invoice due date upon manifest closure.</p>
+                            </div>
+                            <label style="position:relative; display:inline-block; width:48px; height:26px; cursor:pointer;">
+                                <input type="checkbox" checked style="opacity:0; width:0; height:0;" onchange="alert('Auto-Pay settings updated successfully');">
+                                <span style="position:absolute; inset:0; background:var(--primary); border-radius:26px; transition:0.3s;"></span>
+                                <span style="position:absolute; top:3px; right:4px; width:20px; height:20px; border-radius:50%; background:#fff; transition:0.3s;"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing Contact & Tax Info -->
+                <div class="dash-card">
+                    <h3 style="margin:0 0 16px; font-size:1.15rem;">Billing Information</h3>
+                    
+                    <div style="margin-bottom:18px;">
+                        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Entity Name</span>
+                        <p style="margin:4px 0 0; font-weight:600; color:var(--text);">MedCenter Health System Inc.</p>
+                    </div>
+
+                    <div style="margin-bottom:18px;">
+                        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Billing Address</span>
+                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary); line-height:1.4;">
+                            100 Hospital Way, Suite 400<br>
+                            Attn: Accounts Payable<br>
+                            Seattle, WA 98104
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom:18px;">
+                        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Tax Identification</span>
+                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                            Federal EIN: <strong>XX-XXX9182</strong><br>
+                            WA Resale Tax Exemption: <strong>WA-MED-849102-E</strong>
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Accounts Payable Contact</span>
+                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                            <i class="fa-solid fa-envelope" style="margin-right:6px; color:var(--primary);"></i> ap-billing@medcenterhealth.org<br>
+                            <i class="fa-solid fa-phone" style="margin-right:6px; color:var(--primary);"></i> (206) 555-0198 ext. 402
+                        </p>
+                    </div>
+
+                    <button class="btn btn-secondary btn-block" onclick="alert('Opening billing profile edit form...');"><i class="fa-solid fa-pen-to-square"></i> Edit Billing Details</button>
+                </div>
+            </div>
+
+            <!-- Recent Payment Ledger Table -->
+            <div class="dash-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+                    <div>
+                        <h3 style="margin:0 0 4px; font-size:1.15rem;">Recent Payment Settlements</h3>
+                        <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">Real-time audit log of cleared electronic payments and statements.</p>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="alert('Exporting full billing & settlement statements archive (CSV/PDF)...');"><i class="fa-solid fa-download"></i> Download Archive</button>
+                </div>
+
+                <div class="dash-table-wrap">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction Ref</th>
+                                <th>Billing Period</th>
+                                <th>Payment Method</th>
+                                <th>Amount</th>
+                                <th>Settled Date</th>
+                                <th>Status</th>
+                                <th>Receipt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span style="font-family:monospace; font-weight:600;">TXN-89410-202610</span></td>
+                                <td>September 2026 Monthly Volume</td>
+                                <td>Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
+                                <td><strong style="color:var(--text);">$1,420.00</strong></td>
+                                <td>Oct 05, 2026</td>
+                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-89410-202610...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-family:monospace; font-weight:600;">TXN-87291-202609</span></td>
+                                <td>August 2026 Monthly Volume</td>
+                                <td>Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
+                                <td><strong style="color:var(--text);">$1,385.50</strong></td>
+                                <td>Sep 05, 2026</td>
+                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-87291-202609...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-family:monospace; font-weight:600;">TXN-85112-202608</span></td>
+                                <td>July 2026 Monthly Volume</td>
+                                <td>Visa (&bull;&bull;&bull;&bull; 4092)</td>
+                                <td><strong style="color:var(--text);">$1,510.00</strong></td>
+                                <td>Aug 05, 2026</td>
+                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-85112-202608...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-family:monospace; font-weight:600;">TXN-83901-202607</span></td>
+                                <td>June 2026 Monthly Volume</td>
+                                <td>Visa (&bull;&bull;&bull;&bull; 4092)</td>
+                                <td><strong style="color:var(--text);">$1,290.00</strong></td>
+                                <td>Jul 05, 2026</td>
+                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-83901-202607...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+</body>
+</html>

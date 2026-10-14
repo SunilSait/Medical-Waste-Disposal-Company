@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Pickup — SafeDispose Client Portal</title>
+    <meta name="description" content="Schedule regulated medical waste, sharps, and pharmaceutical waste collections for your facility.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="dashboard-sidebar">
+            <a href="index.html" class="sidebar-logo nav-logo" aria-label="Home">
+                <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+                    <rect width="100" height="100" rx="22" fill="url(#logoBg)"/>
+                    <path d="M50 22 L50 78 M28 50 L72 50" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M32 28 L50 18 L68 28" stroke="#99F6E4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="32" stroke="#99F6E4" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+                <div class="nav-logo-text">
+                    <span class="brand-top">MEDICAL WASTE</span>
+                    <span class="brand-bottom" style="font-size:.85rem;">SafeDispose</span>
+                </div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Overview</p>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge-high"></i> Dashboard
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Services</p>
+                    <a href="schedule-pickup.html" class="sidebar-link active">
+                        <i class="fa-solid fa-calendar-plus"></i> Schedule Pickup
+                    </a>
+                    <a href="certificates.html" class="sidebar-link">
+                        <i class="fa-solid fa-certificate"></i> Certificates
+                    </a>
+                    <a href="waste-reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-line"></i> Waste Reports
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-nav-title">Account</p>
+                    <a href="billing.html" class="sidebar-link">
+                        <i class="fa-solid fa-credit-card"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="sidebar-logout" onclick="openLogoutModal(event)">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <div class="dash-topbar">
+                <div class="dash-welcome">
+                    <h2>Schedule Waste Collection</h2>
+                    <p>MedCenter Health — Request on-demand pickups &amp; recurring schedules</p>
+                </div>
+                <div class="dash-topbar-actions">
+                    <button onclick="toggleDir(event)" class="dash-icon-btn" title="Toggle Direction" aria-label="Toggle direction">
+                        <span class="dir-label" style="font-size:.6rem;font-weight:600;">LTR</span>
+                    </button>
+                    <button onclick="toggleTheme(event)" class="dash-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+                        <span class="theme-icon-wrap"><i class="fa-solid fa-moon"></i></span>
+                    </button>
+                    <button class="dash-icon-btn" title="Notifications" aria-label="Notifications" onclick="alert('3 new notifications')">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="dash-profile" style="cursor:default;">
+                        <div class="dash-profile-avatar">RK</div>
+                        <span>Dr. Kim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Form & Summary Layout -->
+            <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:start;">
+                <!-- Booking Form Card -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3><i class="fa-solid fa-clipboard-list text-teal"></i> Pickup Dispatch Details</h3>
+                        <span class="status-badge active"><i class="fa-solid fa-shield-check"></i> Audit Guaranteed</span>
+                    </div>
+
+                    <form id="schedule-page-form" onsubmit="event.preventDefault(); alert('Pickup scheduled successfully!\n\nManifest #MN-' + Math.floor(100000 + Math.random()*900000) + ' generated. Dispatch team notified.'); window.location.href='active-pickups.html';">
+                        <div style="margin-bottom:18px;">
+                            <label class="form-label" style="font-weight:600;">Pickup Service Type</label>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">
+                                <label style="display:flex; align-items:center; gap:10px; padding:12px; border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; background:var(--bg-alt);">
+                                    <input type="radio" name="pickup_type" checked style="accent-color:var(--primary);">
+                                    <div>
+                                        <strong>On-Demand Run</strong>
+                                        <div style="font-size:0.75rem; color:var(--text-muted);">One-time urgent or standard pickup</div>
+                                    </div>
+                                </label>
+                                <label style="display:flex; align-items:center; gap:10px; padding:12px; border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; background:var(--bg-alt);">
+                                    <input type="radio" name="pickup_type" style="accent-color:var(--primary);">
+                                    <div>
+                                        <strong>Recurring Setup</strong>
+                                        <div style="font-size:0.75rem; color:var(--text-muted);">Weekly or bi-weekly auto dispatch</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:18px;">
+                            <label class="form-label" style="font-weight:600;">Facility Collection Point</label>
+                            <select class="form-control" required>
+                                <option value="Building A - Main Dock">Building A — Central Hospital Loading Dock (Bay 2)</option>
+                                <option value="Surgery Center Wing">Ambulatory Surgery Center — 2nd Floor Bio Holding</option>
+                                <option value="Clinical Lab Bay">Clinical Pathology & Diagnostic Lab Wing</option>
+                                <option value="Emergency Department">Emergency Department — Sub-level Decontamination Dock</option>
+                            </select>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:1.35fr 0.65fr; gap:16px; margin-bottom:18px;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-weight:600;">Waste Classification</label>
+                                <select class="form-control" required id="sched-waste-type">
+                                    <option value="Biohazard Red Bag">Biohazard Red Bag (Infectious)</option>
+                                    <option value="Sharps & Needles">Sharps & Needles (Tamper-Proof)</option>
+                                    <option value="Pharmaceutical Rx">Controlled Pharmaceutical (DEA Form 41)</option>
+                                    <option value="Pathological & Chemo">Pathological & Chemotherapy Waste</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-weight:600;">Estimated Containers</label>
+                                <input type="number" class="form-control" min="1" max="100" value="4" required>
+                            </div>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:16px; margin-bottom:18px;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-weight:600;">Preferred Date</label>
+                                <input type="date" class="form-control" value="2026-10-16" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-weight:600;">Time Window</label>
+                                <select class="form-control">
+                                    <option value="Morning">Morning (8:00 AM – 12:00 PM)</option>
+                                    <option value="Afternoon">Afternoon (1:00 PM – 5:00 PM)</option>
+                                    <option value="Urgent 4-Hour">Priority Urgent (Within 4 Hours)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:24px;">
+                            <label class="form-label" style="font-weight:600;">Security & Driver Access Notes</label>
+                            <textarea class="form-control" rows="3" placeholder="e.g. Driver must check in with Security Guard Officer Davis at South Gate. High-temp autoclaving containers ready on pallet."></textarea>
+                        </div>
+
+                        <div style="display:flex; justify-content:flex-end; gap:12px;">
+                            <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-truck"></i> Confirm Pickup Booking</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Guidance & Summary Side Card -->
+                <div style="display:flex; flex-direction:column; gap:20px;">
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3>Chain of Custody Guarantee</h3>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">Every pickup scheduled through this portal triggers an instant cryptographic e-Manifest compliant with DOT, EPA, and state regulatory boards.</p>
+                        <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
+                            <div style="display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--text);"><i class="fa-solid fa-circle-check text-teal"></i> Barcode container scan upon pickup</div>
+                            <div style="display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--text);"><i class="fa-solid fa-circle-check text-teal"></i> Real-time GPS telemetry during transit</div>
+                            <div style="display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--text);"><i class="fa-solid fa-circle-check text-teal"></i> Certificate of Destruction uploaded within 24h</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3><i class="fa-solid fa-headset text-teal"></i> Need Immediate Dispatch?</h3>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.55; margin-bottom:16px;">For biohazard spills, emergency overflow, or rapid quarantine requirements, call our 24/7 priority emergency dispatcher directly.</p>
+                        <a href="tel:8005557233" class="btn btn-primary w-full" style="font-weight:700;"><i class="fa-solid fa-phone"></i> (800) 555-SAFE</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="components.js"></script>
+</body>
+</html>

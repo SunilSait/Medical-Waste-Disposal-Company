@@ -13,68 +13,126 @@
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="hero">
-        <div class="hero-inner">
-            <div class="hero-content fade-up">
-                <div class="hero-badge">
-                    <i class="fa-solid fa-shield-halved"></i> EPA & OSHA Compliant
-                </div>
-                <h1>Safe Medical Waste Disposal You Can Trust</h1>
-                <p>Protecting healthcare workers, communities, and the environment through certified medical waste collection, treatment, and disposal services that exceed regulatory standards.</p>
-                <div class="hero-actions">
-                    <a href="contact.html" class="btn btn-primary btn-lg">Schedule Pickup <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="services.html" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,.3); color:var(--white);">Our Services</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <div class="hero-stat-value" data-count="2500" data-suffix="+">0</div>
-                        <div class="hero-stat-label">Facilities Served</div>
-                    </div>
-                    <div>
-                        <div class="hero-stat-value" data-count="99" data-suffix=".8%">0</div>
-                        <div class="hero-stat-label">Compliance Rate</div>
-                    </div>
-                    <div>
-                        <div class="hero-stat-value" data-count="15" data-suffix="+">0</div>
-                        <div class="hero-stat-label">Years Experience</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual fade-up" style="transition-delay:.2s">
-                <div class="hero-image-wrap">
-                    <img src="assets/images/waste-tracking.jpg" alt="Professional medical waste tracking and management" width="560" height="420">
-                    <div class="hero-float-card card-top">
-                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="card-info">
-                            <h4>100% Compliant</h4>
-                            <p>All federal & state regulations</p>
+    <!-- Hero Section (3-Slide Carousel) -->
+    <section class="hero-section" id="hero" aria-label="Hero Carousel">
+        <div class="hero-slides-track" id="hero-slides-track">
+            <!-- Slide 1: Safe Medical Waste Disposal & Compliance -->
+            <div class="hero-slide active" data-index="0" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                <div class="hero-inner">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-shield-halved"></i> EPA & OSHA Compliant
+                        </div>
+                        <h1>Safe Medical Waste Disposal You Can Trust</h1>
+                        <p>Protecting healthcare workers, communities, and the environment through certified medical waste collection, treatment, and disposal services that exceed regulatory standards.</p>
+                        <div class="hero-actions">
+                            <a href="contact.html" class="btn btn-primary btn-lg">Schedule Pickup <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="services.html" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,.3); color:var(--white);">Our Services</a>
                         </div>
                     </div>
-                    <div class="hero-float-card card-bottom">
-                        <div class="card-icon"><i class="fa-solid fa-recycle"></i></div>
-                        <div class="card-info">
-                            <h4>Eco-Friendly</h4>
-                            <p>Sustainable disposal methods</p>
+                    <div class="hero-visual">
+                        <div class="hero-image-wrap">
+                            <img src="assets/images/waste-tracking.jpg" alt="Professional medical waste tracking and management" width="560" height="420">
+                            <div class="hero-float-card card-top">
+                                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                                <div class="card-info">
+                                    <h4>100% Compliant</h4>
+                                    <p>All federal & state regulations</p>
+                                </div>
+                            </div>
+                            <div class="hero-float-card card-bottom">
+                                <div class="card-icon"><i class="fa-solid fa-recycle"></i></div>
+                                <div class="card-info">
+                                    <h4>Eco-Friendly</h4>
+                                    <p>Sustainable disposal methods</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Slide 2: On-Demand & Scheduled Fleets -->
+            <div class="hero-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                <div class="hero-inner">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-truck-fast"></i> Reliable Scheduled Pickups
+                        </div>
+                        <h1>Fast, Flexible & Secure Waste Transport Fleets</h1>
+                        <p>Custom collection schedules tailored to hospitals, clinics, dental practices, and laboratories. Secure GPS-tracked transport with electronic chain of custody manifests.</p>
+                        <div class="hero-actions">
+                            <a href="contact.html" class="btn btn-primary btn-lg">Request a Quote <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="services.html" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,.3); color:var(--white);">View Services</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-image-wrap">
+                            <img src="assets/images/pickup-service.jpg" alt="Dedicated medical waste transport vehicles" width="560" height="420">
+                            <div class="hero-float-card card-top">
+                                <div class="card-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                                <div class="card-info">
+                                    <h4>GPS Fleet Tracking</h4>
+                                    <p>Real-time transport visibility</p>
+                                </div>
+                            </div>
+                            <div class="hero-float-card card-bottom">
+                                <div class="card-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div class="card-info">
+                                    <h4>24/7 Dispatch</h4>
+                                    <p>Emergency spill & on-call pickup</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Complete Biohazard, Sharps & Pharma Destruction -->
+            <div class="hero-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                <div class="hero-inner">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-biohazard"></i> Certified Treatment Specialists
+                        </div>
+                        <h1>Complete Biohazard, Sharps & Pharma Treatment</h1>
+                        <p>State-of-the-art autoclave sterilization and safe high-temperature incineration protocols. Instant digital certificates of destruction to keep your facility 100% audit-ready.</p>
+                        <div class="hero-actions">
+                            <a href="services.html" class="btn btn-primary btn-lg">Explore Solutions <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="compliance.html" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,.3); color:var(--white);">Compliance Guide</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-image-wrap">
+                            <img src="assets/images/biohazard-waste.jpg" alt="Certified biomedical waste containment and treatment" width="560" height="420">
+                            <div class="hero-float-card card-top">
+                                <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
+                                <div class="card-info">
+                                    <h4>Zero Liability</h4>
+                                    <p>Guaranteed cradle-to-grave transfer</p>
+                                </div>
+                            </div>
+                            <div class="hero-float-card card-bottom">
+                                <div class="card-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                <div class="card-info">
+                                    <h4>Audit-Ready</h4>
+                                    <p>Instant destruction manifests</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="hero-slider-dots" id="hero-dots">
+            <button class="hero-dot active" data-slide="0" aria-label="Go to slide 1" aria-current="true"></button>
+            <button class="hero-dot" data-slide="1" aria-label="Go to slide 2" aria-current="false"></button>
+            <button class="hero-dot" data-slide="2" aria-label="Go to slide 3" aria-current="false"></button>
         </div>
     </section>
 
-    <!-- Trusted By -->
-    <section class="section" style="padding:36px 0;">
-        <div class="container">
-            <div class="partners-row fade-in">
-                <span class="partner-logo">MedCenter Health</span>
-                <span class="partner-logo">CityGen Hospital</span>
-                <span class="partner-logo">PharmaLab Corp</span>
-                <span class="partner-logo">ValleyCare Network</span>
-                <span class="partner-logo">BioTech Solutions</span>
-            </div>
-        </div>
-    </section>
 
     <!-- Services Overview -->
     <section class="section section-alt" id="services-overview">
@@ -131,21 +189,6 @@
                 <p class="section-subtitle">We combine industry expertise with cutting-edge technology to deliver waste disposal services that keep your facility compliant and your community safe.</p>
             </div>
             <div class="bento-grid stagger">
-                <div class="bento-item span-2 fade-up">
-                    <div class="bento-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h4>Full Regulatory Compliance</h4>
-                    <p>We maintain compliance with EPA, OSHA, DOT, and state-specific regulations, providing you with complete documentation and audit-ready records for every pickup.</p>
-                </div>
-                <div class="bento-item fade-up">
-                    <div class="bento-icon"><i class="fa-solid fa-truck"></i></div>
-                    <h4>On-Time Pickups</h4>
-                    <p>Scheduled and on-demand collection services with real-time GPS tracking for complete chain-of-custody visibility.</p>
-                </div>
-                <div class="bento-item fade-up">
-                    <div class="bento-icon"><i class="fa-solid fa-certificate"></i></div>
-                    <h4>Certified Destruction</h4>
-                    <p>Every load receives a Certificate of Destruction, ensuring verified and documented disposal compliance.</p>
-                </div>
                 <div class="bento-item fade-up">
                     <div class="bento-icon"><i class="fa-solid fa-leaf"></i></div>
                     <h4>Eco-Friendly Methods</h4>
@@ -156,7 +199,7 @@
                     <h4>24/7 Support</h4>
                     <p>Round-the-clock customer support with dedicated compliance consultants available for emergency pickups.</p>
                 </div>
-                <div class="bento-item span-2 fade-up">
+                <div class="bento-item fade-up">
                     <div class="bento-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h4>Digital Tracking Dashboard</h4>
                     <p>Access your client portal to schedule pickups, download compliance certificates, view waste volume analytics, and manage your billing — all from one intuitive dashboard.</p>
@@ -177,7 +220,7 @@
                 <div class="process-step fade-up">
                     <div class="process-step-icon"><i class="fa-solid fa-calendar-plus"></i></div>
                     <h4>Schedule Pickup</h4>
-                    <p>Book through our online portal or call our team. Choose recurring or on-demand service.</p>
+                    <p>Book through our online client portal or phone for recurring or on-demand service.</p>
                 </div>
                 <div class="process-step fade-up">
                     <div class="process-step-icon"><i class="fa-solid fa-truck"></i></div>
@@ -187,7 +230,7 @@
                 <div class="process-step fade-up">
                     <div class="process-step-icon"><i class="fa-solid fa-flask"></i></div>
                     <h4>Treatment & Disposal</h4>
-                    <p>Waste is treated through autoclaving, incineration, or chemical neutralization as required.</p>
+                    <p>Waste is processed through certified autoclaving, incineration, or neutralization.</p>
                 </div>
                 <div class="process-step fade-up">
                     <div class="process-step-icon"><i class="fa-solid fa-file-contract"></i></div>
@@ -198,24 +241,171 @@
         </div>
     </section>
 
-    <!-- About Preview -->
-    <section class="section" id="about-preview">
+    <!-- Advanced Treatment Facility Showcase -->
+    <section class="section" id="facility-showcase">
         <div class="container">
-            <div class="split-section">
-                <div class="split-image slide-right">
-                    <img src="assets/images/team-photo.jpg" alt="SafeDispose professional team at facility" width="560" height="420">
-                </div>
-                <div class="split-content slide-left">
-                    <div class="section-badge"><i class="fa-solid fa-users"></i> About Us</div>
-                    <h2>15+ Years of Trusted Medical Waste Management</h2>
-                    <p>Founded by environmental health professionals, SafeDispose has grown to become a leading medical waste disposal provider serving hospitals, clinics, labs, and pharmacies across the country.</p>
-                    <div class="check-list">
-                        <div class="check-item"><i class="fa-solid fa-check"></i> Licensed and insured in all 50 states</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> DOT-certified transportation fleet</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> ISO 14001 environmental management</div>
-                        <div class="check-item"><i class="fa-solid fa-check"></i> OSHA-trained field technicians</div>
+            <div class="facility-showcase-wrapper">
+                <!-- Content Column -->
+                <div class="facility-content fade-up">
+                    <div class="section-badge"><i class="fa-solid fa-microscope"></i> Treatment Technology</div>
+                    <h2>Engineered for 99.9999% Pathogen Sterilization</h2>
+                    <p class="facility-lead">
+                        Our state-of-the-art regional facilities employ closed-loop high-temperature autoclave systems and chemical neutralization to neutralize infectious biohazards with zero landfill contamination.
+                    </p>
+
+                    <div class="facility-features-list">
+                        <div class="facility-feature-item">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h4>Medical-Grade Steam Autoclaving</h4>
+                                <p>Saturated thermal steam at 275°F penetrates all biohazard containers, achieving complete microbial destruction of spore-forming pathogens.</p>
+                            </div>
+                        </div>
                     </div>
-                    <a href="about.html" class="btn btn-primary">Learn More About Us <i class="fa-solid fa-arrow-right"></i></a>
+
+                    <div class="facility-action-row">
+                        <a href="services.html" class="btn btn-primary">
+                            <span>Explore Our Treatment Facility</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="compliance.html" class="btn btn-outline">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>View Certifications</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual / Image Column -->
+                <div class="facility-visual fade-up">
+                    <div class="facility-image-card">
+                        <img src="assets/images/about-facility.jpg" alt="SafeDispose industrial autoclave medical waste sterilization facility" width="620" height="465" class="facility-main-img">
+                        
+                        <!-- Floating Badge Top: Live Pulse & Sterilization -->
+                        <div class="facility-floating-badge badge-top">
+                            <div class="badge-icon-circle icon-teal">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <div class="badge-text-group">
+                                <span class="badge-label"><span class="live-dot"></span> Certified Log-6 Kill</span>
+                                <strong>99.9999% Spore Inactivation</strong>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge Bottom: Manifest Ready -->
+                        <div class="facility-floating-badge badge-bottom">
+                            <div class="badge-icon-circle icon-blue">
+                                <i class="fa-solid fa-file-circle-check"></i>
+                            </div>
+                            <div class="badge-text-group">
+                                <span class="badge-label">EPA e-Manifest Ready</span>
+                                <strong>100% Audit-Proof Records</strong>
+                            </div>
+                        </div>
+
+                        <!-- Facility Spec Bar -->
+                        <div class="facility-spec-bar">
+                            <div class="spec-stat">
+                                <strong>150K+</strong>
+                                <span>Lbs Weekly Capacity</span>
+                            </div>
+                            <div class="spec-divider"></div>
+                            <div class="spec-stat">
+                                <strong>275°F</strong>
+                                <span>Operating Steam Temp</span>
+                            </div>
+                            <div class="spec-divider"></div>
+                            <div class="spec-stat">
+                                <strong>Zero</strong>
+                                <span>Landfill Direct Discharge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="section section-alt" id="about-preview">
+        <div class="container">
+            <div class="about-showcase-grid">
+                <!-- Visual / Image Column with Floating Badges -->
+                <div class="about-visual-column fade-up">
+                    <div class="about-image-wrapper">
+                        <img src="assets/images/team-photo.jpg" alt="SafeDispose professional medical waste management specialists" width="580" height="435" class="about-main-image">
+                        
+                        <!-- Floating Glass Experience Badge (Top Left) -->
+                        <div class="about-floating-stat stat-experience">
+                            <div class="stat-number-wrap">
+                                <span class="stat-big-num">15<span class="stat-plus">+</span></span>
+                            </div>
+                            <div class="stat-info">
+                                <strong>Years of Trust</strong>
+                                <span>Zero-landfill compliance</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Live Compliance Badge (Bottom Right) -->
+                        <div class="about-floating-stat stat-compliance">
+                            <div class="stat-badge-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="compliance-pulse-row">
+                                    <span class="live-pulse"></span>
+                                    <strong>EPA &amp; OSHA Ready</strong>
+                                </div>
+                                <span>100% Audit-Proof Chain</span>
+                            </div>
+                        </div>
+
+                        <!-- Subtle background ambient orb behind image -->
+                        <div class="about-visual-aura"></div>
+                    </div>
+                </div>
+
+                <!-- Content Column -->
+                <div class="about-content-column fade-up">
+                    <div class="section-badge"><i class="fa-solid fa-users"></i> About SafeDispose</div>
+                    <h2 class="about-heading">15+ Years of Trusted Medical Waste Management</h2>
+                    <p class="about-lead">Founded by certified environmental health specialists, SafeDispose provides cradle-to-grave biohazard containment, continuous manifest tracking, and eco-friendly sterilization for over 3,200 healthcare institutions across all 50 states.</p>
+
+                    <!-- Feature Bento Cards (Single Row) -->
+                    <div class="about-feature-bento">
+                        <div class="about-bento-card">
+                            <div class="bento-icon-wrap">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div class="bento-text">
+                                <h4>ISO 14001 Standards</h4>
+                                <p>Closed-loop zero-landfill autoclave destruction cycles.</p>
+                            </div>
+                        </div>
+
+                        <div class="about-bento-card">
+                            <div class="bento-icon-wrap">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div class="bento-text">
+                                <h4>OSHA-Trained Techs</h4>
+                                <p>Rigorous BBP &amp; HAZWOPER safety protocols on every route.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Row -->
+                    <div class="about-action-row">
+                        <a href="about.html" class="btn btn-primary">
+                            <span>Learn More About Us</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="compliance.html" class="btn btn-outline">
+                            <i class="fa-solid fa-file-contract"></i>
+                            <span>View Credentials</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -230,58 +420,243 @@
                 <p class="section-subtitle">See why thousands of healthcare facilities rely on SafeDispose for their medical waste management.</p>
             </div>
             <div class="testimonials-grid stagger">
+                <!-- Testimonial 1 -->
                 <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <div class="testimonial-header">
+                        <div class="testimonial-rating">
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="rating-score">5.0</span>
+                        </div>
+                        <span class="testimonial-verified"><i class="fa-solid fa-circle-check"></i> Verified Client</span>
                     </div>
-                    <blockquote>"SafeDispose transformed our waste management operations. Their compliance dashboard alone saved us 20 hours per month on documentation. Highly recommended for any healthcare facility."</blockquote>
+                    <blockquote class="testimonial-quote">"SafeDispose transformed our waste management operations. Their compliance dashboard alone saved us 20 hours per month on documentation. Highly recommended for any healthcare facility."</blockquote>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">DR</div>
-                        <div>
+                        <div class="testimonial-avatar avatar-dr">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div class="author-info">
                             <h4>Dr. Rachel Kim</h4>
-                            <p>Chief Medical Officer, MedCenter Health</p>
+                            <p class="author-role">Chief Medical Officer</p>
+                            <span class="author-facility"><i class="fa-solid fa-hospital"></i> MedCenter Health</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Testimonial 2 -->
                 <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <div class="testimonial-header">
+                        <div class="testimonial-rating">
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="rating-score">5.0</span>
+                        </div>
+                        <span class="testimonial-verified"><i class="fa-solid fa-circle-check"></i> Verified Client</span>
                     </div>
-                    <blockquote>"The reliability and professionalism of the SafeDispose team is unmatched. Zero compliance issues in three years. Their real-time tracking gives us complete peace of mind."</blockquote>
+                    <blockquote class="testimonial-quote">"The reliability and professionalism of the SafeDispose team is unmatched. Zero compliance issues in three years. Their real-time tracking gives us complete peace of mind."</blockquote>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">JM</div>
-                        <div>
+                        <div class="testimonial-avatar avatar-jm">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <div class="author-info">
                             <h4>James Mitchell</h4>
-                            <p>Facility Manager, CityGen Hospital</p>
+                            <p class="author-role">Facility Manager</p>
+                            <span class="author-facility"><i class="fa-solid fa-truck-medical"></i> CityGen Hospital</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Testimonial 3 -->
                 <div class="testimonial-card fade-up">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <div class="testimonial-header">
+                        <div class="testimonial-rating">
+                            <div class="testimonial-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="rating-score">5.0</span>
+                        </div>
+                        <span class="testimonial-verified"><i class="fa-solid fa-circle-check"></i> Verified Client</span>
                     </div>
-                    <blockquote>"As a laboratory dealing with hazardous materials daily, we needed a partner we could trust completely. SafeDispose exceeded our expectations with their pharmaceutical waste expertise."</blockquote>
+                    <blockquote class="testimonial-quote">"As a laboratory dealing with hazardous materials daily, we needed a partner we could trust completely. SafeDispose exceeded our expectations with their pharmaceutical waste expertise."</blockquote>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">SP</div>
-                        <div>
+                        <div class="testimonial-avatar avatar-sp">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <div class="author-info">
                             <h4>Dr. Sarah Patel</h4>
-                            <p>Lab Director, PharmaLab Corp</p>
+                            <p class="author-role">Lab Director</p>
+                            <span class="author-facility"><i class="fa-solid fa-dna"></i> PharmaLab Corp</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="section">
+    <!-- Regional Coverage & Fleet Network -->
+    <section class="section" id="coverage-network">
         <div class="container">
-            <div class="cta-banner fade-up">
-                <h2>Ready to Simplify Your Waste Compliance?</h2>
-                <p>Join 2,500+ healthcare facilities that trust SafeDispose for safe, compliant, and eco-friendly medical waste disposal.</p>
-                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                    <a href="contact.html" class="btn btn-white btn-lg">Get a Free Quote <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="pricing.html" class="btn btn-lg" style="border-color:rgba(255,255,255,.3); color:var(--white);">View Pricing</a>
+            <div class="section-header fade-up">
+                <div class="section-badge"><i class="fa-solid fa-route"></i> National Footprint</div>
+                <h2>Nationwide Coverage & Fleet Dispatch Network</h2>
+                <p class="section-subtitle">With 4 dedicated regional command hubs and over 140 licensed transport vehicles, SafeDispose ensures rapid response and guaranteed collection across all 50 states.</p>
+            </div>
+
+            <!-- Network Telemetry Bar -->
+            <div class="network-stats-row fade-up">
+                <div class="network-stat">
+                    <div class="net-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div>
+                        <div class="net-val">4 Command Hubs</div>
+                        <div class="net-lbl">Strategically positioned nationwide</div>
+                    </div>
+                </div>
+                <div class="network-stat">
+                    <div class="net-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                    <div>
+                        <div class="net-val">3.2 Hours</div>
+                        <div class="net-lbl">Average emergency dispatch time</div>
+                    </div>
+                </div>
+                <div class="network-stat">
+                    <div class="net-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                    <div>
+                        <div class="net-val">140+ Fleet Units</div>
+                        <div class="net-lbl">DOT &amp; Hazmat certified vehicles</div>
+                    </div>
+                </div>
+                <div class="network-stat">
+                    <div class="net-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <div>
+                        <div class="net-val">24/7 Telemetry</div>
+                        <div class="net-lbl">GPS &amp; temperature chain-of-custody</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Hub Cards (2x2 Grid) -->
+            <div class="network-grid stagger">
+                <!-- Hub 1 -->
+                <div class="network-hub-card fade-up">
+                    <div class="hub-header">
+                        <div class="hub-title-wrap">
+                            <span class="hub-region-tag"><i class="fa-solid fa-crosshairs"></i> Region 01</span>
+                            <h3>Northeast Operations Hub</h3>
+                            <p class="hub-metro"><i class="fa-solid fa-map-pin"></i> Boston • New York • Philadelphia</p>
+                        </div>
+                        <div class="hub-status-pill online">
+                            <span class="live-pulse"></span> 38 Active Units
+                        </div>
+                    </div>
+                    <p class="hub-desc">Specialized in high-density metropolitan hospital networks, commercial university labs, and high-frequency medical centers.</p>
+                    <div class="hub-features">
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> 24/7 Priority Emergency Team</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Dual High-Capacity Autoclave Centers</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Direct Port &amp; State Agency Liaison</div>
+                    </div>
+                    <div class="hub-footer">
+                        <span><i class="fa-solid fa-clock"></i> Next Scheduled Run: <strong>Today, 11:30 AM</strong></span>
+                        <a href="contact.html" class="hub-dispatch-link">Dispatch <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Hub 2 -->
+                <div class="network-hub-card fade-up">
+                    <div class="hub-header">
+                        <div class="hub-title-wrap">
+                            <span class="hub-region-tag"><i class="fa-solid fa-crosshairs"></i> Region 02</span>
+                            <h3>Southeast Logistics Center</h3>
+                            <p class="hub-metro"><i class="fa-solid fa-map-pin"></i> Atlanta • Miami • Charlotte</p>
+                        </div>
+                        <div class="hub-status-pill online">
+                            <span class="live-pulse"></span> 32 Active Units
+                        </div>
+                    </div>
+                    <p class="hub-desc">Serving outpatient surgical groups, multi-location dental networks, veterinary hospitals, and biomedical research centers.</p>
+                    <div class="hub-features">
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Same-Day On-Demand Courier Fleet</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Eco-Safe Treatment Facility</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Hurricane Emergency Protocol Active</div>
+                    </div>
+                    <div class="hub-footer">
+                        <span><i class="fa-solid fa-clock"></i> Next Scheduled Run: <strong>Today, 1:15 PM</strong></span>
+                        <a href="contact.html" class="hub-dispatch-link">Dispatch <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Hub 3 -->
+                <div class="network-hub-card fade-up">
+                    <div class="hub-header">
+                        <div class="hub-title-wrap">
+                            <span class="hub-region-tag"><i class="fa-solid fa-crosshairs"></i> Region 03</span>
+                            <h3>Midwest Central Command</h3>
+                            <p class="hub-metro"><i class="fa-solid fa-map-pin"></i> Chicago • Detroit • Minneapolis</p>
+                        </div>
+                        <div class="hub-status-pill online">
+                            <span class="live-pulse"></span> 36 Active Units
+                        </div>
+                    </div>
+                    <p class="hub-desc">Our primary industrial incineration and bulk pharma neutralizer facility covering regional health systems and research institutes.</p>
+                    <div class="hub-features">
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> High-Temp Thermal Incineration Complex</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> DEA Form 41 Controlled Substance Processing</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Cold-Weather All-Terrain Fleet</div>
+                    </div>
+                    <div class="hub-footer">
+                        <span><i class="fa-solid fa-clock"></i> Next Scheduled Run: <strong>Today, 12:45 PM</strong></span>
+                        <a href="contact.html" class="hub-dispatch-link">Dispatch <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Hub 4 -->
+                <div class="network-hub-card fade-up">
+                    <div class="hub-header">
+                        <div class="hub-title-wrap">
+                            <span class="hub-region-tag"><i class="fa-solid fa-crosshairs"></i> Region 04</span>
+                            <h3>West Coast Tech &amp; Green Hub</h3>
+                            <p class="hub-metro"><i class="fa-solid fa-map-pin"></i> Los Angeles • San Francisco • Seattle</p>
+                        </div>
+                        <div class="hub-status-pill online">
+                            <span class="live-pulse"></span> 42 Active Units
+                        </div>
+                    </div>
+                    <p class="hub-desc">Pioneering zero-landfill medical autoclaving, electric transport pilot vehicles, and biotech corridor rapid response teams.</p>
+                    <div class="hub-features">
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> 100% Renewable-Powered Steam Treatment</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> Specialized Biotech &amp; Genetic Lab Manifesting</div>
+                        <div class="hub-feat-item"><i class="fa-solid fa-check text-teal"></i> EV Bio-Transit Route Deployment</div>
+                    </div>
+                    <div class="hub-footer">
+                        <span><i class="fa-solid fa-clock"></i> Next Scheduled Run: <strong>Today, 2:00 PM</strong></span>
+                        <a href="contact.html" class="hub-dispatch-link">Dispatch <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Hotline Banner -->
+            <div class="network-hotline-banner fade-up">
+                <div class="hotline-text">
+                    <i class="fa-solid fa-headset hotline-icon"></i>
+                    <div>
+                        <h4>Need Immediate Hazardous Waste Dispatch in Your Area?</h4>
+                        <p>Our centralized dispatch centers operate 24 hours a day, 365 days a year for urgent hospital &amp; clinical pickups.</p>
+                    </div>
+                </div>
+                <div class="hotline-action">
+                    <a href="tel:8005557233" class="btn btn-primary" style="background:#fff; color:var(--primary);"><i class="fa-solid fa-phone"></i> Call (800) 555-SAFE</a>
                 </div>
             </div>
         </div>
@@ -323,6 +698,49 @@
                     <button class="faq-question">Do you provide waste containers and supplies? <i class="fa-solid fa-chevron-down"></i></button>
                     <div class="faq-answer">
                         <p>Yes, we provide all necessary waste containers, sharps boxes, biohazard bags, labels, and manifests as part of our service. Container sizes range from small desktop sharps containers to large 95-gallon rolling carts, all meeting DOT and OSHA specifications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner (Home 1 - Enterprise Split Design) -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="cta-banner-split fade-up">
+                <div class="cta-split-left">
+                    <div class="cta-badge">
+                        <i class="fa-solid fa-shield-halved"></i> Certified & Compliant Partner
+                    </div>
+                    <h2>Ready to Simplify Your Waste Compliance?</h2>
+                    <p>Join 2,500+ healthcare facilities that trust SafeDispose for safe, compliant, and eco-friendly medical waste disposal services.</p>
+                    <ul class="cta-checklist">
+                        <li><i class="fa-solid fa-circle-check"></i> 100% audit-ready digital certificates of destruction</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Flexible scheduling with zero long-term locked contracts</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Comprehensive EPA, OSHA, DOT & state coverage</li>
+                    </ul>
+                </div>
+                <div class="cta-split-right">
+                    <div class="cta-quote-card">
+                        <div class="cta-quote-header">
+                            <div class="cta-quote-icon"><i class="fa-solid fa-calculator"></i></div>
+                            <div>
+                                <h4>Instant Quote & Booking</h4>
+                                <span>Get tailored facility solutions in 2 minutes</span>
+                            </div>
+                        </div>
+                        <div class="cta-quote-actions">
+                            <a href="contact.html" class="btn btn-primary btn-lg w-full">
+                                Get a Free Quote <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="services.html" class="btn btn-outline-quote btn-lg w-full">
+                                Explore All Services
+                            </a>
+                        </div>
+                        <div class="cta-quote-footer">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <span>Call 24/7 Dispatch: <strong>(800) 555-SAFE</strong></span>
+                        </div>
                     </div>
                 </div>
             </div>
