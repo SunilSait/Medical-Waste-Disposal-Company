@@ -6642,6 +6642,57 @@ body:has(#dashboard-sidebar) .back-to-top {
 .icon-feature h4 { margin-bottom:6px; font-size:.95rem; }
 .icon-feature p { font-size:.82rem; line-height:1.6; }
 
+/* Home 2 Feature Card with Image Header */
+.icon-feature.has-media {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.icon-feature-media {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: var(--bg-surface);
+}
+.icon-feature-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--dur) var(--ease);
+}
+.icon-feature.has-media:hover .icon-feature-media img {
+    transform: scale(1.06);
+}
+.icon-feature.has-media .icon-feature-icon {
+    position: relative;
+    margin: -30px auto 14px;
+    z-index: 2;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: all var(--dur) var(--ease);
+}
+.dark .icon-feature.has-media .icon-feature-icon {
+    background: #0f172a;
+    border-color: rgba(45, 212, 191, 0.3);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+.icon-feature.has-media:hover .icon-feature-icon {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
+}
+.icon-feature.has-media .icon-feature-body {
+    padding: 0 20px 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 @media(max-width:768px) {
     .icon-features { grid-template-columns:repeat(2,1fr); }
 }
