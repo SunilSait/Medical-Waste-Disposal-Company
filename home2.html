@@ -13,45 +13,110 @@
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Hero 2 — 3-Image Collage -->
-    <section class="hero2-section" id="hero2">
+    <!-- Hero 2 — 3-Slide Interactive Carousel -->
+    <section class="hero2-section" id="hero2" aria-label="Hero Showcase Carousel">
         <div class="hero2-content">
-            <div class="hero2-main-grid">
-                <!-- Text Column (Left) -->
-                <div class="hero2-text fade-up">
-                    <div class="hero-badge"><i class="fa-solid fa-award"></i> Industry-Leading Compliance</div>
-                    <h1>Next-Generation Medical Waste Management</h1>
-                    <p>Advanced disposal technologies paired with real-time digital tracking to deliver the safest, most transparent waste management experience for modern healthcare facilities.</p>
-                    <div class="hero2-actions">
-                        <a href="contact.html" class="btn btn-primary btn-lg">Request a Consultation <i class="fa-solid fa-arrow-right"></i></a>
-                        <a href="services.html" class="btn btn-outline btn-lg">Explore Solutions</a>
+            <div class="hero2-slider-container">
+                <!-- Track of slides -->
+                <div class="hero2-slides-track" id="hero2-slides-track">
+                    <!-- Slide 1: Eco-Friendly Autoclave Sterilization & Compliance -->
+                    <div class="hero2-slide active" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                        <div class="hero2-main-grid">
+                            <!-- Text Column -->
+                            <div class="hero2-text">
+                                <div class="hero-badge"><i class="fa-solid fa-award"></i> Industry-Leading Compliance</div>
+                                <h1>Next-Generation Medical Waste Management</h1>
+                                <p>Advanced disposal technologies paired with real-time digital tracking to deliver the safest, most transparent waste management experience for modern healthcare facilities.</p>
+                                <div class="hero2-actions">
+                                    <a href="contact.html" class="btn btn-primary btn-lg">Request a Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="services.html" class="btn btn-outline btn-lg">Explore Solutions</a>
+                                </div>
+                            </div>
+                            <!-- Visual Column -->
+                            <div class="hero2-visual-wrap">
+                                <div class="hero2-visual-card">
+                                    <img src="assets/images/hero2-slide-1.jpg" alt="SafeDispose industrial medical waste autoclave sterilization treatment center" width="600" height="450">
+                                    <div class="hero2-card-badge top-badge"><i class="fa-solid fa-industry"></i> Regional Treatment Complex</div>
+                                    <div class="hero2-card-badge bottom-badge"><i class="fa-solid fa-temperature-arrow-up"></i> 275°F Autoclaving • Zero Landfill</div>
+                                </div>
+                                <div class="hero2-visual-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Rapid Response & Dedicated GPS Fleet -->
+                    <div class="hero2-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                        <div class="hero2-main-grid">
+                            <!-- Text Column -->
+                            <div class="hero2-text">
+                                <div class="hero-badge"><i class="fa-solid fa-truck-fast"></i> 24/7 Rapid Response Logistics</div>
+                                <h1>Certified Hazardous Biohazard Transport</h1>
+                                <p>DOT-certified medical transport fleet equipped with GPS tracking, climate-controlled cargo containment, and scheduled or under-4-hour emergency biohazard pickup.</p>
+                                <div class="hero2-actions">
+                                    <a href="schedule-pickup.html" class="btn btn-primary btn-lg">Schedule a Pickup <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="about.html" class="btn btn-outline btn-lg">Fleet & Safety Specs</a>
+                                </div>
+                            </div>
+                            <!-- Visual Column -->
+                            <div class="hero2-visual-wrap">
+                                <div class="hero2-visual-card">
+                                    <img src="assets/images/hero2-slide-2.jpg" alt="Dedicated GPS-monitored hazardous medical waste collection van and logistics specialist at hospital dock" width="600" height="450">
+                                    <div class="hero2-card-badge top-badge"><i class="fa-solid fa-truck-shield"></i> GPS-Tracked Logistics Fleet</div>
+                                    <div class="hero2-card-badge bottom-badge"><i class="fa-solid fa-clock"></i> &lt; 4-Hour Emergency Dispatch</div>
+                                </div>
+                                <div class="hero2-visual-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Smart Manifests & Real-Time Tracking -->
+                    <div class="hero2-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                        <div class="hero2-main-grid">
+                            <!-- Text Column -->
+                            <div class="hero2-text">
+                                <div class="hero-badge"><i class="fa-solid fa-chart-line"></i> Real-Time Digital Intelligence</div>
+                                <h1>Smart Manifests & Regulatory Analytics</h1>
+                                <p>Cradle-to-grave manifest tracking, instant paperless destruction certificates, and AI-powered waste volume forecasting designed for clinics, laboratories, and hospitals.</p>
+                                <div class="hero2-actions">
+                                    <a href="dashboard.html" class="btn btn-primary btn-lg">Explore Portal <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="compliance.html" class="btn btn-outline btn-lg">Compliance Center</a>
+                                </div>
+                            </div>
+                            <!-- Visual Column -->
+                            <div class="hero2-visual-wrap">
+                                <div class="hero2-visual-card">
+                                    <img src="assets/images/hero2-slide-3.jpg" alt="Smart healthcare compliance operations center tracking digital medical waste manifests" width="600" height="450">
+                                    <div class="hero2-card-badge top-badge"><i class="fa-solid fa-qrcode"></i> Digital Manifest & Barcode System</div>
+                                    <div class="hero2-card-badge bottom-badge"><i class="fa-solid fa-certificate"></i> 100% Audit-Ready Compliance</div>
+                                </div>
+                                <div class="hero2-visual-glow"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 3-Image Collage (Right) -->
-                <div class="hero2-collage-wrap fade-up">
-                    <div class="hero2-collage">
-                        <!-- Top Image: Wide -->
-                        <div class="collage-item item-wide">
-                            <img src="assets/images/hero2-facility.jpg" alt="SafeDispose industrial medical waste treatment center" width="600" height="230">
-                            <div class="collage-badge"><i class="fa-solid fa-industry"></i> Regional Treatment Complex</div>
-                        </div>
-
-                        <!-- Bottom Left: Half -->
-                        <div class="collage-item item-half">
-                            <img src="assets/images/about-facility.jpg" alt="Medical-grade autoclave sterilization units" width="300" height="185">
-                            <div class="collage-badge"><i class="fa-solid fa-temperature-arrow-up"></i> 275°F Autoclaving</div>
-                        </div>
-
-                        <!-- Bottom Right: Half -->
-                        <div class="collage-item item-half">
-                            <img src="assets/images/pickup-service.jpg" alt="DOT-certified hazardous collection transport" width="300" height="185">
-                            <div class="collage-badge"><i class="fa-solid fa-truck-fast"></i> GPS-Tracked Fleet</div>
-                        </div>
-
-                        <!-- Ambient Glow Aura -->
-                        <div class="collage-aura"></div>
+                <!-- Slider Controls Bar (5s progress bar, Prev/Next, and tabs) -->
+                <div class="hero2-slider-controls">
+                    <button class="hero2-ctrl-btn hero2-prev-btn" id="hero2-prev" aria-label="Previous slide" title="Previous slide">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="hero2-progress-indicators" role="tablist" aria-label="Carousel Slides">
+                        <button class="hero2-indicator active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1: Treatment & Compliance">
+                            <span class="hero2-indicator-bar"><span class="hero2-indicator-fill"></span></span>
+                            <span class="hero2-indicator-label">01 Treatment</span>
+                        </button>
+                        <button class="hero2-indicator" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2: Transport & Fleet">
+                            <span class="hero2-indicator-bar"><span class="hero2-indicator-fill"></span></span>
+                            <span class="hero2-indicator-label">02 Transport</span>
+                        </button>
+                        <button class="hero2-indicator" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3: Smart Tracking">
+                            <span class="hero2-indicator-bar"><span class="hero2-indicator-fill"></span></span>
+                            <span class="hero2-indicator-label">03 Analytics</span>
+                        </button>
                     </div>
+                    <button class="hero2-ctrl-btn hero2-next-btn" id="hero2-next" aria-label="Next slide" title="Next slide">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
             <div class="hero2-features fade-up" style="transition-delay:.25s">

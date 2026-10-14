@@ -583,18 +583,34 @@ function initTestimonialSlider() {
     startTimer();
 }
 
-/* ─── HERO SLIDER (Home 1) ────────────────────────── */
+/* ─── HERO SLIDER (Home 1 — Next-Gen Modern) ────────── */
 function initHeroSlider() {
     const track = document.getElementById('hero-slides-track');
     if (!track) return;
 
     const slides = track.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-dot');
+    const dots = document.querySelectorAll('#hero-dots .hero-dot');
+    const prevBtn = document.getElementById('hero-prev');
+    const nextBtn = document.getElementById('hero-next');
+    const heroSection = document.getElementById('hero');
     if (!slides.length) return;
 
     let current = 0;
     let timer = null;
     const interval = 5000; // Switch 5 seconds once
+
+    function restartProgressBar(activeIdx) {
+        dots.forEach((dot, idx) => {
+            const fill = dot.querySelector('.nav-tab-progress-fill');
+            if (fill) {
+                fill.style.animation = 'none';
+                void fill.offsetWidth; // force reflow
+                if (idx === activeIdx) {
+                    fill.style.animation = `hero1Progress ${interval}ms linear`;
+                }
+            }
+        });
+    }
 
     function goToSlide(index) {
         if (index < 0) index = slides.length - 1;
@@ -602,13 +618,18 @@ function initHeroSlider() {
         current = index;
 
         slides.forEach((s, idx) => {
-            s.classList.toggle('active', idx === current);
+            const isActive = idx === current;
+            s.classList.toggle('active', isActive);
+            s.setAttribute('aria-hidden', isActive ? 'false' : 'true');
         });
 
         dots.forEach((d, idx) => {
-            d.classList.toggle('active', idx === current);
-            d.setAttribute('aria-current', idx === current ? 'true' : 'false');
+            const isActive = idx === current;
+            d.classList.toggle('active', isActive);
+            d.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
+
+        restartProgressBar(current);
     }
 
     function next() {
@@ -622,12 +643,20 @@ function initHeroSlider() {
     function startTimer() {
         stopTimer();
         timer = setInterval(next, interval);
+        const activeFill = document.querySelector('#hero-dots .hero-dot.active .nav-tab-progress-fill');
+        if (activeFill) {
+            activeFill.style.animationPlayState = 'running';
+        }
     }
 
     function stopTimer() {
         if (timer) {
             clearInterval(timer);
             timer = null;
+        }
+        const activeFill = document.querySelector('#hero-dots .hero-dot.active .nav-tab-progress-fill');
+        if (activeFill) {
+            activeFill.style.animationPlayState = 'paused';
         }
     }
 
@@ -638,10 +667,28 @@ function initHeroSlider() {
         });
     });
 
-    const heroSection = document.getElementById('hero');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            isRTL ? next() : prev();
+            startTimer();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            isRTL ? prev() : next();
+            startTimer();
+        });
+    }
+
     if (heroSection) {
         heroSection.addEventListener('mouseenter', stopTimer);
-        heroSection.addEventListener('mouseleave', startTimer);
+        heroSection.addEventListener('mouseleave', () => {
+            restartProgressBar(current);
+            startTimer();
+        });
 
         // Touch swipe support for mobile
         let touchStartX = 0;
@@ -662,10 +709,149 @@ function initHeroSlider() {
                     isRTL ? next() : prev();
                 }
             }
+            restartProgressBar(current);
             startTimer();
         }, { passive: true });
     }
 
+    goToSlide(0);
+    startTimer();
+}
+
+/* ─── HERO 2 SLIDER (Home 2 — 5s Auto-Rotation) ──── */
+function initHero2Slider() {
+    const track = document.getElementById('hero2-slides-track');
+    if (!track) return;
+
+    const slides = track.querySelectorAll('.hero2-slide');
+    const indicators = document.querySelectorAll('.hero2-indicator');
+    const prevBtn = document.getElementById('hero2-prev');
+    const nextBtn = document.getElementById('hero2-next');
+    const heroSection = document.getElementById('hero2');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer = null;
+    const interval = 5000; // Switch 5 seconds once
+
+    function restartIndicatorAnimation(activeIdx) {
+        indicators.forEach((ind, idx) => {
+            const fill = ind.querySelector('.hero2-indicator-fill');
+            if (fill) {
+                fill.style.animation = 'none';
+                void fill.offsetWidth; // force reflow
+                if (idx === activeIdx) {
+                    fill.style.animation = `hero2Progress ${interval}ms linear`;
+                }
+            }
+        });
+    }
+
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        current = index;
+
+        slides.forEach((s, idx) => {
+            const isActive = idx === current;
+            s.classList.toggle('active', isActive);
+            s.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+
+        indicators.forEach((d, idx) => {
+            const isActive = idx === current;
+            d.classList.toggle('active', isActive);
+            d.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        restartIndicatorAnimation(current);
+    }
+
+    function next() {
+        goToSlide(current + 1);
+    }
+
+    function prev() {
+        goToSlide(current - 1);
+    }
+
+    function startTimer() {
+        stopTimer();
+        timer = setInterval(next, interval);
+        const activeFill = document.querySelector('.hero2-indicator.active .hero2-indicator-fill');
+        if (activeFill) {
+            activeFill.style.animationPlayState = 'running';
+        }
+    }
+
+    function stopTimer() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        const activeFill = document.querySelector('.hero2-indicator.active .hero2-indicator-fill');
+        if (activeFill) {
+            activeFill.style.animationPlayState = 'paused';
+        }
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            isRTL ? next() : prev();
+            startTimer();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            isRTL ? prev() : next();
+            startTimer();
+        });
+    }
+
+    indicators.forEach((ind, idx) => {
+        ind.addEventListener('click', () => {
+            goToSlide(idx);
+            startTimer();
+        });
+    });
+
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopTimer);
+        heroSection.addEventListener('mouseleave', () => {
+            // Restart progress fill for remaining/fresh 5s
+            restartIndicatorAnimation(current);
+            startTimer();
+        });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        heroSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopTimer();
+        }, { passive: true });
+
+        heroSection.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                if (diff > 0) {
+                    isRTL ? prev() : next();
+                } else {
+                    isRTL ? next() : prev();
+                }
+            }
+            restartIndicatorAnimation(current);
+            startTimer();
+        }, { passive: true });
+    }
+
+    // Initialize first slide and start auto-switch every 5 seconds
+    goToSlide(0);
     startTimer();
 }
 
@@ -889,6 +1075,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounterAnimation();
     initTestimonialSlider();
     initHeroSlider();
+    initHero2Slider();
     initWasteCalculator();
     initSmartPortalTabs();
     initLogoutConfirmation();
