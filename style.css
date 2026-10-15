@@ -95,7 +95,7 @@
 
 /* ─── RESET & BASE ────────────────────────────────── */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; font-size:16px; }
+html { scroll-behavior:smooth; font-size:16px; overflow-x:hidden; width:100%; max-width:100%; }
 body {
     font-family: var(--font);
     background: var(--bg);
@@ -104,6 +104,8 @@ body {
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 img { max-width:100%; height:auto; display:block; }
@@ -1260,6 +1262,163 @@ p, .paragraph, .section-subtitle {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
+/* ─── Hero 2 Animated Background FX & Thematic Effects (Reroll) ─── */
+.hero2-bg-fx {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Interactive Medical Constellation & Telemetry Canvas */
+.hero2-network-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.92;
+}
+
+/* Biohazard Pathogen-Barrier Hexagonal Dot Matrix */
+.hero2-hex-matrix {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at center, rgba(45, 212, 191, 0.12) 1.2px, transparent 1.2px),
+        radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+    background-size: 34px 34px;
+    background-position: 0 0, 17px 17px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 75%);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.dark .hero2-hex-matrix {
+    background-image: 
+        radial-gradient(circle at center, rgba(45, 212, 191, 0.18) 1.2px, transparent 1.2px),
+        radial-gradient(circle at center, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+    opacity: 0.85;
+}
+
+/* Atmospheric Bioluminescent Aurora Fields */
+.hero2-aurora-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    -webkit-filter: blur(90px);
+    will-change: transform, opacity;
+    z-index: 2;
+}
+
+/* Primary Teal Sterilization Glow */
+.hero2-glow-primary {
+    top: -80px;
+    right: -2%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, rgba(13, 148, 136, 0.1) 45%, transparent 70%);
+    animation: hero2GlowShift1 16s ease-in-out infinite alternate;
+}
+
+.dark .hero2-glow-primary {
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.32) 0%, rgba(20, 184, 166, 0.14) 45%, transparent 70%);
+}
+
+/* Secondary Cyber-Blue Logistics Glow */
+.hero2-glow-secondary {
+    bottom: -100px;
+    left: -4%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(59, 130, 246, 0.06) 50%, transparent 70%);
+    animation: hero2GlowShift2 20s ease-in-out infinite alternate;
+}
+
+.dark .hero2-glow-secondary {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 70%);
+}
+
+/* Subtle Central Pulse (Autoclave High-Heat Steam Ambience) */
+.hero2-glow-pulse {
+    top: 35%;
+    left: 45%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 65%);
+    animation: hero2SteamPulse 11s ease-in-out infinite alternate;
+}
+
+.dark .hero2-glow-pulse {
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.16) 0%, transparent 65%);
+}
+
+@keyframes hero2GlowShift1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-45px, 35px) scale(1.15); }
+    100% { transform: translate(30px, -25px) scale(0.92); }
+}
+
+@keyframes hero2GlowShift2 {
+    0% { transform: translate(0, 0) scale(0.92); }
+    50% { transform: translate(50px, -30px) scale(1.18); }
+    100% { transform: translate(-25px, 40px) scale(1.02); }
+}
+
+@keyframes hero2SteamPulse {
+    0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.4; }
+    50% { transform: translate(-50%, -50%) scale(1.22); opacity: 0.85; }
+    100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.5; }
+}
+
+
+/* Flowing Top Light Shimmer */
+.hero2-light-shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(45, 212, 191, 0.4) 25%, 
+        #2dd4bf 50%, 
+        #38bdf8 70%, 
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    box-shadow: 0 0 12px rgba(45, 212, 191, 0.55);
+    z-index: 4;
+    animation: hero2ShimmerFlow 6s linear infinite;
+}
+
+@keyframes hero2ShimmerFlow {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@media (max-width: 768px) {
+    .hero2-glow-primary {
+        width: 380px;
+        height: 380px;
+        right: -15%;
+    }
+    .hero2-glow-secondary {
+        width: 340px;
+        height: 340px;
+        left: -15%;
+    }
+    .hero2-glow-pulse {
+        width: 280px;
+        height: 280px;
+    }
+}
+
 .hero2-content {
     position: relative;
     z-index: 2;
@@ -1300,7 +1459,10 @@ p, .paragraph, .section-subtitle {
 .dark .hero2-text .hero-badge {
     background: rgba(20, 184, 166, 0.14);
     color: #2dd4bf;
-    border-color: rgba(45, 212, 191, 0.3);
+    border-color: rgba(45, 212, 191, 0.35);
+    box-shadow: 0 0 22px -3px rgba(45, 212, 191, 0.28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .hero2-text h1 {
@@ -1447,14 +1609,18 @@ p, .paragraph, .section-subtitle {
 .hero2-slider-container {
     position: relative;
     width: 100%;
+    max-width: 100%;
 }
 
 .hero2-slides-track {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: 1fr;
     position: relative;
     min-height: 460px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .hero2-slide {
@@ -1465,6 +1631,9 @@ p, .paragraph, .section-subtitle {
     transform: translateY(14px) scale(0.995);
     transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.55s ease;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .hero2-slide.active {
@@ -1593,10 +1762,16 @@ p, .paragraph, .section-subtitle {
     left: 10%;
     width: 80%;
     height: 80%;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.24) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, transparent 70%);
     filter: blur(55px);
     z-index: 1;
     pointer-events: none;
+    animation: hero2GlowBreathe 6s ease-in-out infinite alternate;
+}
+
+@keyframes hero2GlowBreathe {
+    0% { transform: scale(0.96); opacity: 0.75; }
+    100% { transform: scale(1.08); opacity: 1; }
 }
 
 /* Slider Controls Bar */
@@ -1868,12 +2043,19 @@ p, .paragraph, .section-subtitle {
 @media (max-width: 991px) {
     .hero2-main-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
         justify-items: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .hero2-text {
         text-align: center;
         margin: 0 auto;
+        width: 100%;
+        max-width: 680px;
+        box-sizing: border-box;
+        padding: 0 10px;
     }
     .hero2-text .hero-badge {
         margin-left: auto;
@@ -1882,21 +2064,25 @@ p, .paragraph, .section-subtitle {
     .hero2-text p {
         margin-left: auto;
         margin-right: auto;
+        max-width: 620px;
     }
     .hero2-actions {
         justify-content: center;
+        width: 100%;
     }
     .hero2-visual-wrap {
-        max-width: 620px;
+        max-width: 640px;
         margin: 0 auto;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-sizing: border-box;
     }
     .hero2-visual-card {
         margin: 0 auto;
         width: 100%;
+        max-width: 100%;
     }
     .hero2-collage-wrap {
         max-width: 600px;
@@ -9660,33 +9846,118 @@ html:not(.dark) .hero-badge i {
         align-items: flex-start;
         gap: 10px;
     }
+
+    /* Transform table into zero-sidescroll card layout on mobile */
+    .section-dark-portal .vault-table-wrap {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    .section-dark-portal .vault-table {
+        display: block;
+        width: 100%;
+        border: none;
+    }
+    .section-dark-portal .vault-table thead {
+        display: none;
+    }
+    .section-dark-portal .vault-table tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .section-dark-portal .vault-table tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 
+            "id status"
+            "type action";
+        row-gap: 8px;
+        column-gap: 10px;
+        align-items: center;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 12px 14px;
+        box-sizing: border-box;
+        width: 100%;
+        transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .section-dark-portal .vault-table tr:hover {
+        background: rgba(15, 23, 42, 0.88);
+        border-color: rgba(45, 212, 191, 0.35);
+    }
+    .section-dark-portal .vault-table td {
+        padding: 0 !important;
+        border: none !important;
+    }
+    .section-dark-portal .vault-table .col-v-id {
+        grid-area: id;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #f8fafc;
+        display: flex;
+        align-items: center;
+    }
+    .section-dark-portal .vault-table .col-v-status {
+        grid-area: status;
+        justify-self: end;
+    }
+    .section-dark-portal .vault-table .status-badge {
+        padding: 3px 8px;
+        font-size: 0.68rem;
+        gap: 4px;
+        border-radius: 6px;
+        white-space: nowrap;
+    }
+    .section-dark-portal .vault-table .col-v-type {
+        grid-area: type;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+    }
+    .section-dark-portal .vault-table .v-type-name {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        line-height: 1.3;
+    }
+    .section-dark-portal .vault-table .v-mobile-meta {
+        display: block;
+        font-size: 0.72rem;
+        color: #94a3b8;
+        font-weight: 500;
+        line-height: 1.2;
+    }
     .col-v-date,
     .col-v-weight {
         display: none !important;
     }
-    .v-mobile-meta {
-        display: block;
-        font-size: 0.7rem;
-        color: #94a3b8;
-        margin-top: 3px;
-        font-weight: 500;
-        white-space: nowrap;
+    .section-dark-portal .vault-table .col-v-action {
+        grid-area: action;
+        justify-self: end;
     }
-    .section-dark-portal .dash-table th {
-        padding: 8px 6px;
-        font-size: 0.7rem;
-    }
-    .section-dark-portal .dash-table td {
-        padding: 10px 6px;
-        font-size: 0.76rem;
-    }
-    .vault-dl-btn .dl-text {
-        display: none;
-    }
-    .vault-dl-btn {
-        padding: 6px 9px;
-        font-size: 0.75rem;
+    .section-dark-portal .vault-table .vault-dl-btn {
+        padding: 5px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
         border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(20, 184, 166, 0.12);
+        border: 1px solid rgba(45, 212, 191, 0.28);
+        color: #2dd4bf;
+    }
+    .section-dark-portal .vault-table .vault-dl-btn:hover {
+        background: #0f766e;
+        color: #ffffff;
+        border-color: #2dd4bf;
+    }
+    .section-dark-portal .vault-table .vault-dl-btn .dl-text {
+        display: inline;
     }
 }
 
@@ -9702,15 +9973,26 @@ html:not(.dark) .hero-badge i {
     .portal-user-status {
         font-size: 0.66rem;
     }
-    .section-dark-portal .dash-table td strong {
-        font-size: 0.74rem;
+    .section-dark-portal .vault-table tr {
+        padding: 10px 12px;
+        row-gap: 6px;
     }
-    .v-type-name {
-        font-size: 0.74rem;
+    .section-dark-portal .vault-table .col-v-id {
+        font-size: 0.78rem;
     }
-    .section-dark-portal .dash-table .status-badge {
-        padding: 3px 6px;
+    .section-dark-portal .vault-table .v-type-name {
+        font-size: 0.78rem;
+    }
+    .section-dark-portal .vault-table .v-mobile-meta {
+        font-size: 0.68rem;
+    }
+    .section-dark-portal .vault-table .status-badge {
+        padding: 2px 6px;
         font-size: 0.64rem;
+    }
+    .section-dark-portal .vault-table .vault-dl-btn {
+        padding: 4px 8px;
+        font-size: 0.68rem;
     }
 }
 
@@ -9910,6 +10192,16 @@ html:not(.dark) .hero-badge i {
     .lifecycle-step-arrow {
         transform: rotate(90deg);
     }
+    .lifecycle-footer-row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .esg-tags {
+        justify-content: center;
+    }
 }
 @media (max-width: 640px) {
     .eco-stats-grid {
@@ -9920,7 +10212,13 @@ html:not(.dark) .hero-badge i {
     }
     .lifecycle-footer-row {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 16px;
+    }
+    .esg-tags {
+        justify-content: center;
     }
 }
 
@@ -9951,6 +10249,9 @@ html:not(.dark) .hero-badge i {
     .fullscreen-topbar {
         padding-left: var(--container-pad);
         padding-right: var(--container-pad);
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
     }
     .cta-banner {
         padding-left: 24px;

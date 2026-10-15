@@ -885,6 +885,188 @@ function initHero2Slider() {
     startTimer();
 }
 
+/* ─── HERO 2: MEDICAL CONSTELLATION & TELEMETRY CANVAS ─── */
+function initHero2CanvasAnimation() {
+    const canvas = document.getElementById('hero2-network-canvas');
+    if (!canvas) return;
+
+    const heroSection = document.getElementById('hero2');
+    if (!heroSection) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let animationFrameId = null;
+    let isVisible = true;
+
+    // Track mouse coordinates for subtle interactive node connection
+    const mouse = { x: null, y: null, maxDist: 130 };
+
+    function handleMouseMove(e) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    }
+
+    function handleMouseLeave() {
+        mouse.x = null;
+        mouse.y = null;
+    }
+
+    heroSection.addEventListener('mousemove', handleMouseMove);
+    heroSection.addEventListener('mouseleave', handleMouseLeave);
+
+    // Particle class representing medical data nodes / telemetry units
+    class NodeParticle {
+        constructor() {
+            this.reset(true);
+        }
+
+        reset(initial = false) {
+            this.x = initial ? Math.random() * width : (Math.random() > 0.5 ? 0 : width);
+            this.y = Math.random() * height;
+            // Smooth ambient drift
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.8 + 1.2;
+
+            const colors = ['rgba(45, 212, 191, ', 'rgba(56, 189, 248, ', 'rgba(20, 184, 166, ', 'rgba(240, 253, 250, '];
+            this.baseColor = colors[Math.floor(Math.random() * colors.length)];
+            this.alpha = Math.random() * 0.45 + 0.35;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce gently off boundaries
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            // Mouse proximity gentle reaction
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < mouse.maxDist) {
+                    const force = (mouse.maxDist - dist) / mouse.maxDist;
+                    this.x -= (dx / dist) * force * 1.5;
+                    this.y -= (dy / dist) * force * 1.5;
+                }
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.baseColor + this.alpha + ')';
+            ctx.fill();
+
+            // Luminous halo
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = this.baseColor + '0.6)';
+        }
+    }
+
+    let particles = [];
+
+    function resize() {
+        const rect = heroSection.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        dpr = window.devicePixelRatio || 1;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        // Density scaled to canvas area (~35 - 50 particles max for top performance)
+        const count = Math.min(Math.max(Math.floor((width * height) / 18000), 25), 48);
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push(new NodeParticle());
+        }
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Render loop
+    const maxLineDist = 110;
+
+    function render() {
+        if (!isVisible) return;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw node connections
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist < maxLineDist) {
+                    const lineAlpha = (1 - dist / maxLineDist) * 0.22;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(45, 212, 191, ${lineAlpha})`;
+                    ctx.lineWidth = 0.85;
+                    ctx.shadowBlur = 0;
+                    ctx.stroke();
+                }
+            }
+
+            // Connection line to mouse pointer
+            if (mouse.x !== null && mouse.y !== null) {
+                const mdx = mouse.x - particles[i].x;
+                const mdy = mouse.y - particles[i].y;
+                const mdist = Math.hypot(mdx, mdy);
+                if (mdist < mouse.maxDist) {
+                    const mAlpha = (1 - mdist / mouse.maxDist) * 0.38;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(56, 189, 248, ${mAlpha})`;
+                    ctx.lineWidth = 1;
+                    ctx.shadowBlur = 4;
+                    ctx.shadowColor = 'rgba(56, 189, 248, 0.4)';
+                    ctx.stroke();
+                }
+            }
+        }
+
+        animationFrameId = requestAnimationFrame(render);
+    }
+
+    // Optimization: pause animation loop when hero is off-screen
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!isVisible) {
+                        isVisible = true;
+                        render();
+                    }
+                } else {
+                    isVisible = false;
+                    cancelAnimationFrame(animationFrameId);
+                }
+            });
+        }, { threshold: 0.05 });
+        observer.observe(heroSection);
+    }
+
+    render();
+}
+
 /* ─── WASTE CALCULATOR (HOME 1) ──────────────────── */
 function initWasteCalculator() {
     const calcSection = document.getElementById('waste-calculator');
@@ -1106,6 +1288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTestimonialSlider();
     initHeroSlider();
     initHero2Slider();
+    initHero2CanvasAnimation();
     initWasteCalculator();
     initSmartPortalTabs();
     initLogoutConfirmation();
