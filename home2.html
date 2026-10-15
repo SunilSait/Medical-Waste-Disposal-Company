@@ -155,7 +155,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" data-count="12" data-suffix="M">0</div>
-                    <div class="stat-label">Tons Processed Annually</div>
+                    <div class="stat-label">Tons Processed</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" data-count="99" data-suffix=".8%">0</div>
@@ -205,7 +205,7 @@
                     <div class="icon-feature-icon"><i class="fa-solid fa-pills"></i></div>
                     <div class="icon-feature-body">
                         <h4>Pharma Disposal</h4>
-                        <p>DEA-compliant destruction of controlled substances and expired medications.</p>
+                        <p>DEA-compliant safe destruction of controlled substances and expired medications.</p>
                     </div>
                 </div>
                 <div class="icon-feature has-media fade-up">
@@ -255,7 +255,7 @@
                                 <i class="fa-solid fa-file-invoice"></i>
                             </div>
                             <div class="comp-text">
-                                <h4>Automated Manifests</h4>
+                                <h4> Manifests</h4>
                                 <p>Digital chain-of-custody generated at pickup.</p>
                             </div>
                         </div>
@@ -265,8 +265,8 @@
                                 <i class="fa-solid fa-certificate"></i>
                             </div>
                             <div class="comp-text">
-                                <h4>Digital Destruction COD</h4>
-                                <p>Cryptographically verified destruction records.</p>
+                                <h4>Digital Destruction</h4>
+                                <p>Cryptographically verified destruction.</p>
                             </div>
                         </div>
 
@@ -285,7 +285,7 @@
                                 <i class="fa-solid fa-vault"></i>
                             </div>
                             <div class="comp-text">
-                                <h4>Audit-Ready Archive</h4>
+                                <h4>Audit-Ready </h4>
                                 <p>7-year cloud storage with 1-click export.</p>
                             </div>
                         </div>
@@ -418,7 +418,6 @@
                             <div class="telemetry-card">
                                 <div class="card-title-row">
                                     <h4>Active Manifest #MN-88492</h4>
-                                    <span class="badge-status-green">In Transit</span>
                                 </div>
                                 <div class="tele-stats-row">
                                     <div class="tele-box">
@@ -434,8 +433,8 @@
                                         <strong>3.8°C (Optimal Range)</strong>
                                     </div>
                                     <div class="tele-box">
-                                        <label>Chain of Custody</label>
-                                        <strong>100% Continuous Sign-off</strong>
+                                        <label>Chain </label>
+                                        <strong>100% Continuous</strong>
                                     </div>
                                 </div>
                                 <div class="tele-progress">
@@ -506,41 +505,50 @@
                 <div class="portal-screen" id="tab-manifests">
                     <div class="portal-vault-layout">
                         <div class="vault-table-wrap">
-                            <table class="dash-table">
+                            <table class="dash-table vault-table">
                                 <thead>
                                     <tr>
-                                        <th>Manifest ID</th>
-                                        <th>Disposal Type</th>
-                                        <th>Pickup Date</th>
-                                        <th>Net Weight</th>
-                                        <th>Regulatory Status</th>
-                                        <th>Action</th>
+                                        <th class="col-v-id">Manifest ID</th>
+                                        <th class="col-v-type">Disposal Type</th>
+                                        <th class="col-v-date">Pickup Date</th>
+                                        <th class="col-v-weight">Net Weight</th>
+                                        <th class="col-v-status">Regulatory Status</th>
+                                        <th class="col-v-action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>#MN-2026-904</strong></td>
-                                        <td>Biohazard &amp; Sharps</td>
-                                        <td>Oct 12, 2026</td>
-                                        <td>340 lbs</td>
-                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> Certified Destroyed</span></td>
-                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-904 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                        <td class="col-v-id"><strong>#MN-2026-904</strong></td>
+                                        <td class="col-v-type">
+                                            <span class="v-type-name">Biohazard &amp; Sharps</span>
+                                            <span class="v-mobile-meta">Oct 12, 2026 • 340 lbs</span>
+                                        </td>
+                                        <td class="col-v-date">Oct 12, 2026</td>
+                                        <td class="col-v-weight">340 lbs</td>
+                                        <td class="col-v-status"><span class="status-badge active"><i class="fa-solid fa-check"></i> Certified Destroyed</span></td>
+                                        <td class="col-v-action"><a href="#" class="btn btn-secondary btn-sm vault-dl-btn" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-904 (PDF)');" title="Download PDF Certificate"><i class="fa-solid fa-download"></i> <span class="dl-text">PDF Cert</span></a></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>#MN-2026-891</strong></td>
-                                        <td>Pharmaceuticals (Rx)</td>
-                                        <td>Oct 05, 2026</td>
-                                        <td>84 lbs</td>
-                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> DEA Form 41 Filed</span></td>
-                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-891 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                        <td class="col-v-id"><strong>#MN-2026-891</strong></td>
+                                        <td class="col-v-type">
+                                            <span class="v-type-name">Pharmaceuticals (Rx)</span>
+                                            <span class="v-mobile-meta">Oct 05, 2026 • 84 lbs</span>
+                                        </td>
+                                        <td class="col-v-date">Oct 05, 2026</td>
+                                        <td class="col-v-weight">84 lbs</td>
+                                        <td class="col-v-status"><span class="status-badge active"><i class="fa-solid fa-check"></i> DEA Form 41 Filed</span></td>
+                                        <td class="col-v-action"><a href="#" class="btn btn-secondary btn-sm vault-dl-btn" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-891 (PDF)');" title="Download PDF Certificate"><i class="fa-solid fa-download"></i> <span class="dl-text">PDF Cert</span></a></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>#MN-2026-877</strong></td>
-                                        <td>Pathological Waste</td>
-                                        <td>Sep 28, 2026</td>
-                                        <td>215 lbs</td>
-                                        <td><span class="status-badge active"><i class="fa-solid fa-check"></i> Incineration Complete</span></td>
-                                        <td><a href="#" class="btn btn-secondary btn-sm" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-877 (PDF)');"><i class="fa-solid fa-download"></i> PDF Cert</a></td>
+                                        <td class="col-v-id"><strong>#MN-2026-877</strong></td>
+                                        <td class="col-v-type">
+                                            <span class="v-type-name">Pathological Waste</span>
+                                            <span class="v-mobile-meta">Sep 28, 2026 • 215 lbs</span>
+                                        </td>
+                                        <td class="col-v-date">Sep 28, 2026</td>
+                                        <td class="col-v-weight">215 lbs</td>
+                                        <td class="col-v-status"><span class="status-badge active"><i class="fa-solid fa-check"></i> Incineration Complete</span></td>
+                                        <td class="col-v-action"><a href="#" class="btn btn-secondary btn-sm vault-dl-btn" onclick="event.preventDefault(); alert('Downloading Certificate of Destruction #MN-2026-877 (PDF)');" title="Download PDF Certificate"><i class="fa-solid fa-download"></i> <span class="dl-text">PDF Cert</span></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -664,25 +672,25 @@
                     <div class="eco-icon"><i class="fa-solid fa-recycle"></i></div>
                     <div class="eco-num">4.8M+ lbs</div>
                     <h4>Plastic Landfill Diversion</h4>
-                    <p>Heavy-duty reusable sharps containers eliminating single-use plastic disposal cycles.</p>
+                    <p>Reusable sharps container programs eliminating single-use plastic disposal cycles.</p>
                 </div>
                 <div class="eco-stat-card fade-up">
                     <div class="eco-icon"><i class="fa-solid fa-cloud-sun"></i></div>
                     <div class="eco-num">68% Lower CO₂</div>
                     <h4>Reduced Carbon Footprint</h4>
-                    <p>High-efficiency hydrothermal steam autoclaving vs. traditional fossil-fuel incineration.</p>
+                    <p>Advanced hydrothermal autoclave steam cycles replacing fossil-fuel incine</p>
                 </div>
                 <div class="eco-stat-card fade-up">
                     <div class="eco-icon"><i class="fa-solid fa-solar-panel"></i></div>
                     <div class="eco-num">100% Renewable</div>
                     <h4>Green-Powered Facilities</h4>
-                    <p>Our flagship sterilization and autoclaving plants run entirely on clean solar &amp; wind power.</p>
+                    <p>Regional treatment and autoclave facilities operating on 100% solar and wind power.</p>
                 </div>
                 <div class="eco-stat-card fade-up">
                     <div class="eco-icon"><i class="fa-solid fa-water"></i></div>
                     <div class="eco-num">Zero Discharge</div>
-                    <h4>Closed-Loop Water Filtration</h4>
-                    <p>100% of autoclave condensation is treated, purified, and re-circulated through heat recapture.</p>
+                    <h4>Closed-Loop Filtration</h4>
+                    <p>Closed-loop autoclave steam condensation purified and reused through heat recapture.</p>
                 </div>
             </div>
 
@@ -695,7 +703,7 @@
                 <div class="lifecycle-steps">
                     <div class="lifecycle-step">
                         <div class="step-num-circle">01</div>
-                        <h5>Reusable Containment</h5>
+                        <h5>Reusable</h5>
                         <p>Puncture-tested, robotic-washed medical tubs deployed to your facility.</p>
                     </div>
                     <div class="lifecycle-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -744,8 +752,10 @@
                     
                     <form class="cta-tech-form" onsubmit="event.preventDefault(); alert('Assessment requested! A compliance specialist will contact you shortly.');">
                         <div class="cta-tech-input-wrap">
-                            <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Enter your facility or corporate email..." required aria-label="Facility email">
+                            <div class="cta-tech-input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" placeholder="Enter corporate or facility email..." required aria-label="Facility email">
+                            </div>
                             <button type="submit" class="btn btn-primary btn-lg">
                                 Book Free Assessment <i class="fa-solid fa-arrow-right"></i>
                             </button>
