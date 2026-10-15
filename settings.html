@@ -8,6 +8,54 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 1024px) {
+            .settings-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                width: 100% !important;
+            }
+            .settings-grid > * {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .settings-security-right {
+                border-left: none !important;
+                padding-left: 0 !important;
+                border-top: 1px solid var(--border) !important;
+                padding-top: 18px !important;
+            }
+            .settings-action-bar {
+                width: 100%;
+                flex-direction: column-reverse;
+            }
+            .settings-action-bar .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 9px 56px 9px 10px; }
+            .dash-welcome h2 { font-size: 0.92rem; }
+            .dash-topbar-actions { gap: 5px; }
+            .dash-icon-btn, .dash-profile-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+            .sidebar-toggle { top: 11px; left: 10px; width: 36px; height: 36px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 10px; }
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -98,12 +146,12 @@
 
             <!-- Administrator Profile & Identity Card -->
             <div class="dash-card" style="margin-bottom:24px;">
-                <div class="dash-card-header" style="margin-bottom:18px;">
-                    <h3><i class="fa-solid fa-user-doctor text-teal" style="margin-right:8px;"></i> Administrator Profile &amp; Contact Details</h3>
+                <div class="dash-card-header" style="margin-bottom:18px; flex-wrap:wrap; gap:10px;">
+                    <h3 style="margin:0;"><i class="fa-solid fa-user-doctor text-teal" style="margin-right:8px;"></i> Administrator Profile &amp; Contact Details</h3>
                     <span class="status-badge active"><i class="fa-solid fa-shield-halved"></i> Authorized Compliance Officer</span>
                 </div>
                 
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
                     <div class="form-group" style="margin:0;">
                         <label class="form-label" style="font-weight:600; font-size:0.85rem;">Full Name</label>
                         <input type="text" class="form-control" value="Dr. Rachel Kim" placeholder="Full Name" required>
@@ -116,42 +164,42 @@
             </div>
 
             <!-- Settings Grid -->
-            <div class="dash-grid" style="grid-template-columns:1fr 1fr; margin-bottom:24px;">
+            <div class="dash-grid settings-grid" style="margin-bottom:24px;">
                 <!-- Regulatory Compliance & Manifest Sync -->
                 <div class="dash-card">
                     <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-file-shield" style="color:var(--primary); margin-right:8px;"></i> Automated Regulatory Sync</h3>
                     
                     <div style="display:flex; flex-direction:column; gap:18px;">
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
-                                <h4 style="margin:0 0 4px; font-size:0.95rem;">EPA RCRA e-Manifest Automatic Transmission</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Direct API submission of signed electronic manifests to EPA national database within 2 hours of treatment.</p>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">EPA RCRA e-Manifest Transmission</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Direct API submission of signed electronic manifests to EPA national database.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
-                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Washington State Ecology Biennial Reporting</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Automatically compile and index waste volumes for state environmental filings.</p>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Washington State Ecology Reporting</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Automatically compile and index waste volumes for state environmental filings.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
                                 <h4 style="margin:0 0 4px; font-size:0.95rem;">7-Year Audit Vault Retention Archive</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Encrypt and mirror all destruction certificates in compliance with OSHA &amp; HIPAA record retention.</p>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Encrypt and mirror all destruction certificates in compliance with OSHA &amp; HIPAA record retention.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:14px;">
+                            <div style="flex:1; min-width:0;">
                                 <h4 style="margin:0 0 4px; font-size:0.95rem;">Chain-of-Custody GPS Timestamping</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Log vehicle geofence entry and autoclave chamber temperature graphs directly into manifests.</p>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Log vehicle geofence entry and autoclave chamber temperature graphs direct manifests.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
                     </div>
                 </div>
@@ -161,36 +209,36 @@
                     <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-bell" style="color:var(--primary); margin-right:8px;"></i> Fleet &amp; Driver Alerts</h3>
 
                     <div style="display:flex; flex-direction:column; gap:18px;">
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
-                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Driver Arrival SMS (30-Minute Window)</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Send SMS text to dock manager when SafeDispose truck enters hospital perimeter.</p>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
+                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Driver Arrival SMS (30-Min Window)</h4>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Send SMS text to dock manager when SafeDispose truck enters hospital perimeter.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
                                 <h4 style="margin:0 0 4px; font-size:0.95rem;">Immediate Certificate PDF by Email</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Email signed Certificate of Destruction to Dr. Rachel Kim the moment autoclaving is completed.</p>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Email signed Certificate of Destruction to Dr. Rachel Kim the moment autoclaving is completed.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border);">
-                            <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:14px; border-bottom:1px solid var(--border); gap:14px;">
+                            <div style="flex:1; min-width:0;">
                                 <h4 style="margin:0 0 4px; font-size:0.95rem;">Container Capacity Alerts (90% Full)</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Notify housekeeping when RFID scans detect surgical wing receptacles approaching weight capacity.</p>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Notify housekeeping when RFID scans detect surgical wing receptacles approaching weight capacity.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:14px;">
+                            <div style="flex:1; min-width:0;">
                                 <h4 style="margin:0 0 4px; font-size:0.95rem;">Monthly Waste Reduction &amp; ESG Digest</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Receive monthly summary of hospital diversion rates and carbon emission savings.</p>
+                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary); line-height:1.45;">Receive monthly summary of hospital diversion rates and carbon emission savings.</p>
                             </div>
-                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer;">
+                            <input type="checkbox" checked style="accent-color:var(--primary); width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px;">
                         </div>
                     </div>
                 </div>
@@ -200,7 +248,7 @@
             <div class="dash-card">
                 <h3 style="margin:0 0 16px; font-size:1.15rem;"><i class="fa-solid fa-lock" style="color:var(--primary); margin-right:8px;"></i> Security &amp; Access Controls</h3>
 
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
                     <div>
                         <h4 style="margin:0 0 12px; font-size:0.95rem;">Change Account Password</h4>
                         <div style="display:flex; flex-direction:column; gap:10px;">
@@ -211,11 +259,11 @@
                         </div>
                     </div>
 
-                    <div style="border-left:1px solid var(--border); padding-left:20px;">
+                    <div class="settings-security-right" style="border-left:1px solid var(--border); padding-left:20px;">
                         <h4 style="margin:0 0 12px; font-size:0.95rem;">Two-Factor Authentication (2FA)</h4>
                         <p style="margin:0 0 12px; font-size:0.82rem; color:var(--text-secondary);">2FA is enforced for hospital medical directors and compliance managers.</p>
-                        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-                            <span class="status-badge active"><i class="fa-solid fa-check"></i> Enabled via Authenticator App</span>
+                        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+                            <span class="status-badge active" style="white-space:nowrap; flex-shrink:0;"><i class="fa-solid fa-check"></i> Enabled via Authenticator App</span>
                             <button class="btn btn-secondary btn-sm" onclick="alert('Regenerating 2FA backup recovery codes...');">Backup Codes</button>
                         </div>
                         <h4 style="margin:16px 0 8px; font-size:0.9rem;">Active Device Session</h4>
@@ -227,7 +275,7 @@
             </div>
 
             <!-- Settings Action Bar -->
-            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+            <div class="settings-action-bar" style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
                 <button class="btn btn-secondary" onclick="location.reload();">Reset Defaults</button>
                 <button class="btn btn-primary" onclick="alert('All system settings saved and synchronized.');"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
             </div>

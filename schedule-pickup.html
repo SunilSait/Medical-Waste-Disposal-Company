@@ -8,6 +8,49 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        @media (max-width: 1024px) {
+            .sched-layout-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                width: 100% !important;
+            }
+            .sched-layout-grid > * {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+            .sched-form-row,
+            .sched-form-row-waste,
+            .sched-form-row-date {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media (max-width: 640px) {
+            .dashboard-main { padding: 16px 12px; }
+            .dash-topbar {
+                padding: 10px 12px 10px 58px;
+                margin: -16px -12px 20px -12px;
+                min-height: 58px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 10px 58px 10px 12px; }
+            .sidebar-toggle { width: 36px; height: 36px; top: 11px; left: 12px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 12px; }
+        }
+        @media (max-width: 480px) {
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 9px 56px 9px 10px; }
+            .dash-welcome h2 { font-size: 0.92rem; }
+            .dash-topbar-actions { gap: 5px; }
+            .dash-icon-btn, .dash-profile-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+            .sidebar-toggle { top: 11px; left: 10px; width: 36px; height: 36px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 10px; }
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -97,7 +140,7 @@
             </div>
 
             <!-- Two Column Form & Summary Layout -->
-            <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:start;">
+            <div class="sched-layout-grid">
                 <!-- Booking Form Card -->
                 <div class="dash-card">
                     <div class="dash-card-header">
@@ -108,7 +151,7 @@
                     <form id="schedule-page-form" onsubmit="event.preventDefault(); alert('Pickup scheduled successfully!\n\nManifest #MN-' + Math.floor(100000 + Math.random()*900000) + ' generated. Dispatch team notified.'); window.location.href='active-pickups.html';">
                         <div style="margin-bottom:18px;">
                             <label class="form-label" style="font-weight:600;">Pickup Service Type</label>
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">
+                            <div class="sched-type-grid">
                                 <label style="display:flex; align-items:center; gap:10px; padding:12px; border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; background:var(--bg-alt);">
                                     <input type="radio" name="pickup_type" checked style="accent-color:var(--primary);">
                                     <div>
@@ -136,7 +179,7 @@
                             </select>
                         </div>
 
-                        <div style="display:grid; grid-template-columns:1.35fr 0.65fr; gap:16px; margin-bottom:18px;">
+                        <div class="sched-form-row sched-form-row-waste">
                             <div class="form-group">
                                 <label class="form-label" style="font-weight:600;">Waste Classification</label>
                                 <select class="form-control" required id="sched-waste-type">
@@ -152,7 +195,7 @@
                             </div>
                         </div>
 
-                        <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:16px; margin-bottom:18px;">
+                        <div class="sched-form-row sched-form-row-date">
                             <div class="form-group">
                                 <label class="form-label" style="font-weight:600;">Preferred Date</label>
                                 <input type="date" class="form-control" value="2026-10-16" required>
@@ -172,9 +215,9 @@
                             <textarea class="form-control" rows="3" placeholder="e.g. Driver must check in with Security Guard Officer Davis at South Gate. High-temp autoclaving containers ready on pallet."></textarea>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; gap:12px;">
+                        <div class="sched-form-actions">
                             <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-truck"></i> Confirm Pickup Booking</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-truck"></i> Confirm Pickup Booking</button>
                         </div>
                     </form>
                 </div>
@@ -199,6 +242,20 @@
                         </div>
                         <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.55; margin-bottom:16px;">For biohazard spills, emergency overflow, or rapid quarantine requirements, call our 24/7 priority emergency dispatcher directly.</p>
                         <a href="tel:8005557233" class="btn btn-primary w-full" style="font-weight:700;"><i class="fa-solid fa-phone"></i> (800) 555-SAFE</a>
+                    </div>
+
+                    <!-- Dispatch & Fleet Visual Card -->
+                    <div class="dash-card" style="padding:0; overflow:hidden; border-radius:var(--radius-lg); box-shadow:0 8px 24px -8px rgba(0,0,0,0.08);">
+                        <div style="position:relative; width:100%; height:230px; overflow:hidden;">
+                            <img src="assets/images/schedule-dispatch-courier.jpg" alt="Certified medical waste courier loading locked biohazard containers" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy">
+                            <div style="position:absolute; bottom:12px; left:12px; right:12px; background:rgba(15,23,42,0.85); backdrop-filter:blur(8px); padding:8px 14px; border-radius:10px; border:1px solid rgba(45,212,191,0.3); display:flex; align-items:center; gap:8px;">
+                                <i class="fa-solid fa-shield-virus" style="color:#2dd4bf; font-size:1rem;"></i>
+                                <div>
+                                    <strong style="color:#ffffff; font-size:0.78rem; display:block; line-height:1.2;">DOT-Certified Courier Fleet</strong>
+                                    <span style="color:#94a3b8; font-size:0.7rem;">Direct custody scan &amp; tamper-sealed transport</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

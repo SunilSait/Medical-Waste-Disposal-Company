@@ -8,6 +8,163 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dash-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .cert-date-sub {
+            display: none;
+        }
+        .cert-controls-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .cert-filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .cert-search-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cert-search-wrap {
+            position: relative;
+            min-width: 260px;
+        }
+        .cert-search-wrap input {
+            padding-left: 36px;
+            height: 38px;
+            font-size: 0.85rem;
+        }
+        .compliance-status-banner {
+            background: linear-gradient(135deg, var(--bg-card), var(--primary-50));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 1024px) {
+            .compliance-status-banner {
+                padding: 16px 18px;
+                gap: 14px;
+            }
+            .cert-controls-wrap {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .cert-search-row {
+                width: 100%;
+                gap: 8px;
+            }
+            .cert-search-wrap {
+                flex: 1;
+                min-width: 0;
+                width: 100%;
+            }
+            .cert-export-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+            #certs-table .col-manifest,
+            #certs-table .col-weight,
+            #certs-table .col-treatment {
+                display: none !important;
+            }
+            #certs-table .manifest-inline,
+            #certs-table .weight-inline {
+                display: block;
+            }
+        }
+        @media (max-width: 640px) {
+            #certs-table .col-date {
+                display: none !important;
+            }
+            #certs-table .cert-date-sub {
+                display: inline;
+            }
+            #certs-table th,
+            #certs-table td {
+                padding: 8px 6px;
+                font-size: 0.74rem;
+            }
+            #certs-table .col-cert strong {
+                font-size: 0.76rem;
+            }
+            #certs-table .manifest-inline {
+                font-size: 0.68rem;
+            }
+            #certs-table .weight-inline {
+                font-size: 0.68rem;
+            }
+            #certs-table .status-badge {
+                padding: 2px 6px;
+                font-size: 0.64rem;
+                white-space: nowrap;
+            }
+            #certs-table .btn-sm {
+                height: 28px;
+                padding: 0 8px;
+                font-size: 0.7rem;
+            }
+            .cert-filter-pills .btn-sm {
+                padding: 5px 8px;
+                font-size: 0.72rem;
+            }
+            .cert-search-wrap input {
+                height: 36px;
+                font-size: 0.78rem;
+                padding-left: 32px;
+            }
+            .cert-export-btn {
+                height: 36px;
+                font-size: 0.76rem;
+                padding: 0 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            #certs-table .col-seal {
+                display: none !important;
+            }
+            #certs-table th,
+            #certs-table td {
+                padding: 8px 4px;
+                font-size: 0.7rem;
+            }
+            #certs-table .btn-sm {
+                height: 26px;
+                padding: 0 6px;
+                font-size: 0.66rem;
+            }
+            .compliance-status-banner {
+                padding: 14px 12px;
+            }
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 9px 56px 9px 10px; }
+            .dash-welcome h2 { font-size: 0.92rem; }
+            .dash-topbar-actions { gap: 5px; }
+            .dash-icon-btn, .dash-profile-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+            .sidebar-toggle { top: 11px; left: 10px; width: 36px; height: 36px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 10px; }
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -97,7 +254,7 @@
             </div>
 
             <!-- Compliance Status Banner -->
-            <div style="background:linear-gradient(135deg, var(--bg-card), var(--primary-50)); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 24px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+            <div class="compliance-status-banner">
                 <div style="display:flex; align-items:center; gap:16px;">
                     <div style="width:48px; height:48px; border-radius:var(--radius); background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.35rem; flex-shrink:0;">
                         <i class="fa-solid fa-file-shield"></i>
@@ -107,134 +264,184 @@
                         <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">All certificates are cryptographically timestamped and synced with state DEP &amp; EPA RCRA e-Manifest systems.</p>
                     </div>
                 </div>
-                <div style="display:flex; gap:10px;">
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
                     <span class="status-badge active"><i class="fa-solid fa-circle-check"></i> Zero Open Violations</span>
                     <span class="status-badge completed"><i class="fa-solid fa-lock"></i> 256-bit Encrypted</span>
                 </div>
             </div>
 
             <!-- Filter & Search Controls -->
-            <div class="dash-card" style="margin-bottom:24px; padding:18px 24px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;" id="cert-filter-pills">
+            <div class="dash-card cert-filter-card" style="margin-bottom:24px; padding:18px 20px;">
+                <div class="cert-controls-wrap">
+                    <div class="cert-filter-pills" id="cert-filter-pills">
                         <button type="button" class="btn btn-primary btn-sm" onclick="filterCerts('all', this)">All (142)</button>
                         <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('biohazard', this)">Biohazard (78)</button>
                         <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('sharps', this)">Sharps (42)</button>
                         <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('pharma', this)">Pharmaceutical (16)</button>
                         <button type="button" class="btn btn-secondary btn-sm" onclick="filterCerts('patho', this)">Pathological (6)</button>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <div style="position:relative; min-width:260px;">
+                    <div class="cert-search-row">
+                        <div class="cert-search-wrap">
                             <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:0.85rem;"></i>
-                            <input type="text" class="form-control" placeholder="Search by Certificate # or Manifest..." style="padding-left:36px; height:38px; font-size:0.85rem;" oninput="searchCerts(this.value)">
+                            <input type="text" class="form-control" placeholder="Search by Certificate # or Manifest..." oninput="searchCerts(this.value)">
                         </div>
-                        <button class="btn btn-secondary btn-sm" onclick="alert('Exporting annual compliance audit archive (ZIP with 142 PDFs)...');"><i class="fa-solid fa-cloud-arrow-down"></i> Export All</button>
+                        <button class="btn btn-secondary btn-sm cert-export-btn" onclick="alert('Exporting annual compliance audit archive (ZIP with 142 PDFs)...');"><i class="fa-solid fa-cloud-arrow-down"></i> Export All</button>
                     </div>
                 </div>
             </div>
 
             <!-- Certificates Full Table -->
-            <div class="dash-card">
+            <div class="dash-card" style="padding:18px 20px;">
                 <div class="dash-card-header">
                     <h3>Recent Verified Destruction Records</h3>
                     <span style="font-size:0.82rem; color:var(--text-muted);">Showing last 8 verified records</span>
                 </div>
-                <table class="dash-table" id="certs-table">
-                    <thead>
-                        <tr>
-                            <th>Certificate ID</th>
-                            <th>Manifest #</th>
-                            <th>Destruction Date</th>
-                            <th>Waste Stream</th>
-                            <th>Net Weight</th>
-                            <th>Treatment Method</th>
-                            <th>Regulatory Seal</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-type="biohazard">
-                            <td><strong>COD-20261012-047</strong></td>
-                            <td>MN-88492</td>
-                            <td>Oct 12, 2026</td>
-                            <td>Biohazard Infectious</td>
-                            <td>340 lbs</td>
-                            <td>Hydrothermal Autoclave 275°F</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261012-047.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="sharps">
-                            <td><strong>COD-20261010-045</strong></td>
-                            <td>MN-88481</td>
-                            <td>Oct 10, 2026</td>
-                            <td>Sharps & Needles</td>
-                            <td>120 lbs</td>
-                            <td>Polymer Recovery & Sterilization</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261010-045.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="pharma">
-                            <td><strong>COD-20261008-043</strong></td>
-                            <td>MN-88462</td>
-                            <td>Oct 08, 2026</td>
-                            <td>Controlled Rx (DEA II)</td>
-                            <td>84 lbs</td>
-                            <td>High-Temp Thermal Neutralization</td>
-                            <td><span class="status-badge active">DEA Form 41</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261008-043.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="biohazard">
-                            <td><strong>COD-20261005-041</strong></td>
-                            <td>MN-88439</td>
-                            <td>Oct 05, 2026</td>
-                            <td>Biohazard Waste</td>
-                            <td>290 lbs</td>
-                            <td>Hydrothermal Autoclave 275°F</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261005-041.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="sharps">
-                            <td><strong>COD-20261003-039</strong></td>
-                            <td>MN-88415</td>
-                            <td>Oct 03, 2026</td>
-                            <td>Sharps Waste</td>
-                            <td>95 lbs</td>
-                            <td>Polymer Recovery & Sterilization</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20261003-039.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="patho">
-                            <td><strong>COD-20260928-037</strong></td>
-                            <td>MN-88394</td>
-                            <td>Sep 28, 2026</td>
-                            <td>Pathological Waste</td>
-                            <td>215 lbs</td>
-                            <td>Dedicated Bio-Incineration</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260928-037.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="biohazard">
-                            <td><strong>COD-20260925-034</strong></td>
-                            <td>MN-88371</td>
-                            <td>Sep 25, 2026</td>
-                            <td>Biohazard Infectious</td>
-                            <td>310 lbs</td>
-                            <td>Hydrothermal Autoclave 275°F</td>
-                            <td><span class="status-badge completed">EPA Verified</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260925-034.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                        <tr data-type="pharma">
-                            <td><strong>COD-20260920-031</strong></td>
-                            <td>MN-88340</td>
-                            <td>Sep 20, 2026</td>
-                            <td>Hazardous Rx Stream</td>
-                            <td>65 lbs</td>
-                            <td>Chemical Neutralization</td>
-                            <td><span class="status-badge active">DEA Form 41</span></td>
-                            <td><button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading Certificate COD-20260920-031.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="dash-table-wrap">
+                    <table class="dash-table" id="certs-table">
+                        <thead>
+                            <tr>
+                                <th class="col-cert">Certificate ID</th>
+                                <th class="col-manifest">Manifest #</th>
+                                <th class="col-date">Destruction Date</th>
+                                <th class="col-waste">Waste Stream</th>
+                                <th class="col-weight">Net Weight</th>
+                                <th class="col-treatment">Treatment Method</th>
+                                <th class="col-seal">Regulatory Seal</th>
+                                <th class="col-action">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-type="biohazard">
+                                <td class="col-cert">
+                                    <strong>COD-20261012-047</strong>
+                                    <span class="manifest-inline">MN-88492 <span class="cert-date-sub">• Oct 12</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88492</td>
+                                <td class="col-date">Oct 12, 2026</td>
+                                <td class="col-waste">
+                                    <span>Biohazard Infectious</span>
+                                    <span class="weight-inline">340 lbs</span>
+                                </td>
+                                <td class="col-weight">340 lbs</td>
+                                <td class="col-treatment">Hydrothermal Autoclave 275°F</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20261012-047.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="sharps">
+                                <td class="col-cert">
+                                    <strong>COD-20261010-045</strong>
+                                    <span class="manifest-inline">MN-88481 <span class="cert-date-sub">• Oct 10</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88481</td>
+                                <td class="col-date">Oct 10, 2026</td>
+                                <td class="col-waste">
+                                    <span>Sharps & Needles</span>
+                                    <span class="weight-inline">120 lbs</span>
+                                </td>
+                                <td class="col-weight">120 lbs</td>
+                                <td class="col-treatment">Polymer Recovery & Sterilization</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20261010-045.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="pharma">
+                                <td class="col-cert">
+                                    <strong>COD-20261008-043</strong>
+                                    <span class="manifest-inline">MN-88462 <span class="cert-date-sub">• Oct 08</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88462</td>
+                                <td class="col-date">Oct 08, 2026</td>
+                                <td class="col-waste">
+                                    <span>Controlled Rx (DEA II)</span>
+                                    <span class="weight-inline">84 lbs</span>
+                                </td>
+                                <td class="col-weight">84 lbs</td>
+                                <td class="col-treatment">High-Temp Thermal Neutralization</td>
+                                <td class="col-seal"><span class="status-badge active">DEA Form 41</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20261008-043.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="biohazard">
+                                <td class="col-cert">
+                                    <strong>COD-20261005-041</strong>
+                                    <span class="manifest-inline">MN-88439 <span class="cert-date-sub">• Oct 05</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88439</td>
+                                <td class="col-date">Oct 05, 2026</td>
+                                <td class="col-waste">
+                                    <span>Biohazard Waste</span>
+                                    <span class="weight-inline">290 lbs</span>
+                                </td>
+                                <td class="col-weight">290 lbs</td>
+                                <td class="col-treatment">Hydrothermal Autoclave 275°F</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20261005-041.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="sharps">
+                                <td class="col-cert">
+                                    <strong>COD-20261003-039</strong>
+                                    <span class="manifest-inline">MN-88415 <span class="cert-date-sub">• Oct 03</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88415</td>
+                                <td class="col-date">Oct 03, 2026</td>
+                                <td class="col-waste">
+                                    <span>Sharps Waste</span>
+                                    <span class="weight-inline">95 lbs</span>
+                                </td>
+                                <td class="col-weight">95 lbs</td>
+                                <td class="col-treatment">Polymer Recovery & Sterilization</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20261003-039.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="patho">
+                                <td class="col-cert">
+                                    <strong>COD-20260928-037</strong>
+                                    <span class="manifest-inline">MN-88394 <span class="cert-date-sub">• Sep 28</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88394</td>
+                                <td class="col-date">Sep 28, 2026</td>
+                                <td class="col-waste">
+                                    <span>Pathological Waste</span>
+                                    <span class="weight-inline">215 lbs</span>
+                                </td>
+                                <td class="col-weight">215 lbs</td>
+                                <td class="col-treatment">Dedicated Bio-Incineration</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20260928-037.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="biohazard">
+                                <td class="col-cert">
+                                    <strong>COD-20260925-034</strong>
+                                    <span class="manifest-inline">MN-88371 <span class="cert-date-sub">• Sep 25</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88371</td>
+                                <td class="col-date">Sep 25, 2026</td>
+                                <td class="col-waste">
+                                    <span>Biohazard Infectious</span>
+                                    <span class="weight-inline">310 lbs</span>
+                                </td>
+                                <td class="col-weight">310 lbs</td>
+                                <td class="col-treatment">Hydrothermal Autoclave 275°F</td>
+                                <td class="col-seal"><span class="status-badge completed">EPA Verified</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20260925-034.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                            <tr data-type="pharma">
+                                <td class="col-cert">
+                                    <strong>COD-20260920-031</strong>
+                                    <span class="manifest-inline">MN-88340 <span class="cert-date-sub">• Sep 20</span></span>
+                                </td>
+                                <td class="col-manifest">MN-88340</td>
+                                <td class="col-date">Sep 20, 2026</td>
+                                <td class="col-waste">
+                                    <span>Hazardous Rx Stream</span>
+                                    <span class="weight-inline">65 lbs</span>
+                                </td>
+                                <td class="col-weight">65 lbs</td>
+                                <td class="col-treatment">Chemical Neutralization</td>
+                                <td class="col-seal"><span class="status-badge active">DEA Form 41</span></td>
+                                <td class="col-action"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading Certificate COD-20260920-031.pdf')"><i class="fa-solid fa-download"></i> PDF</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>

@@ -8,6 +8,81 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        @media (max-width: 640px) {
+            .dashboard-main {
+                padding: 16px 12px;
+            }
+            .dash-topbar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 10px 12px 10px 58px;
+                margin: -16px -12px 20px -12px;
+                min-height: 58px;
+            }
+            [dir="rtl"] .dash-topbar {
+                padding: 10px 58px 10px 12px;
+            }
+            .dash-welcome {
+                flex: 1;
+                min-width: 0;
+            }
+            .dash-welcome h2 {
+                font-size: 0.95rem;
+                margin-bottom: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .dash-welcome p {
+                display: none;
+            }
+            .sidebar-toggle {
+                width: 36px;
+                height: 36px;
+                top: 11px;
+                left: 12px;
+            }
+            [dir="rtl"] .sidebar-toggle {
+                left: auto;
+                right: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar {
+                padding: 9px 56px 9px 10px;
+            }
+            .dash-welcome h2 {
+                font-size: 0.92rem;
+            }
+            .dash-topbar-actions {
+                gap: 5px;
+            }
+            .dash-icon-btn,
+            .dash-profile-avatar {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
+            }
+            .sidebar-toggle {
+                top: 11px;
+                left: 10px;
+                width: 36px;
+                height: 36px;
+            }
+            [dir="rtl"] .sidebar-toggle {
+                left: auto;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Mobile Sidebar Toggle -->
@@ -141,48 +216,65 @@
                         <h3>Recent Certificates</h3>
                         <a href="certificates.html">View All</a>
                     </div>
-                    <table class="dash-table">
+                    <div class="dash-table-wrap">
+                    <table class="dash-table" id="dash-certs-table">
                         <thead>
                             <tr>
                                 <th>Certificate ID</th>
-                                <th>Date</th>
+                                <th class="col-dash-date">Date</th>
                                 <th>Type</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>COD-20261012-047</td>
-                                <td>Oct 12, 2026</td>
+                                <td>
+                                    <strong>COD-20261012-047</strong>
+                                    <span class="dash-subdate">Oct 12, 2026</span>
+                                </td>
+                                <td class="col-dash-date">Oct 12, 2026</td>
                                 <td>Biohazard</td>
                                 <td><span class="status-badge completed">Issued</span></td>
                             </tr>
                             <tr>
-                                <td>COD-20261010-045</td>
-                                <td>Oct 10, 2026</td>
+                                <td>
+                                    <strong>COD-20261010-045</strong>
+                                    <span class="dash-subdate">Oct 10, 2026</span>
+                                </td>
+                                <td class="col-dash-date">Oct 10, 2026</td>
                                 <td>Sharps</td>
                                 <td><span class="status-badge completed">Issued</span></td>
                             </tr>
                             <tr>
-                                <td>COD-20261008-043</td>
-                                <td>Oct 8, 2026</td>
+                                <td>
+                                    <strong>COD-20261008-043</strong>
+                                    <span class="dash-subdate">Oct 8, 2026</span>
+                                </td>
+                                <td class="col-dash-date">Oct 8, 2026</td>
                                 <td>Pharmaceutical</td>
                                 <td><span class="status-badge completed">Issued</span></td>
                             </tr>
                             <tr>
-                                <td>COD-20261005-041</td>
-                                <td>Oct 5, 2026</td>
+                                <td>
+                                    <strong>COD-20261005-041</strong>
+                                    <span class="dash-subdate">Oct 5, 2026</span>
+                                </td>
+                                <td class="col-dash-date">Oct 5, 2026</td>
                                 <td>Biohazard</td>
                                 <td><span class="status-badge completed">Issued</span></td>
                             </tr>
                             <tr>
-                                <td>COD-20261003-039</td>
-                                <td>Oct 3, 2026</td>
+                                <td>
+                                    <strong>COD-20261003-039</strong>
+                                    <span class="dash-subdate">Oct 3, 2026</span>
+                                </td>
+                                <td class="col-dash-date">Oct 3, 2026</td>
                                 <td>Sharps</td>
                                 <td><span class="status-badge completed">Issued</span></td>
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <!-- Upcoming Pickups -->
@@ -244,42 +336,56 @@
                         <h3>Recent Invoices</h3>
                         <a href="billing.html">View All Invoices</a>
                     </div>
-                    <table class="dash-table">
+                    <div class="dash-table-wrap">
+                    <table class="dash-table" id="dash-invoices-table">
                         <thead>
                             <tr>
                                 <th>Invoice #</th>
                                 <th>Amount</th>
-                                <th>Due Date</th>
+                                <th class="col-dash-date">Due Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>INV-2026-0384</td>
-                                <td>$2,847.00</td>
-                                <td>Oct 31, 2026</td>
+                                <td>
+                                    <strong>INV-2026-0384</strong>
+                                    <span class="dash-subdate">Due Oct 31, 2026</span>
+                                </td>
+                                <td><strong>$2,847.00</strong></td>
+                                <td class="col-dash-date">Oct 31, 2026</td>
                                 <td><span class="status-badge pending">Pending</span></td>
                             </tr>
                             <tr>
-                                <td>INV-2026-0371</td>
-                                <td>$2,695.00</td>
-                                <td>Sep 30, 2026</td>
+                                <td>
+                                    <strong>INV-2026-0371</strong>
+                                    <span class="dash-subdate">Due Sep 30, 2026</span>
+                                </td>
+                                <td><strong>$2,695.00</strong></td>
+                                <td class="col-dash-date">Sep 30, 2026</td>
                                 <td><span class="status-badge active">Paid</span></td>
                             </tr>
                             <tr>
-                                <td>INV-2026-0358</td>
-                                <td>$3,120.00</td>
-                                <td>Aug 31, 2026</td>
+                                <td>
+                                    <strong>INV-2026-0358</strong>
+                                    <span class="dash-subdate">Due Aug 31, 2026</span>
+                                </td>
+                                <td><strong>$3,120.00</strong></td>
+                                <td class="col-dash-date">Aug 31, 2026</td>
                                 <td><span class="status-badge active">Paid</span></td>
                             </tr>
                             <tr>
-                                <td>INV-2026-0345</td>
-                                <td>$2,790.00</td>
-                                <td>Jul 31, 2026</td>
+                                <td>
+                                    <strong>INV-2026-0345</strong>
+                                    <span class="dash-subdate">Due Jul 31, 2026</span>
+                                </td>
+                                <td><strong>$2,790.00</strong></td>
+                                <td class="col-dash-date">Jul 31, 2026</td>
                                 <td><span class="status-badge active">Paid</span></td>
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <!-- Billing & Payment Status -->

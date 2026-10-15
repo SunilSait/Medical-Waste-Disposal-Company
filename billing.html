@@ -8,6 +8,124 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dash-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .billing-ledger-table .bill-status-pill,
+        .billing-ledger-table .bill-receipt-inline {
+            display: none;
+        }
+        @media (max-width: 1024px) {
+            .billing-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                width: 100% !important;
+            }
+            .billing-grid > * {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .billing-method-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+            }
+            .billing-method-actions {
+                width: 100% !important;
+                justify-content: flex-end !important;
+            }
+            .billing-ledger-table .col-bill-period,
+            .billing-ledger-table .col-bill-method,
+            .billing-ledger-table .col-bill-date {
+                display: none !important;
+            }
+            .billing-ledger-table .dash-subdate {
+                display: block !important;
+                font-size: 0.72rem;
+                color: var(--text-muted);
+                margin-top: 3px;
+                white-space: nowrap;
+            }
+            .billing-ledger-table th,
+            .billing-ledger-table td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .billing-ledger-table .col-bill-status,
+            .billing-ledger-table .col-bill-receipt {
+                display: none !important;
+            }
+            .billing-ledger-table .bill-status-pill {
+                display: inline-flex !important;
+                font-size: 0.65rem;
+                padding: 2px 7px;
+                margin-left: 6px;
+                vertical-align: middle;
+            }
+            [dir="rtl"] .billing-ledger-table .bill-status-pill {
+                margin-left: 0;
+                margin-right: 6px;
+            }
+            .billing-ledger-table .bill-receipt-inline {
+                display: block !important;
+            }
+            .billing-ledger-table th.col-bill-amount,
+            .billing-ledger-table td.col-bill-amount {
+                text-align: right !important;
+                white-space: nowrap;
+            }
+            [dir="rtl"] .billing-ledger-table th.col-bill-amount,
+            [dir="rtl"] .billing-ledger-table td.col-bill-amount {
+                text-align: left !important;
+            }
+            .dash-topbar {
+                padding: 10px 12px 10px 58px;
+                margin: -16px -12px 20px -12px;
+                min-height: 58px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 10px 58px 10px 12px; }
+            .sidebar-toggle { width: 36px; height: 36px; top: 11px; left: 12px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 12px; }
+        }
+        @media (max-width: 480px) {
+            .billing-ledger-table th,
+            .billing-ledger-table td {
+                padding: 8px 4px;
+                font-size: 0.74rem;
+            }
+            .billing-ledger-table .dash-subdate {
+                font-size: 0.66rem;
+            }
+            .billing-ledger-table .bill-status-pill {
+                font-size: 0.6rem;
+                padding: 1px 5px;
+            }
+            .billing-method-header {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 10px;
+            }
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 9px 56px 9px 10px; }
+            .dash-welcome h2 { font-size: 0.92rem; }
+            .dash-topbar-actions { gap: 5px; }
+            .dash-icon-btn, .dash-profile-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+            .sidebar-toggle { top: 11px; left: 10px; width: 36px; height: 36px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 10px; }
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -136,53 +254,53 @@
             </div>
 
             <!-- Payment Methods and Billing Summary Grid -->
-            <div class="dash-grid" style="grid-template-columns: 1.2fr 0.8fr; margin-bottom: 24px;">
+            <div class="dash-grid billing-grid" style="margin-bottom: 24px;">
                 <!-- Payment Methods Card -->
                 <div class="dash-card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <div class="billing-method-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
                         <div>
                             <h3 style="margin:0 0 4px; font-size:1.15rem;">Saved Payment Methods</h3>
                             <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">Manage authorized payment instruments for automated waste destruction billing.</p>
                         </div>
-                        <button class="btn btn-primary btn-sm" onclick="alert('Opening secure PCI-compliant card / ACH tokenization dialog...');"><i class="fa-solid fa-plus"></i> Add Method</button>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Opening secure PCI-compliant card / ACH tokenization dialog...');" style="white-space:nowrap;"><i class="fa-solid fa-plus"></i> Add Method</button>
                     </div>
 
                     <!-- Payment Cards List -->
                     <div style="display:flex; flex-direction:column; gap:16px;">
                         <!-- Method 1: ACH Bank Transfer -->
-                        <div style="border:2px solid var(--primary); border-radius:var(--radius-lg); padding:18px 20px; background:var(--bg); display:flex; justify-content:space-between; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:16px;">
-                                <div style="width:48px; height:48px; border-radius:var(--radius); background:var(--primary-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+                        <div class="billing-method-item" style="border:2px solid var(--primary); border-radius:var(--radius-lg); padding:16px 18px; background:var(--bg); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                            <div style="display:flex; align-items:center; gap:14px; min-width:0; flex:1;">
+                                <div style="width:44px; height:44px; border-radius:var(--radius); background:var(--primary-50); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;">
                                     <i class="fa-solid fa-building-columns"></i>
                                 </div>
-                                <div>
-                                    <div style="display:flex; align-items:center; gap:8px;">
-                                        <h4 style="margin:0; font-size:1rem;">JPMorgan Chase Bank &bull;&bull;&bull;&bull; 8819</h4>
-                                        <span class="status-badge active" style="font-size:0.7rem; padding:2px 8px;">Default &bull; Auto-Pay</span>
+                                <div style="min-width:0;">
+                                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                                        <h4 style="margin:0; font-size:0.95rem; font-weight:700;">JPMorgan Chase &bull;&bull;&bull;&bull; 8819</h4>
+                                        <span class="status-badge active" style="font-size:0.7rem; padding:2px 8px; flex-shrink:0;">Default &bull; Auto-Pay</span>
                                     </div>
-                                    <p style="margin:4px 0 0; font-size:0.82rem; color:var(--text-secondary);">ACH Corporate Checking &bull; Verified Routing 021000021 &bull; Zero Processing Surcharge</p>
+                                    <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-secondary);">ACH Corporate Checking &bull; Verified Routing 021000021 &bull; Zero Surcharge</p>
                                 </div>
                             </div>
-                            <div style="display:flex; gap:8px;">
+                            <div class="billing-method-actions" style="display:flex; gap:8px; flex-shrink:0;">
                                 <button class="btn btn-secondary btn-sm" onclick="alert('Viewing ACH Mandate & Authorization...');">Details</button>
                             </div>
                         </div>
 
                         <!-- Method 2: Corporate Visa -->
-                        <div style="border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px 20px; background:var(--bg-card); display:flex; justify-content:space-between; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:16px;">
-                                <div style="width:48px; height:48px; border-radius:var(--radius); background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+                        <div class="billing-method-item" style="border:1px solid var(--border); border-radius:var(--radius-lg); padding:16px 18px; background:var(--bg-card); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+                            <div style="display:flex; align-items:center; gap:14px; min-width:0; flex:1;">
+                                <div style="width:44px; height:44px; border-radius:var(--radius); background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;">
                                     <i class="fa-brands fa-cc-visa"></i>
                                 </div>
-                                <div>
-                                    <div style="display:flex; align-items:center; gap:8px;">
-                                        <h4 style="margin:0; font-size:1rem;">Visa Commercial Healthcare Card &bull;&bull;&bull;&bull; 4092</h4>
-                                        <span class="status-badge completed" style="font-size:0.7rem; padding:2px 8px;">Backup</span>
+                                <div style="min-width:0;">
+                                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                                        <h4 style="margin:0; font-size:0.95rem; font-weight:700;">Visa Commercial &bull;&bull;&bull;&bull; 4092</h4>
+                                        <span class="status-badge completed" style="font-size:0.7rem; padding:2px 8px; flex-shrink:0;">Backup</span>
                                     </div>
-                                    <p style="margin:4px 0 0; font-size:0.82rem; color:var(--text-secondary);">Expires 08/2029 &bull; Cardholder: MedCenter Health Operating</p>
+                                    <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-secondary);">Healthcare Card &bull; Exp 08/2029 &bull; MedCenter Operating</p>
                                 </div>
                             </div>
-                            <div style="display:flex; gap:8px;">
+                            <div class="billing-method-actions" style="display:flex; gap:8px; flex-shrink:0;">
                                 <button class="btn btn-secondary btn-sm" onclick="alert('Set Visa as primary payment method?');">Make Primary</button>
                                 <button class="btn btn-secondary btn-sm" style="color:var(--danger);" onclick="alert('Card removed');"><i class="fa-solid fa-trash"></i></button>
                             </div>
@@ -190,16 +308,15 @@
                     </div>
 
                     <!-- Auto-Pay Preferences -->
-                    <div style="margin-top:24px; padding:18px; border-radius:var(--radius); background:var(--bg-alt); border:1px solid var(--border);">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <div>
-                                <h4 style="margin:0 0 4px; font-size:0.95rem;">Automated Invoicing &amp; Settlement</h4>
-                                <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">Automatically debit the primary ACH account on Net-30 invoice due date upon manifest closure.</p>
+                    <div style="margin-top:20px; padding:16px; border-radius:var(--radius); background:var(--bg-alt); border:1px solid var(--border);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;">
+                            <div style="flex:1; min-width:200px;">
+                                <h4 style="margin:0 0 3px; font-size:0.92rem;">Automated Invoicing &amp; Settlement</h4>
+                                <p style="margin:0; font-size:0.8rem; color:var(--text-secondary);">Automatically debit primary ACH account on Net-30 due date upon manifest closure.</p>
                             </div>
-                            <label style="position:relative; display:inline-block; width:48px; height:26px; cursor:pointer;">
-                                <input type="checkbox" checked style="opacity:0; width:0; height:0;" onchange="alert('Auto-Pay settings updated successfully');">
-                                <span style="position:absolute; inset:0; background:var(--primary); border-radius:26px; transition:0.3s;"></span>
-                                <span style="position:absolute; top:3px; right:4px; width:20px; height:20px; border-radius:50%; background:#fff; transition:0.3s;"></span>
+                            <label class="toggle-switch" aria-label="Toggle Automated Invoicing & Settlement" style="flex-shrink:0;">
+                                <input type="checkbox" checked onchange="alert('Auto-Pay settings updated successfully');">
+                                <span class="toggle-slider"></span>
                             </label>
                         </div>
                     </div>
@@ -209,99 +326,151 @@
                 <div class="dash-card">
                     <h3 style="margin:0 0 16px; font-size:1.15rem;">Billing Information</h3>
                     
-                    <div style="margin-bottom:18px;">
+                    <div style="margin-bottom:16px;">
                         <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Entity Name</span>
                         <p style="margin:4px 0 0; font-weight:600; color:var(--text);">MedCenter Health System Inc.</p>
                     </div>
 
-                    <div style="margin-bottom:18px;">
+                    <div style="margin-bottom:16px;">
                         <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Billing Address</span>
-                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary); line-height:1.4;">
+                        <p style="margin:4px 0 0; font-size:0.88rem; color:var(--text-secondary); line-height:1.4;">
                             100 Hospital Way, Suite 400<br>
                             Attn: Accounts Payable<br>
                             Seattle, WA 98104
                         </p>
                     </div>
 
-                    <div style="margin-bottom:18px;">
+                    <div style="margin-bottom:16px;">
                         <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Tax Identification</span>
-                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                        <p style="margin:4px 0 0; font-size:0.88rem; color:var(--text-secondary);">
                             Federal EIN: <strong>XX-XXX9182</strong><br>
                             WA Resale Tax Exemption: <strong>WA-MED-849102-E</strong>
                         </p>
                     </div>
 
-                    <div style="margin-bottom:20px;">
+                    <div style="margin-bottom:18px;">
                         <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Accounts Payable Contact</span>
-                        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                        <p style="margin:4px 0 0; font-size:0.88rem; color:var(--text-secondary);">
                             <i class="fa-solid fa-envelope" style="margin-right:6px; color:var(--primary);"></i> ap-billing@medcenterhealth.org<br>
                             <i class="fa-solid fa-phone" style="margin-right:6px; color:var(--primary);"></i> (206) 555-0198 ext. 402
                         </p>
                     </div>
 
-                    <button class="btn btn-secondary btn-block" onclick="alert('Opening billing profile edit form...');"><i class="fa-solid fa-pen-to-square"></i> Edit Billing Details</button>
+                    <button class="btn btn-secondary" style="width:100%;" onclick="alert('Opening billing profile edit form...');"><i class="fa-solid fa-pen-to-square"></i> Edit Billing Details</button>
                 </div>
             </div>
 
             <!-- Recent Payment Ledger Table -->
             <div class="dash-card">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
                     <div>
                         <h3 style="margin:0 0 4px; font-size:1.15rem;">Recent Payment Settlements</h3>
                         <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">Real-time audit log of cleared electronic payments and statements.</p>
                     </div>
-                    <button class="btn btn-secondary btn-sm" onclick="alert('Exporting full billing & settlement statements archive (CSV/PDF)...');"><i class="fa-solid fa-download"></i> Download Archive</button>
+                    <button class="btn btn-secondary btn-sm" onclick="alert('Exporting full billing & settlement statements archive (CSV/PDF)...');" style="white-space:nowrap;"><i class="fa-solid fa-download"></i> Download Archive</button>
                 </div>
 
                 <div class="dash-table-wrap">
-                    <table class="dash-table">
+                    <table class="dash-table billing-ledger-table" id="billing-ledger-table">
                         <thead>
                             <tr>
-                                <th>Transaction Ref</th>
-                                <th>Billing Period</th>
-                                <th>Payment Method</th>
-                                <th>Amount</th>
-                                <th>Settled Date</th>
-                                <th>Status</th>
-                                <th>Receipt</th>
+                                <th class="col-bill-ref">Transaction &amp; Status</th>
+                                <th class="col-bill-period">Billing Period</th>
+                                <th class="col-bill-method">Payment Method</th>
+                                <th class="col-bill-amount">Amount &amp; Receipt</th>
+                                <th class="col-bill-date">Settled Date</th>
+                                <th class="col-bill-status">Status</th>
+                                <th class="col-bill-receipt">Receipt</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span style="font-family:monospace; font-weight:600;">TXN-89410-202610</span></td>
-                                <td>September 2026 Monthly Volume</td>
-                                <td>Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
-                                <td><strong style="color:var(--text);">$1,420.00</strong></td>
-                                <td>Oct 05, 2026</td>
-                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
-                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-89410-202610...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                                <td class="col-bill-ref">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <span style="font-family:monospace; font-weight:600;">TXN-89410-202610</span>
+                                        <span class="status-badge completed bill-status-pill"><i class="fa-solid fa-check"></i> Cleared</span>
+                                    </div>
+                                    <span class="dash-subdate">Chase ACH &bull; Oct 05, 2026</span>
+                                </td>
+                                <td class="col-bill-period">September 2026 Monthly Volume</td>
+                                <td class="col-bill-method">Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
+                                <td class="col-bill-amount">
+                                    <strong style="color:var(--text);">$1,420.00</strong>
+                                    <div class="bill-receipt-inline" style="margin-top:4px;">
+                                        <button class="btn btn-secondary btn-xs" onclick="alert('Downloading settlement receipt PDF for TXN-89410-202610...');" style="height:24px; padding:0 8px; font-size:0.68rem; margin-inline-start:auto;">
+                                            <i class="fa-solid fa-download"></i> PDF
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="col-bill-date">Oct 05, 2026</td>
+                                <td class="col-bill-status"><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td class="col-bill-receipt"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-89410-202610...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
                             </tr>
                             <tr>
-                                <td><span style="font-family:monospace; font-weight:600;">TXN-87291-202609</span></td>
-                                <td>August 2026 Monthly Volume</td>
-                                <td>Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
-                                <td><strong style="color:var(--text);">$1,385.50</strong></td>
-                                <td>Sep 05, 2026</td>
-                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
-                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-87291-202609...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                                <td class="col-bill-ref">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <span style="font-family:monospace; font-weight:600;">TXN-87291-202609</span>
+                                        <span class="status-badge completed bill-status-pill"><i class="fa-solid fa-check"></i> Cleared</span>
+                                    </div>
+                                    <span class="dash-subdate">Chase ACH &bull; Sep 05, 2026</span>
+                                </td>
+                                <td class="col-bill-period">August 2026 Monthly Volume</td>
+                                <td class="col-bill-method">Chase ACH (&bull;&bull;&bull;&bull; 8819)</td>
+                                <td class="col-bill-amount">
+                                    <strong style="color:var(--text);">$1,385.50</strong>
+                                    <div class="bill-receipt-inline" style="margin-top:4px;">
+                                        <button class="btn btn-secondary btn-xs" onclick="alert('Downloading settlement receipt PDF for TXN-87291-202609...');" style="height:24px; padding:0 8px; font-size:0.68rem; margin-inline-start:auto;">
+                                            <i class="fa-solid fa-download"></i> PDF
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="col-bill-date">Sep 05, 2026</td>
+                                <td class="col-bill-status"><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td class="col-bill-receipt"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-87291-202609...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
                             </tr>
                             <tr>
-                                <td><span style="font-family:monospace; font-weight:600;">TXN-85112-202608</span></td>
-                                <td>July 2026 Monthly Volume</td>
-                                <td>Visa (&bull;&bull;&bull;&bull; 4092)</td>
-                                <td><strong style="color:var(--text);">$1,510.00</strong></td>
-                                <td>Aug 05, 2026</td>
-                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
-                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-85112-202608...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                                <td class="col-bill-ref">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <span style="font-family:monospace; font-weight:600;">TXN-85112-202608</span>
+                                        <span class="status-badge completed bill-status-pill"><i class="fa-solid fa-check"></i> Cleared</span>
+                                    </div>
+                                    <span class="dash-subdate">Visa Card &bull; Aug 05, 2026</span>
+                                </td>
+                                <td class="col-bill-period">July 2026 Monthly Volume</td>
+                                <td class="col-bill-method">Visa (&bull;&bull;&bull;&bull; 4092)</td>
+                                <td class="col-bill-amount">
+                                    <strong style="color:var(--text);">$1,510.00</strong>
+                                    <div class="bill-receipt-inline" style="margin-top:4px;">
+                                        <button class="btn btn-secondary btn-xs" onclick="alert('Downloading settlement receipt PDF for TXN-85112-202608...');" style="height:24px; padding:0 8px; font-size:0.68rem; margin-inline-start:auto;">
+                                            <i class="fa-solid fa-download"></i> PDF
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="col-bill-date">Aug 05, 2026</td>
+                                <td class="col-bill-status"><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td class="col-bill-receipt"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-85112-202608...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
                             </tr>
                             <tr>
-                                <td><span style="font-family:monospace; font-weight:600;">TXN-83901-202607</span></td>
-                                <td>June 2026 Monthly Volume</td>
-                                <td>Visa (&bull;&bull;&bull;&bull; 4092)</td>
-                                <td><strong style="color:var(--text);">$1,290.00</strong></td>
-                                <td>Jul 05, 2026</td>
-                                <td><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
-                                <td><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-83901-202607...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
+                                <td class="col-bill-ref">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <span style="font-family:monospace; font-weight:600;">TXN-83901-202607</span>
+                                        <span class="status-badge completed bill-status-pill"><i class="fa-solid fa-check"></i> Cleared</span>
+                                    </div>
+                                    <span class="dash-subdate">Visa Card &bull; Jul 05, 2026</span>
+                                </td>
+                                <td class="col-bill-period">June 2026 Monthly Volume</td>
+                                <td class="col-bill-method">Visa (&bull;&bull;&bull;&bull; 4092)</td>
+                                <td class="col-bill-amount">
+                                    <strong style="color:var(--text);">$1,290.00</strong>
+                                    <div class="bill-receipt-inline" style="margin-top:4px;">
+                                        <button class="btn btn-secondary btn-xs" onclick="alert('Downloading settlement receipt PDF for TXN-83901-202607...');" style="height:24px; padding:0 8px; font-size:0.68rem; margin-inline-start:auto;">
+                                            <i class="fa-solid fa-download"></i> PDF
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="col-bill-date">Jul 05, 2026</td>
+                                <td class="col-bill-status"><span class="status-badge completed"><i class="fa-solid fa-check"></i> Cleared</span></td>
+                                <td class="col-bill-receipt"><button class="btn btn-secondary btn-sm" onclick="alert('Downloading settlement receipt PDF for TXN-83901-202607...');"><i class="fa-solid fa-download"></i> Receipt</button></td>
                             </tr>
                         </tbody>
                     </table>

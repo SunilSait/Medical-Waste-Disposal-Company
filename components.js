@@ -477,8 +477,38 @@ function initCounterAnimation() {
 /* ─── DASHBOARD SIDEBAR TOGGLE ───────────────────── */
 function toggleSidebar() {
     const sidebar = document.getElementById('dashboard-sidebar');
-    if (sidebar) sidebar.classList.toggle('open');
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    if (sidebar) {
+        const isOpen = sidebar.classList.toggle('open');
+        if (toggleBtn) {
+            toggleBtn.classList.toggle('open', isOpen);
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+                icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            }
+            toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            toggleBtn.setAttribute('title', isOpen ? 'Close sidebar' : 'Open sidebar');
+        }
+    }
 }
+
+// Close sidebar on click outside or clicking the backdrop
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('dashboard-sidebar');
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    if (sidebar && sidebar.classList.contains('open')) {
+        if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+            sidebar.classList.remove('open');
+            if (toggleBtn) {
+                toggleBtn.classList.remove('open');
+                const icon = toggleBtn.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                toggleBtn.setAttribute('title', 'Open sidebar');
+            }
+        }
+    }
+});
 
 /* ─── TESTIMONIAL SLIDER (Home 2) ─────────────────── */
 function initTestimonialSlider() {

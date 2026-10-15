@@ -8,6 +8,109 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dash-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .reports-table .rep-status-pill {
+            display: none;
+        }
+        @media (max-width: 1024px) {
+            .reports-chart-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                width: 100% !important;
+            }
+            .reports-chart-grid > * {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+            .mock-bars-chart {
+                gap: 10px;
+            }
+            .reports-table .col-rep-pickups,
+            .reports-table .col-rep-method,
+            .reports-table .col-rep-diversion {
+                display: none !important;
+            }
+            .reports-table .dash-subdate {
+                display: block !important;
+                font-size: 0.72rem;
+                color: var(--text-muted);
+                margin-top: 3px;
+                white-space: nowrap;
+            }
+            .reports-table th,
+            .reports-table td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .reports-table .col-rep-status {
+                display: none !important;
+            }
+            .reports-table .rep-status-pill {
+                display: inline-flex !important;
+                font-size: 0.65rem;
+                padding: 2px 7px;
+                margin-left: 6px;
+                vertical-align: middle;
+            }
+            [dir="rtl"] .reports-table .rep-status-pill {
+                margin-left: 0;
+                margin-right: 6px;
+            }
+            .reports-table th.col-rep-vol,
+            .reports-table td.col-rep-vol {
+                text-align: right !important;
+                white-space: nowrap;
+            }
+            [dir="rtl"] .reports-table th.col-rep-vol,
+            [dir="rtl"] .reports-table td.col-rep-vol {
+                text-align: left !important;
+            }
+            .dash-topbar {
+                padding: 10px 12px 10px 58px;
+                margin: -16px -12px 20px -12px;
+                min-height: 58px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 10px 58px 10px 12px; }
+            .sidebar-toggle { width: 36px; height: 36px; top: 11px; left: 12px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 12px; }
+        }
+        @media (max-width: 480px) {
+            .reports-table th,
+            .reports-table td {
+                padding: 8px 4px;
+                font-size: 0.74rem;
+            }
+            .reports-table .dash-subdate {
+                font-size: 0.66rem;
+            }
+            .reports-table .rep-status-pill {
+                font-size: 0.6rem;
+                padding: 1px 5px;
+            }
+            .mock-bars-chart {
+                gap: 6px;
+            }
+            .dash-topbar {
+                padding: 9px 10px 9px 56px;
+                margin: -16px -12px 18px -12px;
+                gap: 6px;
+            }
+            [dir="rtl"] .dash-topbar { padding: 9px 56px 9px 10px; }
+            .dash-welcome h2 { font-size: 0.92rem; }
+            .dash-topbar-actions { gap: 5px; }
+            .dash-icon-btn, .dash-profile-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+            .sidebar-toggle { top: 11px; left: 10px; width: 36px; height: 36px; }
+            [dir="rtl"] .sidebar-toggle { left: auto; right: 10px; }
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -133,7 +236,7 @@
             </div>
 
             <!-- Visual Bar Chart & Stream Distribution -->
-            <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; margin-bottom:24px;">
+            <div class="dash-grid reports-chart-grid" style="margin-bottom:24px;">
                 <!-- Monthly Bar Chart -->
                 <div class="dash-card">
                     <div class="dash-card-header">
@@ -205,69 +308,94 @@
 
             <!-- Historical Monthly Waste Summary Table -->
             <div class="dash-card">
-                <div class="dash-card-header">
+                <div class="dash-card-header" style="flex-wrap:wrap; gap:10px;">
                     <h3>Billing Cycle Volume Log</h3>
-                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button class="btn btn-secondary btn-sm" onclick="alert('Generating annual waste audit report (CSV)...');"><i class="fa-solid fa-file-arrow-down"></i> Export CSV</button>
-                        <button class="btn btn-outline-quote btn-sm" onclick="alert('Downloading EPA Form 8700-12 Annual Summary (PDF)...')"><i class="fa-solid fa-file-pdf"></i> Annual Regulatory PDF</button>
-                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="alert('Generating annual waste audit report (CSV)...');" style="margin-inline-start:auto; white-space:nowrap;"><i class="fa-solid fa-file-arrow-down"></i> Export CSV</button>
                 </div>
-                <table class="dash-table">
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Total Pickups</th>
-                            <th>Biohazard Volume</th>
-                            <th>Sharps Volume</th>
-                            <th>Rx Volume</th>
-                            <th>Treatment Method</th>
-                            <th>Diversion Rate</th>
-                            <th>Audit Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>October 2026</strong></td>
-                            <td>47 runs</td>
-                            <td>2,100 lbs</td>
-                            <td>540 lbs</td>
-                            <td>160 lbs</td>
-                            <td>Hydrothermal Autoclave</td>
-                            <td><strong class="text-teal">94.8%</strong></td>
-                            <td><span class="status-badge active">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>September 2026</strong></td>
-                            <td>52 runs</td>
-                            <td>2,450 lbs</td>
-                            <td>680 lbs</td>
-                            <td>370 lbs</td>
-                            <td>Hydrothermal Autoclave</td>
-                            <td><strong class="text-teal">93.9%</strong></td>
-                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>August 2026</strong></td>
-                            <td>44 runs</td>
-                            <td>1,980 lbs</td>
-                            <td>490 lbs</td>
-                            <td>130 lbs</td>
-                            <td>Hydrothermal Autoclave</td>
-                            <td><strong class="text-teal">94.5%</strong></td>
-                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>July 2026</strong></td>
-                            <td>49 runs</td>
-                            <td>2,240 lbs</td>
-                            <td>610 lbs</td>
-                            <td>250 lbs</td>
-                            <td>Hydrothermal Autoclave</td>
-                            <td><strong class="text-teal">94.1%</strong></td>
-                            <td><span class="status-badge completed">Closed &amp; Certified</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="dash-table-wrap">
+                    <table class="dash-table reports-table" id="reports-volume-table">
+                        <thead>
+                            <tr>
+                                <th class="col-rep-month">Month &amp; Status</th>
+                                <th class="col-rep-pickups">Total Pickups</th>
+                                <th class="col-rep-vol">Total Volume</th>
+                                <th class="col-rep-method">Treatment Method</th>
+                                <th class="col-rep-diversion">Diversion Rate</th>
+                                <th class="col-rep-status">Audit Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-rep-month">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <strong>October 2026</strong>
+                                        <span class="status-badge active rep-status-pill"><i class="fa-solid fa-spinner"></i> In Progress</span>
+                                    </div>
+                                    <span class="dash-subdate">47 runs • Hydrothermal Autoclave</span>
+                                </td>
+                                <td class="col-rep-pickups">47 runs</td>
+                                <td class="col-rep-vol">
+                                    <strong>2,800 lbs</strong>
+                                    <span class="dash-subdate" style="color:var(--primary); font-weight:600;">94.8% Diversion</span>
+                                </td>
+                                <td class="col-rep-method">Hydrothermal Autoclave</td>
+                                <td class="col-rep-diversion"><strong class="text-teal">94.8%</strong></td>
+                                <td class="col-rep-status"><span class="status-badge active">In Progress</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-rep-month">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <strong>September 2026</strong>
+                                        <span class="status-badge completed rep-status-pill"><i class="fa-solid fa-check"></i> Certified</span>
+                                    </div>
+                                    <span class="dash-subdate">52 runs • Hydrothermal Autoclave</span>
+                                </td>
+                                <td class="col-rep-pickups">52 runs</td>
+                                <td class="col-rep-vol">
+                                    <strong>3,500 lbs</strong>
+                                    <span class="dash-subdate" style="color:var(--primary); font-weight:600;">93.9% Diversion</span>
+                                </td>
+                                <td class="col-rep-method">Hydrothermal Autoclave</td>
+                                <td class="col-rep-diversion"><strong class="text-teal">93.9%</strong></td>
+                                <td class="col-rep-status"><span class="status-badge completed">Closed &amp; Certified</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-rep-month">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <strong>August 2026</strong>
+                                        <span class="status-badge completed rep-status-pill"><i class="fa-solid fa-check"></i> Certified</span>
+                                    </div>
+                                    <span class="dash-subdate">44 runs • Hydrothermal Autoclave</span>
+                                </td>
+                                <td class="col-rep-pickups">44 runs</td>
+                                <td class="col-rep-vol">
+                                    <strong>2,600 lbs</strong>
+                                    <span class="dash-subdate" style="color:var(--primary); font-weight:600;">94.5% Diversion</span>
+                                </td>
+                                <td class="col-rep-method">Hydrothermal Autoclave</td>
+                                <td class="col-rep-diversion"><strong class="text-teal">94.5%</strong></td>
+                                <td class="col-rep-status"><span class="status-badge completed">Closed &amp; Certified</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-rep-month">
+                                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                        <strong>July 2026</strong>
+                                        <span class="status-badge completed rep-status-pill"><i class="fa-solid fa-check"></i> Certified</span>
+                                    </div>
+                                    <span class="dash-subdate">49 runs • Hydrothermal Autoclave</span>
+                                </td>
+                                <td class="col-rep-pickups">49 runs</td>
+                                <td class="col-rep-vol">
+                                    <strong>3,100 lbs</strong>
+                                    <span class="dash-subdate" style="color:var(--primary); font-weight:600;">94.1% Diversion</span>
+                                </td>
+                                <td class="col-rep-method">Hydrothermal Autoclave</td>
+                                <td class="col-rep-diversion"><strong class="text-teal">94.1%</strong></td>
+                                <td class="col-rep-status"><span class="status-badge completed">Closed &amp; Certified</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
