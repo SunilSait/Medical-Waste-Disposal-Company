@@ -141,17 +141,23 @@ input,textarea,select { font-family:inherit; font-size:inherit; }
 [dir="rtl"] input[type="datetime-local"],
 [dir="rtl"] input[type="month"],
 [dir="rtl"] input[type="week"] {
-    direction: ltr !important;
     justify-content: flex-end !important;
+    direction: rtl !important;
     text-align: right !important;
+    padding-right: 1rem !important;
+    padding-left: 44px !important;
 }
-[dir="rtl"] input[type="date"]::-webkit-date-and-time-value,
-[dir="rtl"] input[type="time"]::-webkit-date-and-time-value,
-[dir="rtl"] input[type="datetime-local"]::-webkit-date-and-time-value,
+[dir="rtl"] input[type="date"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] input[type="time"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    right: auto !important;
+    left: 14px !important;
+}
 [dir="rtl"] input[type="date"]::-webkit-datetime-edit,
 [dir="rtl"] input[type="time"]::-webkit-datetime-edit,
 [dir="rtl"] input[type="datetime-local"]::-webkit-datetime-edit {
     text-align: right !important;
+    direction: rtl !important;
 }
 
 /* ─── TYPOGRAPHY STANDARDS ───────────────────────── */
@@ -4689,10 +4695,24 @@ input[type="number"].form-control {
     box-sizing: border-box;
 }
 input[type="date"].form-control,
+input[type="date"],
 input[type="time"].form-control,
-input[type="datetime-local"].form-control {
+input[type="time"],
+input[type="datetime-local"].form-control,
+input[type="datetime-local"] {
+    position: relative;
+    padding-right: 44px;
     display: inline-flex;
     align-items: center;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 input[type="date"].form-control::-webkit-date-and-time-value,
 input[type="time"].form-control::-webkit-date-and-time-value,
@@ -4950,17 +4970,27 @@ input[type="datetime-local"].form-control::-webkit-date-and-time-value {
 [dir="rtl"] .form-control[type="datetime-local"],
 [dir="rtl"] .form-input[type="datetime-local"],
 [dir="rtl"] #pickup-date {
-    direction: ltr !important;
     justify-content: flex-end !important;
+    direction: rtl !important;
     text-align: right !important;
+    padding-right: 1rem !important;
+    padding-left: 44px !important;
 }
-[dir="rtl"] .form-control[type="date"]::-webkit-date-and-time-value,
-[dir="rtl"] .form-input[type="date"]::-webkit-date-and-time-value,
+[dir="rtl"] .form-control[type="date"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] .form-input[type="date"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] .form-control[type="time"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] .form-input[type="time"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] .form-control[type="datetime-local"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] .form-input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+[dir="rtl"] #pickup-date::-webkit-calendar-picker-indicator {
+    right: auto !important;
+    left: 14px !important;
+}
 [dir="rtl"] .form-control[type="date"]::-webkit-datetime-edit,
 [dir="rtl"] .form-input[type="date"]::-webkit-datetime-edit,
-[dir="rtl"] #pickup-date::-webkit-date-and-time-value,
 [dir="rtl"] #pickup-date::-webkit-datetime-edit {
     text-align: right !important;
+    direction: rtl !important;
 }
 
 [dir="rtl"] .password-wrap .form-control, [dir="rtl"] .password-wrapper .form-input {
