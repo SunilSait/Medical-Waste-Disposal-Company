@@ -153,9 +153,9 @@ function buildNavbar() {
     const links = [
         { href: 'index.html', label: 'Home' },
         { href: 'home2.html', label: 'Home 2' },
+        { href: 'about.html', label: 'About' },
         { href: 'services.html', label: 'Services' },
         { href: 'compliance.html', label: 'Compliance' },
-        { href: 'about.html', label: 'About' },
         { href: 'contact.html', label: 'Contact' },
     ];
 
@@ -307,9 +307,9 @@ function buildFooter() {
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="home2.html">Home 2</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="compliance.html">Compliance</a></li>
-                        <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -1222,7 +1222,7 @@ function ensureLogoutModal() {
                         <i class="fa-solid fa-xmark"></i> Cancel
                     </button>
                     <a href="login.html" class="logout-modal-btn logout-btn-confirm" id="confirmLogoutLink">
-                        <i class="fa-solid fa-right-from-bracket"></i> Yes, Log Out
+                        <i class="fa-solid fa-right-from-bracket"></i> Log Out
                     </a>
                 </div>
             </div>
